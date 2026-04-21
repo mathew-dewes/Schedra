@@ -6,7 +6,7 @@ export default function Navbar() {
 
     const isLoggedIn = false;
     return (
-        <div className="flex justify-between mx-10 my-5">
+        <div className="flex justify-between mx-20 my-5">
             <h1 className="font-semibold">Schedra</h1>
             <ul className="flex items-center gap-3">
                 {!isLoggedIn ? publicNavLinks.map((link) => {
