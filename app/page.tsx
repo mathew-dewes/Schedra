@@ -5,6 +5,7 @@ import HowItWorks from "@/components/web/landing/HowItWorks";
 import Inspiration from "@/components/web/landing/Inspiration";
 import Pricing from "@/components/web/landing/Pricing";
 
+
 export default function page(){
   return (
     <div className="space-y-30 mb-40">
