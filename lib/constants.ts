@@ -1,10 +1,7 @@
 export const publicNavLinks = [
-    {href: '/#home', label: "Home"},
-    {href: '/#features', label: "Features"},
-    {href: '/#pricing', label: "Pricing"},
-    {href: '/#howItWorks', label: "How it works"},
+    {href: '/', label: "Home"},
     {href: '/login', label: "Login"},
-    {href: '#getStarted', label: "Get Started"},
+    {href: '/register', label: "Register"},
 
 ];
 
