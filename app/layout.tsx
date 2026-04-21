@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/web/Navbar";
+import Footer from "@/components/web/Footer";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
+      className={cn("h-full", "antialiased scroll-smooth", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
 
       <body className="min-h-full flex flex-col">
@@ -37,6 +38,7 @@ export default function RootLayout({
         <main className="mx-10 my-10">
           {children}
         </main>
+        <Footer/>
       </body>
     </html>
   );
