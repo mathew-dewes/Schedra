@@ -7,6 +7,7 @@ export default async function Navbar() {
     
     
   const { data } = await supabase.auth.getSession();
+  const onBoarding = false;
 
   const session = data.session;
 
@@ -14,7 +15,7 @@ export default async function Navbar() {
     return (
         <div className="flex justify-between mx-20 my-5">
             <h1 className="font-semibold">Schedra</h1>
-      <NavLinks session={!!session}/>
+      <NavLinks session={!!session} onBoarding={onBoarding}/>
         </div>
     )
 }

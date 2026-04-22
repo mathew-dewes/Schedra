@@ -7,9 +7,10 @@ export const publicNavLinks = [
 
 
 export const navLinks = [
+    {href: '/onboarding', label: "On Boarding"},
     {href: '/dashboard', label: "Dashboard"},
-    {href: '/dashboard/bookings', label: "Bookings"},
-    {href: '/dashboard/services', label: "Services"},
-    {href: 'dashboard/availability', label: "Availability"},
-    {href: 'dashboard/customers', label: "Customers"}
+    {href: '/bookings', label: "Bookings"},
+    {href: '/services', label: "Services"},
+    {href: '/availability', label: "Availability"},
+    {href: '/customers', label: "Customers"}
 ];

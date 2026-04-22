@@ -6,28 +6,41 @@ import { buttonVariants } from "../ui/button"
 import SignOutButton from "./ActionButtons/SignOutButton"
 import { usePathname } from "next/navigation"
 
-export default function NavLinks({session}:
-    {session: boolean}
-){
-
-    const path = usePathname()
+export default function NavLinks({ session, onBoarding }:
+    { session: boolean, onBoarding: boolean }
+) {
+    const excludedRoutes = ['/dashboard', '/bookings', '/services', '/availability', '/customers'];
+    const path = usePathname();
     return (
-         <ul className="flex items-center gap-3">
-                {!session ? publicNavLinks.map((link) => {
+        <ul className="flex items-center gap-3">
+            {!session ? publicNavLinks.map((link) => {
 
-                    return <Link
+                return <Link
+                    key={link.href}
+                    className={(buttonVariants({ variant: path == link.href ? "default" : "ghost" }))} href={link.href}>{link.label}</Link>
+            }) : navLinks
+                .filter(link => {
+                    
+                    if (link.href == '/onboarding' && onBoarding) return false;
+                    if (!onBoarding) {
+                        return !excludedRoutes.includes(link.href);
+                    }
+                    return true;
+                })
+                .map(link => (
+                    <Link
                         key={link.href}
-                        className={(buttonVariants({ variant: path == link.href ? "default" : "ghost"  }))} href={link.href}>{link.label}</Link>
-                }) : navLinks.map((link) => {
-                    return <Link
-                        key={link.href}
-                        className={(buttonVariants({ variant: path == link.href ? "default" : "ghost"  }))} href={link.href}>{link.label}</Link>
-                })}
-              <SignOutButton session={session}/>
+                        className={buttonVariants({ variant: path == link.href ? "default" : "ghost" })}
+                        href={link.href}
+                    >
+                        {link.label}
+                    </Link>
+                ))}
+            <SignOutButton session={session} />
 
 
 
 
-            </ul>
+        </ul>
     )
 }
