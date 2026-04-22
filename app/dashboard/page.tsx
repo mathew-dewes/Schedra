@@ -1,11 +1,10 @@
-import { BusinessForm } from "./_components/onBoarding/BusinessForm";
+import OnBoardingSummary from "./_components/OnBoardingSummary";
 
 
-export default function page(){
-    return(
+export default function page() {
+    return (
         <div>
-            <BusinessForm/>
-           {/* <Services/> */}
+          <OnBoardingSummary/>
         </div>
     )
 }

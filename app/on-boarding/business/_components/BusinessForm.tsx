@@ -224,7 +224,7 @@ export function BusinessForm() {
                         Reset
                     </Button>
                     <Button type="submit" form="form-rhf-demo">
-                        Submit
+                        Save and exit
                     </Button>
                 </Field>
             </CardFooter>
