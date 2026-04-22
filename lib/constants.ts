@@ -5,12 +5,21 @@ export const publicNavLinks = [
 
 ];
 
-
 export const navLinks = [
-    {href: '/onboarding', label: "On Boarding"},
     {href: '/dashboard', label: "Dashboard"},
     {href: '/bookings', label: "Bookings"},
     {href: '/services', label: "Services"},
     {href: '/availability', label: "Availability"},
     {href: '/customers', label: "Customers"}
 ];
+
+
+export const days = [
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+] as const;

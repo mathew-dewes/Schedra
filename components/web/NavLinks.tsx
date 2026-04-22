@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation"
 export default function NavLinks({ session, onBoarding }:
     { session: boolean, onBoarding: boolean }
 ) {
-    const excludedRoutes = ['/dashboard', '/bookings', '/services', '/availability', '/customers'];
+    const excludedRoutes = [ '/bookings', '/services', '/availability', '/customers'];
     const path = usePathname();
     return (
         <ul className="flex items-center gap-3">
@@ -20,8 +20,6 @@ export default function NavLinks({ session, onBoarding }:
                     className={(buttonVariants({ variant: path == link.href ? "default" : "ghost" }))} href={link.href}>{link.label}</Link>
             }) : navLinks
                 .filter(link => {
-                    
-                    if (link.href == '/onboarding' && onBoarding) return false;
                     if (!onBoarding) {
                         return !excludedRoutes.includes(link.href);
                     }

@@ -15,4 +15,48 @@ export const registerSchema = z.object({
 }).refine((data) => data.password === data.confirmPassword, {
     message: "Confirm Password do not match",
     path: ["confirmPassword"],
-  });;
+  });
+
+
+  export const businessFormSchema = z.object({
+    name: z.string().min(3, 'Business name must be 3 or more characters'),
+    description: z.string().optional(),
+      hours: z.object({
+      monday: z.object({
+        open: z.string(),
+        enabled: z.boolean(),
+        close: z.string(),
+      }),
+      tuesday: z.object({
+        open: z.string(),
+        enabled: z.boolean(),
+        close: z.string(),
+      }),
+      wednesday: z.object({
+        open: z.string(),
+        enabled: z.boolean(),
+        close: z.string(),
+      }),
+      thursday: z.object({
+        open: z.string(),
+        enabled: z.boolean(),
+        close: z.string(),
+      }),
+      friday: z.object({
+        open: z.string(),
+        enabled: z.boolean(),
+        close: z.string(),
+      }),
+      saturday: z.object({
+        open: z.string(),
+        enabled: z.boolean(),
+        close: z.string(),
+      }),
+      sunday: z.object({
+        open: z.string(),
+        enabled: z.boolean(),
+        close: z.string(),
+      }),
+    }),
+  
+  });
