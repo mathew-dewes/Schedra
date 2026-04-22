@@ -1,6 +1,6 @@
 "use client"
 
-import { cn, delay } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
     Field,
@@ -18,7 +18,9 @@ import { loginSchema } from "@/lib/schemas"
 import z from "zod"
 import { ButtonSpinner } from "@/components/ui/buttonSpinner"
 import Link from "next/link"
-import { signInWithGoogle } from "@/lib/auth/actions"
+import { signInWithEmailPassword, signInWithGoogle } from "@/lib/auth/actions"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 export function LoginForm({
     className,
@@ -26,6 +28,7 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
 
     const [isPending, startTransition] = useTransition();
+    const router = useRouter()
     const form = useForm({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -34,10 +37,19 @@ export function LoginForm({
         }
     });
 
-    function onSubmit(values: z.infer<typeof loginSchema>) {
+  function onSubmit(values: z.infer<typeof loginSchema>) {
         startTransition(async () => {
-            await delay(2000)
-            console.log(values);
+            const res = await signInWithEmailPassword(values);
+
+            if (!res.success){
+                toast.error(res.message)
+            } else {
+                toast.success(res.message);
+                router.push('/dashboard')
+
+            }
+    
+        
 
         })
     }
@@ -88,8 +100,8 @@ export function LoginForm({
                                 <Input
                                     {...field}
                                     aria-invalid={fieldState.invalid}
-                                    id="email"
-                                    type="text"
+                                    id="password"
+                                    type="password"
                                     placeholder="Enter password"
                                 />
                                 {fieldState.invalid &&

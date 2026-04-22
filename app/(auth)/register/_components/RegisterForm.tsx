@@ -1,6 +1,6 @@
 "use client"
 
-import { cn, delay } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
     Field,
@@ -17,6 +17,8 @@ import {registerSchema } from "@/lib/schemas"
 import z from "zod"
 import { ButtonSpinner } from "@/components/ui/buttonSpinner"
 import Link from "next/link"
+import { signUpWithEmailPassword } from "@/lib/auth/actions"
+import { toast } from "sonner"
 
 export function RegisterForm({
     className,
@@ -37,8 +39,14 @@ export function RegisterForm({
 
     function onSubmit(values: z.infer<typeof registerSchema>) {
         startTransition(async () => {
-            await delay(2000);
-            alert(JSON.stringify(values))
+            const res = await signUpWithEmailPassword(values);
+
+            if (!res.success){
+                toast.error(res.message)
+            } else {
+                toast.success(res.message)
+            }
+    
         
 
         })
