@@ -4,6 +4,7 @@ export default function page(){
     return(
         <div>
             <OnBoardingForm/>
+           {/* <Services/> */}
         </div>
     )
 }
