@@ -21,6 +21,9 @@ export const registerSchema = z.object({
   export const businessFormSchema = z.object({
     name: z.string().min(3, 'Business name must be 3 or more characters'),
     description: z.string().optional(),
+    phone: z.string().optional(),
+    email: z.email(),
+    address: z.string().min(1, "Address is required"),
       hours: z.object({
       monday: z.object({
         open: z.string(),

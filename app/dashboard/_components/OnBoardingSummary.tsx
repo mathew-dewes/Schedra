@@ -3,10 +3,10 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 
-export default function OnBoardingSummary(){
+export default function OnBoardingSummary({hasBusiness, hasService}:
+    {hasBusiness: boolean, hasService: boolean}
+){
 
-    const hasBusiness = false;
-    const hasService = false;
     return (
                <div>
             <div>
@@ -18,7 +18,8 @@ export default function OnBoardingSummary(){
                 <div className="flex items-center gap-2">
                     <Checkbox className="size-5 pointer-events-none" />
                     <h2>Create your business</h2>
-                    <Link className={buttonVariants({variant:"secondary"})} href={'/on-boarding/business'}>Complete</Link>
+                    <Link className={buttonVariants({variant:"secondary"})} href={'/on-boarding/business'}>
+                    {hasBusiness ? "Update": "Complete"}</Link>
             
                 </div>
                 <div className="flex items-center gap-2">

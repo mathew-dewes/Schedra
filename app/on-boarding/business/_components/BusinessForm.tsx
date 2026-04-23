@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -35,22 +34,23 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { businessFormSchema } from "@/lib/schemas"
 import { days } from "@/lib/constants"
 import { Checkbox } from "@/components/ui/checkbox"
-
-const timeOptions = Array.from({ length: 24 * 2 }, (_, i) => {
-    const hours = Math.floor(i / 2);
-    const minutes = i % 2 === 0 ? "00" : "30";
-
-    const value = `${String(hours).padStart(2, "0")}:${minutes}`;
-
-    return value;
-});
+import { useTransition } from "react"
+import { createBusiness } from "@/lib/db/mutations/business"
+import { timeOptions } from "@/lib/utils"
+import { useRouter } from "next/navigation"
 
 export function BusinessForm() {
+
+    const [isPending, startTransition] = useTransition();
+    const router = useRouter()
     const form = useForm({
         resolver: zodResolver(businessFormSchema),
         defaultValues: {
             name: "",
             description: "",
+            email: "",
+            phone: "",
+            address: "",
             hours: {
                 monday: { enabled: false, open: "09:00", close: "17:00" },
                 tuesday: { enabled: false, open: "09:00", close: "17:00" },
@@ -65,10 +65,21 @@ export function BusinessForm() {
     });
 
     function onSubmit(values: z.infer<typeof businessFormSchema>) {
-        toast.success(JSON.stringify(values, null, 2));
-
+        
         console.log(values);
         
+        startTransition((async () => {
+            const res = await createBusiness(values);
+
+            if (!res.success) {
+                toast.error(res.message)
+            } else {
+                toast.success(res.message)
+                router.push('/dashboard')
+            }
+        }));
+
+
     }
 
     return (
@@ -93,6 +104,79 @@ export function BusinessForm() {
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldLabel htmlFor="form-rhf-demo-title">
                                         Business name
+                                    </FieldLabel>
+
+                                    <Input
+                                        {...field}
+                                        id="form-rhf-demo-title"
+                                        aria-invalid={fieldState.invalid}
+                                        placeholder="Login button not working on mobile"
+                                        autoComplete="off"
+                                    />
+
+                                    {fieldState.invalid && (
+                                        <FieldError errors={[fieldState.error]} />
+                                    )}
+                                </Field>
+                            )}
+                        />
+
+                                      <Controller
+                            name="email"
+                            control={form.control}
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldLabel htmlFor="form-rhf-demo-title">
+                                        Business Email
+                                    </FieldLabel>
+
+                                    <Input
+                                        {...field}
+                                        id="form-rhf-demo-title"
+                                        aria-invalid={fieldState.invalid}
+                                        placeholder="Login button not working on mobile"
+                                        autoComplete="off"
+                                    />
+
+                                    {fieldState.invalid && (
+                                        <FieldError errors={[fieldState.error]} />
+                                    )}
+                                </Field>
+                            )}
+                        />
+
+                                      <Controller
+                            name="phone"
+                            control={form.control}
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldLabel htmlFor="form-rhf-demo-title">
+                                        Business Phone - Optional
+                                    </FieldLabel>
+
+                                    <Input
+                                        {...field}
+                                        id="form-rhf-demo-title"
+                                        aria-invalid={fieldState.invalid}
+                                        placeholder="Login button not working on mobile"
+                                        autoComplete="off"
+                                    />
+
+                                    {fieldState.invalid && (
+                                        <FieldError errors={[fieldState.error]} />
+                                    )}
+                                </Field>
+                            )}
+                        />
+
+                        
+                                      <Controller
+                            name="address"
+                            control={form.control}
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldLabel htmlFor="form-rhf-demo-title">
+                                        Address
                                     </FieldLabel>
 
                                     <Input
@@ -144,13 +228,15 @@ export function BusinessForm() {
                             )}
                         />
 
+                
+
                         <FieldSeparator />
 
-                          <FieldLabel>
-                                        Business Hours
-                                    </FieldLabel>
-                                    <FieldDescription>Click the checkbox to enable the day and select your businesses opening and closing time</FieldDescription>
-                            <p className="font-medium" >Day / Open / Close:</p>
+                        <FieldLabel>
+                            Business Hours
+                        </FieldLabel>
+                        <FieldDescription>Click the checkbox to enable the day and select your businesses opening and closing time</FieldDescription>
+                        <p className="font-medium" >Day / Open / Close:</p>
                         {days.map((day) => (
                             <div className="flex items-center gap-3" key={day}>
                                 <Controller name={`hours.${day}.enabled`}
@@ -158,7 +244,7 @@ export function BusinessForm() {
                                     render={({ field }) => (
                                         <Checkbox
                                             checked={field.value}
-                                               onCheckedChange={(checked) => field.onChange(!!checked)}
+                                            onCheckedChange={(checked) => field.onChange(!!checked)}
                                         />
 
                                     )} />
@@ -223,7 +309,7 @@ export function BusinessForm() {
                     <Button type="button" variant="outline" onClick={() => form.reset()}>
                         Reset
                     </Button>
-                    <Button type="submit" form="form-rhf-demo">
+                    <Button disabled={isPending} type="submit" form="form-rhf-demo">
                         Save and exit
                     </Button>
                 </Field>
