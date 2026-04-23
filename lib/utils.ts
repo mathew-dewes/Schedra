@@ -19,6 +19,7 @@ export const timeOptions = Array.from({ length: 24 * 2 }, (_, i) => {
 });
 
 
+
 export function slugify(text: string) {
   return text
     .toString()

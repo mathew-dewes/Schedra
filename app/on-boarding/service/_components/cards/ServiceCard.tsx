@@ -8,12 +8,14 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-export default function ServiceCard(){
-    return  <Card size="sm" className="mx-auto w-full sm:max-w-sm">
+export default function ServiceCard({title, desc}:
+  {title: string, desc: string}
+){
+    return  <Card size="sm" className="w-full h-fit sm:max-w-sm">
       <CardHeader>
-        <CardTitle>Small Card</CardTitle>
+        <CardTitle>{title}</CardTitle>
         <CardDescription>
-          This card uses the small size variant.
+          {desc}
         </CardDescription>
       </CardHeader>
       <CardContent>

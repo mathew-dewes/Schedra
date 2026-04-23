@@ -16,7 +16,7 @@ export default function OnBoardingSummary({hasBusiness, hasService}:
 
             <div className="mt-10 space-y-8">
                 <div className="flex items-center gap-2">
-                    <Checkbox className="size-5 pointer-events-none" />
+                    <Checkbox defaultChecked={hasBusiness} className="size-5 pointer-events-none" />
                     <h2>Create your business</h2>
                     <Link className={buttonVariants({variant:"secondary"})} href={'/on-boarding/business'}>
                     {hasBusiness ? "Update": "Complete"}</Link>

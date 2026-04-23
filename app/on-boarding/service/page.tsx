@@ -1,7 +1,13 @@
+import { Suspense } from "react";
+import ServiceSetup from "./_components/ServiceSetup";
+
 export default function page(){
     return (
         <div>
-            <p>Service set up</p>
+            <Suspense fallback="Loading data...">
+      <ServiceSetup/>
+            </Suspense>
+      
         </div>
     )
 }

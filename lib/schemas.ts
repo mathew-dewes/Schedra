@@ -63,3 +63,11 @@ export const registerSchema = z.object({
     }),
   
   });
+
+
+  export const serviceFormSchema = z.object({
+    name: z.string().min(3, 'Service name must be 3 or more characters'),
+    description: z.string(),
+    duration_minutes: z.string(),
+    price: z.string().optional()
+  })

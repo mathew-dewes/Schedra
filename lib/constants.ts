@@ -23,3 +23,6 @@ export const days = [
   "saturday",
   "sunday",
 ] as const;
+
+
+export const service_durations = ["30", "60", "90", "120", "150", "180"]
