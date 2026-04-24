@@ -14,7 +14,9 @@ export async function getUserBusiness(){
         }
 
         const {data, error} = await supabase.from("businesses")
-        .select("*, availability(day_of_week, is_active, start_time, end_time)").eq("owner_id", user_id).single();
+        .select("id, name, slug, description, availability(day_of_week, is_active, start_time, end_time), services(id ,name, description, duration_minutes, price)")
+        .eq("owner_id", user_id).maybeSingle()
+      
     if (error){
         console.log("Error:", error);
         
@@ -24,10 +26,7 @@ export async function getUserBusiness(){
         }
     };
 
-    return {
-        success: true,
-        business: data
-    }
+    return data ?? null
 
 }
 
@@ -42,7 +41,7 @@ export async function checkBusiness(){
         }
     }
 
-    const {data, error} = await supabase.from("businesses").select("count").eq("owner_id", user_id).single();
+    const {data, error} = await supabase.from("businesses").select("services(count)").eq("owner_id", user_id).single();
 
     if (error){
         console.log("Error:", error);
@@ -53,5 +52,5 @@ export async function checkBusiness(){
         }
     };
 
-    return data.count > 0
+    return data
 }

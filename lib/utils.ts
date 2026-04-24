@@ -30,4 +30,11 @@ export function slugify(text: string) {
     .replace(/[^a-z0-9\s-]/g, '')      // remove invalid chars
     .replace(/\s+/g, '-')              // replace spaces with -
     .replace(/-+/g, '-');              // collapse multiple -
-}
+};
+
+
+export function convertToMoney(value: number){
+    return new Intl.NumberFormat('en-NZ',
+        { style: 'currency', currency: 'NZD' }
+    ).format(value)
+};

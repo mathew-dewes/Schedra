@@ -7,14 +7,14 @@ import { days } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { getUserBusiness } from "@/lib/db/queries/business";
+import { Business } from "@/lib/db/types";
 
 
 export default async function ServiceSetup(){
 
-    const savedBusiness = await getUserBusiness();
+    const business = await getUserBusiness() as Business;
 
-    const business = savedBusiness.business;
-   
+   const services = business?.services;
 
 const availability = days.map((dayName, index) => {
   const match = business?.availability?.find(
@@ -77,7 +77,7 @@ if (!business){
 
             <div className="grid lg:grid-cols-2 gap-5 mt-5">
             <ServiceForm business_id={business.id}/>
-           <SavedServices business_id={business.id}/>
+           <SavedServices services={services}/>
             </div>
             <Button className="mt-5">Save and exit</Button>
        

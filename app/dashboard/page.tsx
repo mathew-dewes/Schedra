@@ -1,16 +1,17 @@
 
-import { checkBusiness } from "@/lib/db/queries/business";
+import { Suspense } from "react";
 import OnBoardingSummary from "./_components/OnBoardingSummary";
+
 
 
 export default async function page() {
 
-const hasBusiness = await checkBusiness() as boolean;
-
-    
     return (
         <div>
-          <OnBoardingSummary hasBusiness={hasBusiness} hasService={false}/>
+            <Suspense fallback="Loading data">
+        <OnBoardingSummary/>
+            </Suspense>
+  
         </div>
     )
 }
