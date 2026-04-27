@@ -1,16 +1,16 @@
-
-import { Suspense } from "react";
-import OnBoardingSummary from "./_components/OnBoardingSummary";
+import { redirect } from "next/navigation";
 
 
 
 export default async function page() {
 
+    const published_business = true;
+
+    if (!published_business) redirect('/on-boarding')
+
     return (
         <div>
-            <Suspense fallback="Loading data">
-        <OnBoardingSummary/>
-            </Suspense>
+          <p>Dashboard</p>
   
         </div>
     )

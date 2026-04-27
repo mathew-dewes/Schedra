@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/web/Navbar";
 import Footer from "@/components/web/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -36,10 +37,13 @@ export default function RootLayout({
     >
 
       <body className="min-h-full flex flex-col">
-        <Navbar/>
+        <TooltipProvider>
+            <Navbar/>
         <main className="md:mx-10 lg:mx-20 mx-5 my-10 flex-1">
           {children}
         </main>
+        </TooltipProvider>
+      
         <Footer/>
         <Toaster/>
       </body>
