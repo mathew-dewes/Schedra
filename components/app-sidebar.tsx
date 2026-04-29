@@ -18,8 +18,11 @@ import {
 import { GalleryVerticalEndIcon } from "lucide-react"
 import { sidebarLinkData } from "@/lib/constants"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+  const path = usePathname();
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -45,7 +48,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             {sidebarLinkData.navMain.map((item) => (
               <SidebarMenuItem key={item.title}>
             
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton isActive={path == item.url} asChild>
                   <Link href={item.url} className="font-medium">
                     {item.title}
                   </Link>
@@ -54,7 +57,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuSub>
                     {item.items.map((item) => (
                       <SidebarMenuSubItem key={item.title}>
-                        <SidebarMenuSubButton asChild isActive={item.isActive}>
+                        <SidebarMenuSubButton asChild isActive={path == item.url}>
                           <Link href={item.url}>{item.title}</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
