@@ -7,6 +7,7 @@ export default function Actions(){
     <div className="flex gap-2 mt-2">
             <Button>+ New Booking</Button>
             <Button>+ Add Service</Button>
+            <Button>+ Add Customer</Button>
             <Button>+ Set Availability</Button>
             <Button>+ View Calendar</Button>
         </div>

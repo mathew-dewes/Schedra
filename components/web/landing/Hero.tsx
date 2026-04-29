@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Hero() {
     return (
@@ -18,8 +19,9 @@ export default function Hero() {
             </div>
 
             <div className="flex justify-center gap-2 mt-5">
-                <Button>Create Business</Button>
-                <Button>Login</Button>
+                <Link className={buttonVariants()} href={'/login'}>Login</Link>
+                <Link className={buttonVariants()} href={'/register'}>Register</Link>
+       
             </div>
 
         </section>

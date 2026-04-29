@@ -5,6 +5,7 @@ import Link from "next/link"
 import { buttonVariants } from "../ui/button"
 import SignOutButton from "./ActionButtons/SignOutButton"
 import { usePathname } from "next/navigation"
+import { ThemeToggle } from "./ThemeToggle"
 
 export default function NavLinks({ session, onBoarding }:
     { session: boolean, onBoarding: boolean }
@@ -35,6 +36,7 @@ export default function NavLinks({ session, onBoarding }:
                     </Link>
                 ))}
             <SignOutButton session={session} />
+            <ThemeToggle/>
 
 
 

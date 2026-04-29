@@ -19,9 +19,6 @@ import { GalleryVerticalEndIcon } from "lucide-react"
 import { sidebarLinkData } from "@/lib/constants"
 import Link from "next/link"
 
-// This is sample data.
-
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
@@ -29,7 +26,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href="#">
+              <Link href="/dashboard">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   <GalleryVerticalEndIcon className="size-4" />
                 </div>

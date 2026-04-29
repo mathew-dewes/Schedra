@@ -86,7 +86,7 @@ export async function signInWithEmailPassword(values: z.infer<typeof loginSchema
             return {success: false, message: "Validation failed"}
         };
 
-            const {data, error} = await supabase.auth.signInWithPassword({
+            const {error} = await supabase.auth.signInWithPassword({
                 email: parsed.data.email,
                 password: parsed.data.password});
 
@@ -99,7 +99,7 @@ export async function signInWithEmailPassword(values: z.infer<typeof loginSchema
                     
                 }
 
-                console.log(data);
+            
                 
 
                 return {

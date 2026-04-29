@@ -6,6 +6,7 @@ import Navbar from "@/components/web/Navbar";
 import Footer from "@/components/web/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -33,19 +34,28 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
       className={cn("h-full", "antialiased scroll-smooth", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
 
       <body className="min-h-full flex flex-col">
-        <TooltipProvider>
-            <Navbar/>
-        <main className="md:mx-10 lg:mx-20 mx-5 my-10 flex-1">
-          {children}
-        </main>
-        </TooltipProvider>
-      
-        <Footer/>
-        <Toaster/>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            <Navbar />
+            <main className="md:mx-10 lg:mx-20 mx-5 my-10 flex-1">
+              {children}
+            </main>
+          </TooltipProvider>
+
+          <Footer />
+          <Toaster />
+        </ThemeProvider>
+
       </body>
     </html>
   );

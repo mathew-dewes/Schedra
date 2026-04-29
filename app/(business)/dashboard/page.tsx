@@ -5,8 +5,6 @@ import { ScheduleTable } from "./_components/ScheduleTable";
 import Actions from "./_components/Actions";
 import { UpcomingBookings } from "./_components/UpcomingBookings";
 import { RecentActivity } from "./_components/RecentActivity";
-// import Alert from "./_components/Alert";
-
 
 
 export default async function page() {
@@ -19,7 +17,6 @@ export default async function page() {
         <div className="space-y-10">
             <Welcome />
             <Actions />
-            {/* <Alert/> */}
             <KeyStats />
             <div className="grid grid-cols-2 gap-20">
                 <ScheduleTable />
