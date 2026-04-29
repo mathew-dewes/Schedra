@@ -2,6 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+ 
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -12,14 +13,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
-import { BookingColumn } from "@/lib/types/tableColumns"
-import { format } from "date-fns"
-import { Badge } from "@/components/ui/badge"
+import { CustomerColumn } from "@/lib/types/tableColumns"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-export const BookingColumns: ColumnDef<BookingColumn>[] = [
+export const CustomerColumns: ColumnDef<CustomerColumn>[] = [
     {
     id: "select",
     header: ({ table }) => (
@@ -42,34 +41,11 @@ export const BookingColumns: ColumnDef<BookingColumn>[] = [
     enableSorting: false,
     enableHiding: false,
   },
-  {
-    accessorKey: "bookingDate",
-    header: "Date",
-    cell:({row})=>{
-      return <div>{format(row.original.bookingDate, "dd/MM/yy") }</div>
-    }
-  
-  },
-  {
-    accessorKey: "bookingTime",
-    header: "Time",
-    cell:({row})=>{
-      return <div>{format(row.original.bookingDate, "HH:MM aa") }</div>
-    }
-  
-  },
-
 
   {
-    accessorKey: "service",
-    header: "Service",
+    accessorKey: "status",
+    header: "Status",
   },
-  
-  {
-    accessorKey: "customer",
-    header: "Customer",
-  },
-
   {
     accessorKey: "email",
        header: ({ column }) => {
@@ -84,22 +60,20 @@ export const BookingColumns: ColumnDef<BookingColumn>[] = [
       )
     },
   },
-      {
-    accessorKey: "phone",
-    header: "Phone",
+  {
+    accessorKey: "amount",
+        header: () => <div>Amount</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("amount"))
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(amount)
+ 
+      return <div className="font-medium">{formatted}</div>
+    },
   },
-    {
-    accessorKey: "address",
-    header: "Address",
-  },
-      {
-    accessorKey: "status",
-    header: "Status",
-    cell:({row})=>{
-      return <Badge>{row.original.status}</Badge>
 
-    }
-  },
       {
       
     id: "actions",

@@ -37,7 +37,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[]
 }
 
-export function BookingTable<TData, TValue>({
+export function CustomerTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -76,10 +76,10 @@ export function BookingTable<TData, TValue>({
     <div>
             <div className="flex items-center py-4">
         <Input
-          placeholder="Filter customer..."
-          value={(table.getColumn("customer")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter emails..."
+          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("customer")?.setFilterValue(event.target.value)
+            table.getColumn("email")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
