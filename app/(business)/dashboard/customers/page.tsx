@@ -43,7 +43,7 @@ export default async function page(){
 
   const data = await getData()
     return (
-       <div className="container mx-auto py-10">
+       <div>
       <CustomerTable columns={CustomerColumns} data={data} />
     </div>
     )
