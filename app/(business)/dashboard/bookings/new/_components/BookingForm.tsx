@@ -12,26 +12,44 @@ import { Button } from "@/components/ui/button";
 import { CustomerSearchBox } from "./CustomerSearchBox";
 import { ServiceTypeDropDown } from "./ServiceTypeDropDown";
 import { StartTimeDropDown } from "./StartTimeDropDown";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 export default function BookingForm() {
 
+    
+
     const form = useForm<z.infer<typeof bookingFormSchema>>({
         resolver: zodResolver(bookingFormSchema),
+          shouldUnregister: true,
         defaultValues: {
             date: new Date(),
-            start_time: "12:00",
+            start_time: "",
             customer_id: "",
+            service_type: "",
             customer: undefined,
-            customer_mode: "existing"
+            customer_mode: "existing",
         }
     });
 
     // eslint-disable-next-line react-hooks/incompatible-library
     const customerMode = form.watch("customer_mode");
 
+    useEffect(() => {
+  if (customerMode === "existing") {
+    form.setValue("customer", undefined);
+    form.setValue("start_time", "");
+    form.setValue("service_type", "");
+  } else {
+    form.setValue("customer_id", "");
+  }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [customerMode]);
+
 
     function onSubmit(data: z.infer<typeof bookingFormSchema>) {
         console.log(data);
+        toast(JSON.stringify(data))
 
     }
 
@@ -80,7 +98,7 @@ export default function BookingForm() {
                                     render={({ field, fieldState }) => (
                                         <Field data-invalid={fieldState.invalid}>
                                             <FieldLabel>Name</FieldLabel>
-                                            <Input {...field} placeholder="Customer name" />
+                                            <Input {...field} value={field.value ?? ""} placeholder="Customer name" />
                                             {fieldState.invalid && (
                                                 <FieldError errors={[fieldState.error]} />
                                             )}
@@ -94,7 +112,7 @@ export default function BookingForm() {
                                     render={({ field, fieldState }) => (
                                         <Field data-invalid={fieldState.invalid}>
                                             <FieldLabel>Email</FieldLabel>
-                                            <Input {...field} placeholder="Customer email" />
+                                            <Input {...field} value={field.value ?? ""} placeholder="Customer email" />
                                             {fieldState.invalid && (
                                                 <FieldError errors={[fieldState.error]} />
                                             )}
@@ -108,7 +126,7 @@ export default function BookingForm() {
                                     render={({ field }) => (
                                         <Field>
                                             <FieldLabel>Phone</FieldLabel>
-                                            <Input {...field} placeholder="Customer phone number" />
+                                            <Input {...field} value={field.value ?? ""} placeholder="Customer phone number" />
                                         </Field>
                                     )}
                                 />
@@ -121,11 +139,12 @@ export default function BookingForm() {
                             <Controller
                                 name="customer_id"
                                 control={form.control}
-                                render={({ fieldState }) => (
+                                render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
                                         <FieldLabel>Customer</FieldLabel>
 
-                                        <CustomerSearchBox />
+                                        <CustomerSearchBox value={field.value ?? ""}
+                                            onChange={field.onChange} />
 
                                         {fieldState.invalid && (
                                             <FieldError errors={[fieldState.error]} />
@@ -135,13 +154,16 @@ export default function BookingForm() {
                             />
                         )}
 
-                                 <Controller
+                        <Controller
                             control={form.control}
                             name="date"
-                            render={({ fieldState }) => (
+                            render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldLabel>Booking Date</FieldLabel>
-                                    <BookingDatePicker />
+                                    <BookingDatePicker
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                    />
                                     {fieldState.invalid && (
                                         <FieldError errors={[fieldState.error]} />
                                     )}
@@ -152,11 +174,14 @@ export default function BookingForm() {
 
                         <Controller
                             control={form.control}
-                            name="date"
-                            render={({ fieldState }) => (
+                            name="start_time"
+                            render={({ field ,fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldLabel>Start time</FieldLabel>
-                                    <StartTimeDropDown />
+                                    <StartTimeDropDown 
+                                      value={field.value}
+                                        onChange={field.onChange}
+                                    />
                                     {fieldState.invalid && (
                                         <FieldError errors={[fieldState.error]} />
                                     )}
@@ -165,14 +190,17 @@ export default function BookingForm() {
                             )}
                         />
 
-               
+
                         <Controller
                             control={form.control}
                             name="service_type"
-                            render={({ fieldState }) => (
+                            render={({ field ,fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldLabel>Service type</FieldLabel>
-                                    <ServiceTypeDropDown />
+                                    <ServiceTypeDropDown 
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                    />
                                     {fieldState.invalid && (
                                         <FieldError errors={[fieldState.error]} />
                                     )}
@@ -186,7 +214,7 @@ export default function BookingForm() {
             </CardContent>
 
             <CardFooter>
-                <Button>Create Booking</Button>
+                <Button form="bookingForm">Create Booking</Button>
             </CardFooter>
 
         </Card>

@@ -8,11 +8,20 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export function StartTimeDropDown() {
+
+type StartTimeDropDownProps = {
+  value: string
+  onChange: (value: string) => void
+}
+
+export function StartTimeDropDown({
+  value,
+  onChange,
+}: StartTimeDropDownProps) {
   return (
-    <Select>
+    <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-full max-w-48">
-        <SelectValue placeholder="Select a fruit" />
+        <SelectValue placeholder="Select a start time" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

@@ -74,12 +74,11 @@ export const serviceFormSchema = z.object({
 
 
 export const bookingFormSchema = z.object({
-  customerName: z.string(),
   date: z.date(),
-  service_type: z.string(),
-  start_time: z.string(),
+  service_type: z.string().min(1, "Service type is required"),
+  start_time: z.string().min(1, "Start time is required"),
   customer_mode: z.enum(["existing", "new"]),
-  customer_id: z.string().optional(),
+customer_id: z.string().optional(),
   customer: z
     .object({
       name: z.string().min(1),
@@ -87,15 +86,14 @@ export const bookingFormSchema = z.object({
       phone: z.string().optional(),
     })
     .optional(),
-}).refine((data) => {
+}).superRefine((data, ctx) => {
   if (data.customer_mode === "existing") {
-    return !!data.customer_id;
+    if (!data.customer_id || data.customer_id.trim().length === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["customer_id"],
+        message: "Please select a customer",
+      });
+    }
   }
-  if (data.customer_mode === "new") {
-    return !!data.customer;
-  }
-  return false;
-}, {
-  message: "Customer information is required",
-  path: ["customer"],
 });

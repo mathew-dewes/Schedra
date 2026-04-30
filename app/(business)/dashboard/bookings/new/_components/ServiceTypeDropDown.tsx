@@ -8,11 +8,20 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export function ServiceTypeDropDown() {
+
+type ServiceTypeDropDownProps = {
+  value: string
+  onChange: (value: string) => void
+}
+
+export function ServiceTypeDropDown({
+  value,
+  onChange,
+}: ServiceTypeDropDownProps) {
   return (
-    <Select>
+    <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-full max-w-48">
-        <SelectValue placeholder="Select a fruit" />
+        <SelectValue placeholder="Select a service type" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

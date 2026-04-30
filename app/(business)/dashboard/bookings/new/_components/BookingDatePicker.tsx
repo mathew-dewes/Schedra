@@ -10,29 +10,36 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
-export default function BookingDatePicker() {
-  const [date, setDate] = React.useState<Date>()
+type BookingDatePickerProps = {
+  value: Date | undefined
+  onChange: (date: Date | undefined) => void
+}
+
+export default function BookingDatePicker({
+  value,
+  onChange,
+}: BookingDatePickerProps) {
 
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          data-empty={!date}
+            data-empty={!value}
           className="w-53 justify-between text-left font-normal data-[empty=true]:text-muted-foreground"
         >
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          {value ? format(value, "PPP") : <span>Pick a date</span>}
           <ChevronDownIcon />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
-          selected={date}
-          onSelect={setDate}
-          defaultMonth={date}
+            selected={value}
+          onSelect={onChange}
+          defaultMonth={value}
         />
       </PopoverContent>
     </Popover>

@@ -15,11 +15,16 @@ const customers = [
   "Donald Trump",
   "Morgan Freeman",
   "Astro",
-] as const
+] as const;
 
-export function CustomerSearchBox() {
+type CustomerSearchBoxProps = {
+  value: string
+  onChange: (value: string | null) => void
+}
+
+export function CustomerSearchBox({value, onChange}: CustomerSearchBoxProps) {
   return (
-    <Combobox items={customers}>
+    <Combobox items={customers}  value={value} onValueChange={onChange}>
       <ComboboxInput placeholder="Select a customer" />
       <ComboboxContent>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
