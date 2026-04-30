@@ -89,4 +89,32 @@ export async function createBusiness(values: z.infer<typeof businessFormSchema>)
         success: true,
         message: `${parsed.data.name} was added`
     }
+};
+
+
+export async function setBusinessActive(business_id: string){
+
+ const supabase = await createClientForServer();
+    const user_id = await getUserId();
+
+     if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    }
+
+
+    const {data ,error} = await supabase.from("businesses")
+    .update({"is_active": true})
+    .eq("id", business_id)
+    .eq("owner_id", user_id).select();
+
+    if (error){
+        return {success: false, message: error.message}
+    } else {
+        console.log(data);
+        
+        return {success: true, message: "Business has been published"}
+    }
 }

@@ -1,4 +1,4 @@
-import { Button, buttonVariants } from "@/components/ui/button";
+import {buttonVariants } from "@/components/ui/button";
 import SavedServices from "./SavedServices";
 import ServiceForm from "./ServiceForm";
 
@@ -79,7 +79,7 @@ if (!business){
             <ServiceForm business_id={business.id}/>
            <SavedServices services={services}/>
             </div>
-            <Button className="mt-5">Save and exit</Button>
+            <Link className={cn(buttonVariants(), "mt-5")} href={'/on-boarding'}>Save and exit</Link>
        
         </div>
     )

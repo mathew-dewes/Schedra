@@ -75,7 +75,7 @@ export function BusinessForm() {
                 toast.error(res.message)
             } else {
                 toast.success(res.message)
-                router.push('/dashboard')
+                router.push('/on-boarding')
             }
         }));
 

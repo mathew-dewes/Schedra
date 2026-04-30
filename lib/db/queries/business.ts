@@ -53,4 +53,33 @@ export async function checkBusiness(){
     };
 
     return data
+};
+
+
+export async function checkActive(){
+        const user_id = await getUserId();
+    const supabase = await createClientForServer();
+
+    if (!user_id){
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    }
+
+    const {data, error} = await supabase.from("businesses").select("is_active").eq("owner_id", user_id).maybeSingle();
+
+    if (error){
+        return {
+            success: false,
+            message: error.message
+        }
+
+   
+        
+    } else {
+    
+        return data?.is_active ?? false
+    }
+
 }

@@ -14,7 +14,7 @@ export default function NavLinks({ session, onBoarding }:
     const path = usePathname();
     return (
         <ul className="flex items-center gap-3">
-            {!session ? publicNavLinks.map((link) => {
+            {/* {!session ? publicNavLinks.map((link) => {
 
                 return <Link
                     key={link.href}
@@ -34,7 +34,7 @@ export default function NavLinks({ session, onBoarding }:
                     >
                         {link.label}
                     </Link>
-                ))}
+                ))} */}
             <SignOutButton session={session} />
             <ThemeToggle/>
 

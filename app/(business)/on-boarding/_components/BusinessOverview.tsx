@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { days } from "@/lib/constants";
 import { Business, Services } from "@/lib/db/types";
 import { cn, convertToMoney } from "@/lib/utils";
+import SaveAndPublishButton from "./SaveAndPublishButton";
 
 export default function BusinessOverview({ business, services, finalReview }:
     { business: Business, services: Services, finalReview: boolean }
@@ -102,7 +103,7 @@ export default function BusinessOverview({ business, services, finalReview }:
             </CardContent>
 
             <CardFooter className="flex justify-end">
-                <Button>Save and Publish</Button>
+               <SaveAndPublishButton business_id={business.id}/>
             </CardFooter>
 
         </Card>
