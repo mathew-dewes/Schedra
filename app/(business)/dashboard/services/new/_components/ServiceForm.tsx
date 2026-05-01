@@ -7,19 +7,15 @@ import { Input } from "@/components/ui/input";
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { service_durations } from "@/lib/constants";
-import { createService } from "@/lib/db/mutations/service";
 import { serviceFormSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { toast } from "sonner";
 import z from "zod";
 
-export default function ServiceForm({business_id}:
-    {business_id: string}
-) {
-    const [isPending, startTransition] = useTransition();
-    const form = useForm({
+export default function ServiceForm(){
+const [isPending, startTransition] = useTransition();
+const form = useForm({
         resolver: zodResolver(serviceFormSchema),
         defaultValues: {
             name: "",
@@ -31,40 +27,29 @@ export default function ServiceForm({business_id}:
         }
     });
 
-
-    function onSubmit(values: z.infer<typeof serviceFormSchema>) {
-        startTransition((async () => {
-            const res = await createService(values, business_id);
-
-            if (!res.success){
-                toast.error(res.message)
-            } else {
-                toast.success(res.message);
-                form.reset()
-            }
-      
-        }))
-
+    function onSubmit(values: z.infer<typeof serviceFormSchema>){
+startTransition((async()=>{
+    console.log(values);
+    
+}))
     }
-
     return (
-        <Card className="w-full sm:max-w-md">
+        <Card className="w-full max-w-2xl">
             <CardHeader>
-                <CardTitle>Service setup</CardTitle>
-                <CardDescription>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo, fugiat.</CardDescription>
+                <CardTitle>Service Form</CardTitle>
+                <CardDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, alias!</CardDescription>
             </CardHeader>
 
             <CardContent>
-                <form
-                    id="serviceForm"
-                    onSubmit={form.handleSubmit(onSubmit)}
+                <form id="serviceFormNew"   onSubmit={form.handleSubmit(onSubmit)}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") {
                             e.preventDefault()
                         }
                     }}>
-                    <FieldGroup>
-                        <Controller
+
+                        <FieldGroup>
+                                <Controller
                             control={form.control}
                             name="name"
                             render={({ field, fieldState }) => (
@@ -83,8 +68,7 @@ export default function ServiceForm({business_id}:
                                 </Field>
                             )}
                         />
-
-                        <Controller
+                                 <Controller
                             name="duration_minutes"
                             control={form.control}
                             render={({ field, fieldState }) => (
@@ -120,7 +104,7 @@ export default function ServiceForm({business_id}:
                             )}
                         />
 
-                        <Controller
+                                   <Controller
                             control={form.control}
                             name="price"
                             render={({ field, fieldState }) => (
@@ -132,7 +116,6 @@ export default function ServiceForm({business_id}:
                                         aria-invalid={fieldState.invalid}
                                         placeholder="Enter service price"
                                         autoComplete="off"
-                                    
                                     />
 
                                 </Field>
@@ -172,23 +155,15 @@ export default function ServiceForm({business_id}:
                                 </Field>
                             )}
                         />
-                    </FieldGroup>
+                        </FieldGroup>
 
                 </form>
             </CardContent>
 
             <CardFooter>
-                <Field orientation={"horizontal"}>
-                    <Button onClick={() => form.reset()} type="button" variant={"outline"}>
-                        Reset
-                    </Button>
-                    <Button disabled={isPending} type="submit" form="serviceForm">
-                        Add service
-                    </Button>
-          
-
-                </Field>
+                <Button disabled={isPending} type="submit" form="serviceFormNew">Submit</Button>
             </CardFooter>
+
         </Card>
     )
 }

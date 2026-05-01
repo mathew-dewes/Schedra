@@ -15,8 +15,6 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import { ServiceColumn } from "@/lib/types/tableColumns"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 
 export const ServiceColumns: ColumnDef<ServiceColumn>[] = [
     {

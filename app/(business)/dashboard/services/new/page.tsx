@@ -1,7 +1,9 @@
+import ServiceForm from "./_components/ServiceForm";
+
 export default function page(){
     return (
         <div>
-            <p>New Service page</p>
+            <ServiceForm/>
         </div>
     )
 }
