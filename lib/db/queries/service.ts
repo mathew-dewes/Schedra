@@ -1,6 +1,6 @@
 "use server";
 
-import { createClientForServer } from "@/lib/supabase/server";
+import { createClientForServer, getUserId } from "@/lib/supabase/server";
 
 
 export async function getBusinessServices(business_id: string){
@@ -27,4 +27,30 @@ export async function getBusinessServices(business_id: string){
     }
 
 
+};
+
+
+export async function getServices(){
+        const user_id = await getUserId();
+        const supabase = await createClientForServer();
+    
+        if (!user_id){
+            return {
+                success: false,
+                message: "Unauthorized"
+            }
+        }
+
+        const {data, error} = await supabase.from("services")
+        .select("id, name, description, duration_minutes, price")
+        .eq("user_id", user_id);
+
+        if (error){
+            return {
+                success: false,
+                message: error.message
+            }
+        } else {
+            return data;
+        }
 }

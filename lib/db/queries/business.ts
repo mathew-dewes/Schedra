@@ -2,24 +2,24 @@
 
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
 
-export async function getUserBusiness(){
-        const user_id = await getUserId();
-        const supabase = await createClientForServer();
-    
-        if (!user_id){
-            return {
-                success: false,
-                message: "Unauthorized"
-            }
-        }
+export async function getUserBusiness() {
+    const user_id = await getUserId();
+    const supabase = await createClientForServer();
 
-        const {data, error} = await supabase.from("businesses")
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    }
+
+    const { data, error } = await supabase.from("businesses")
         .select("id, name, slug, description, availability(day_of_week, is_active, start_time, end_time), services(id ,name, description, duration_minutes, price)")
         .eq("owner_id", user_id).maybeSingle()
-      
-    if (error){
+
+    if (error) {
         console.log("Error:", error);
-        
+
         return {
             success: false,
             message: error.message
@@ -30,22 +30,22 @@ export async function getUserBusiness(){
 
 }
 
-export async function checkBusiness(){
+export async function checkBusiness() {
     const user_id = await getUserId();
     const supabase = await createClientForServer();
 
-    if (!user_id){
+    if (!user_id) {
         return {
             success: false,
             message: "Unauthorized"
         }
     }
 
-    const {data, error} = await supabase.from("businesses").select("services(count)").eq("owner_id", user_id).single();
+    const { data, error } = await supabase.from("businesses").select("services(count)").eq("owner_id", user_id).single();
 
-    if (error){
+    if (error) {
         console.log("Error:", error);
-        
+
         return {
             success: false,
             message: error.message
@@ -56,29 +56,29 @@ export async function checkBusiness(){
 };
 
 
-export async function checkActive(){
-        const user_id = await getUserId();
+export async function checkActive() {
+    const user_id = await getUserId();
     const supabase = await createClientForServer();
 
-    if (!user_id){
+    if (!user_id) {
         return {
             success: false,
             message: "Unauthorized"
         }
     }
 
-    const {data, error} = await supabase.from("businesses").select("is_active").eq("owner_id", user_id).maybeSingle();
+    const { data, error } = await supabase.from("businesses").select("is_active").eq("owner_id", user_id).maybeSingle();
 
-    if (error){
+    if (error) {
         return {
             success: false,
             message: error.message
         }
 
-   
-        
+
+
     } else {
-    
+
         return data?.is_active ?? false
     }
 

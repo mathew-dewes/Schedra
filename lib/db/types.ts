@@ -20,7 +20,7 @@ export type Business = {
 };
 
 
-export type Services = {
+export type ServiceType = {
 id: string;
 name: string;
 description: string;
