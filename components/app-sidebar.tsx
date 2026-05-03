@@ -38,9 +38,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             
                 </div>
               </Link>
-            </SidebarMenuButton>
+     
+            </SidebarMenuButton>          
           </SidebarMenuItem>
         </SidebarMenu>
+        <SidebarMenuItem className="text-center">
+          <h2 className="font-semibold">Matt&apos;s Pizzas</h2>
+  
+        </SidebarMenuItem>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

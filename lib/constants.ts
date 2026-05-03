@@ -62,33 +62,7 @@ export const sidebarLinkData: SidebarLinkType = {
  
       ],
     },
-    {
-      title: "Services",
-      url: "/dashboard/services",
-      items: [
-        {
-          title: "+ Add Service",
-          url: "/dashboard/services/new",
-        },
 
-  
-      ],
-    },
-    {
-      title: "Availability",
-      url: "/dashboard/availability",
-      items: [
-        {
-          title: "Working Hours",
-          url: "/dashboard/availability/hours",
-        },
-        {
-          title: "Blocked Times",
-          url: "/dashboard/availability/blocked",
-        },
-  
-      ],
-    },
     {
       title: "Reports",
       url: "/dashboard/reports",
