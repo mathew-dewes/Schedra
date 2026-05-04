@@ -1,40 +1,21 @@
 "use client"
 
-import { navLinks, publicNavLinks } from "@/lib/constants"
 import Link from "next/link"
 import { buttonVariants } from "../ui/button"
 import SignOutButton from "./ActionButtons/SignOutButton"
 import { usePathname } from "next/navigation"
 import { ThemeToggle } from "./ThemeToggle"
 
-export default function NavLinks({ session, onBoarding }:
-    { session: boolean, onBoarding: boolean }
+export default function NavLinks({ session }:
+    { session: boolean}
 ) {
-    const excludedRoutes = [ '/bookings', '/services', '/availability', '/customers'];
     const path = usePathname();
     return (
         <ul className="flex items-center gap-3">
-            {/* {!session ? publicNavLinks.map((link) => {
 
-                return <Link
-                    key={link.href}
-                    className={(buttonVariants({ variant: path == link.href ? "default" : "ghost" }))} href={link.href}>{link.label}</Link>
-            }) : navLinks
-                .filter(link => {
-                    if (!onBoarding) {
-                        return !excludedRoutes.includes(link.href);
-                    }
-                    return true;
-                })
-                .map(link => (
-                    <Link
-                        key={link.href}
-                        className={buttonVariants({ variant: path == link.href ? "default" : "ghost" })}
-                        href={link.href}
-                    >
-                        {link.label}
-                    </Link>
-                ))} */}
+                <Link hidden={session} className={buttonVariants({variant:path == "/login" ? "default" : "secondary"})} href={'/login'}>Login</Link>
+                <Link hidden={session} className={buttonVariants({variant:path == "/register" ? "default" : "secondary"})} href={'/register'}>Register</Link>
+    
             <SignOutButton session={session} />
             <ThemeToggle/>
 
