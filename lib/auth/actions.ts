@@ -52,9 +52,16 @@ export async function signUpWithEmailPassword(values: z.infer<typeof registerSch
             return {success: false, message: "Validation failed"}
         };
 
-            const {data, error} = await supabase.auth.signUp({
+            const {error} = await supabase.auth.signUp({
                 email: parsed.data.email,
-                password: parsed.data.confirmPassword});
+                password: parsed.data.confirmPassword,
+            options:{
+                emailRedirectTo: `${process.env.SITE_URL}/dashboard`,
+                data:{
+                    business_name: parsed.data.businessName,
+                
+                }
+            }});
 
                 if (error){
                     console.log('Error', error);
@@ -65,8 +72,6 @@ export async function signUpWithEmailPassword(values: z.infer<typeof registerSch
                     
                 }
 
-                console.log(data);
-                
 
                 return {
                     success:true,
