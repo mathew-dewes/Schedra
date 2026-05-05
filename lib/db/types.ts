@@ -27,4 +27,14 @@ description: string;
 duration_minutes: number;
 price: number;
   
-}[] | []
+}[] | [];
+
+
+
+export type VehicleType = {
+    make: string,
+    model: string,
+    year: string,
+    plant_number: string,
+    plate_number: string
+}

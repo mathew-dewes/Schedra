@@ -16,11 +16,3 @@ export type CustomerColumn = {
   status: "pending" | "processing" | "success" | "failed"
   email: string
 }
-export type ServiceColumn = {
-  id: string
-  name: string
-  description: string
-  duration_minutes: number
-  price: number
-
-}

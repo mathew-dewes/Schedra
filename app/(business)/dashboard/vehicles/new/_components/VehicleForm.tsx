@@ -44,7 +44,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
             toast.error(res.message)
         } else {
             toast.success(res.message);
-            router.push('/dashboard')
+            router.push('/dashboard/vehicles')
 
         }
     }))

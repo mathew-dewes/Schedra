@@ -114,4 +114,4 @@ export const sidebarLinkData: SidebarLinkType = {
       ],
     },
   ],
-}
+};
