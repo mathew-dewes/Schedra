@@ -55,4 +55,16 @@ export const vehicleFormSchema = z.object({
   year: z.string().min(1, 'Vehicle year is required'),
   vin: z.string().optional(),
   notes: z.string().optional()
+});
+
+
+export const serviceProviderFormSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  contact_name: z.string().min(1, 'Contact name is required'),
+  phone: z.string().min(1, 'Phone number is required'),
+  email: z.email(),
+  address: z.string().min(1, 'Address is required'),
+  notes: z.string().optional()
 })
+
+

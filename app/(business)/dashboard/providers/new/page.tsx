@@ -1,7 +1,9 @@
+import ProviderForm from "./_components/ProviderForm";
+
 export default function page(){
     return (
         <div>
-            <p>New Customer page</p>
+            <ProviderForm/>
         </div>
     )
 }
