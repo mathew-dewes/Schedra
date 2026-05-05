@@ -49,6 +49,19 @@ export const sidebarLinkData: SidebarLinkType = {
       
       ],
     },
+        {
+      title: "Vehicles",
+      url: "/dashboard/vehicles",
+      items: [
+        {
+          title: "+ Add vehicle",
+          url: "/dashboard/vehicles/new",
+          isActive: true,
+        },
+
+ 
+      ],
+    },
     {
       title: "Providers",
       url: "/dashboard/providers",
@@ -62,19 +75,7 @@ export const sidebarLinkData: SidebarLinkType = {
  
       ],
     },
-    {
-      title: "Vehicles",
-      url: "/dashboard/vehicles",
-      items: [
-        {
-          title: "+ Add vehicle",
-          url: "/dashboard/vehicles/new",
-          isActive: true,
-        },
 
- 
-      ],
-    },
 
     {
       title: "Reports",

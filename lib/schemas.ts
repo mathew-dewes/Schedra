@@ -18,59 +18,7 @@ export const registerSchema = z.object({
 });
 
 
-export const businessFormSchema = z.object({
-  name: z.string().min(3, 'Business name must be 3 or more characters'),
-  description: z.string().optional(),
-  phone: z.string().optional(),
-  email: z.email(),
-  address: z.string().min(1, "Address is required"),
-  hours: z.object({
-    monday: z.object({
-      open: z.string(),
-      enabled: z.boolean(),
-      close: z.string(),
-    }),
-    tuesday: z.object({
-      open: z.string(),
-      enabled: z.boolean(),
-      close: z.string(),
-    }),
-    wednesday: z.object({
-      open: z.string(),
-      enabled: z.boolean(),
-      close: z.string(),
-    }),
-    thursday: z.object({
-      open: z.string(),
-      enabled: z.boolean(),
-      close: z.string(),
-    }),
-    friday: z.object({
-      open: z.string(),
-      enabled: z.boolean(),
-      close: z.string(),
-    }),
-    saturday: z.object({
-      open: z.string(),
-      enabled: z.boolean(),
-      close: z.string(),
-    }),
-    sunday: z.object({
-      open: z.string(),
-      enabled: z.boolean(),
-      close: z.string(),
-    }),
-  }),
 
-});
-
-
-export const serviceFormSchema = z.object({
-  name: z.string().min(3, 'Service name must be 3 or more characters'),
-  description: z.string(),
-  duration_minutes: z.string(),
-  price: z.string().optional()
-});
 
 
 export const bookingFormSchema = z.object({
@@ -97,3 +45,14 @@ customer_id: z.string().optional(),
     }
   }
 });
+
+
+export const vehicleFormSchema = z.object({
+  plant_number: z.string().min(1, 'Plant number is required'),
+  plate_number: z.string().min(1, 'Licence plate number is required'),
+  make: z.string().min(1, 'Vehicle make is required'),
+  model: z.string().min(1, 'Vehicle model is required'),
+  year: z.string().min(1, 'Vehicle year is required'),
+  vin: z.string().optional(),
+  notes: z.string().optional()
+})
