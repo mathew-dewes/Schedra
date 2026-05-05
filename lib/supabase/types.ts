@@ -39,48 +39,97 @@ export type Database = {
   }
   public: {
     Tables: {
-      bookings: {
+      alerts: {
         Row: {
-          business_id: string
-          category_id: string
+          booking_id: string | null
           created_at: string
-          customer_id: string
-          end_time: string
+          due_date: string
           id: string
-          notes: string | null
-          start_time: string
-          status: string
+          is_read: boolean | null
+          message: string
+          type: string
         }
         Insert: {
-          business_id: string
-          category_id: string
+          booking_id?: string | null
           created_at?: string
-          customer_id: string
-          end_time: string
+          due_date: string
           id?: string
-          notes?: string | null
-          start_time: string
-          status: string
+          is_read?: boolean | null
+          message: string
+          type: string
         }
         Update: {
-          business_id?: string
-          category_id?: string
+          booking_id?: string | null
           created_at?: string
-          customer_id?: string
-          end_time?: string
+          due_date?: string
           id?: string
-          notes?: string | null
-          start_time?: string
-          status?: string
+          is_read?: boolean | null
+          message?: string
+          type?: string
         }
         Relationships: [
           {
-            foreignKeyName: "bookings_business_id_fkey"
-            columns: ["business_id"]
+            foreignKeyName: "alerts_booking_id_fkey"
+            columns: ["booking_id"]
             isOneToOne: false
-            referencedRelation: "business"
+            referencedRelation: "bookings"
             referencedColumns: ["id"]
           },
+        ]
+      }
+      bookings: {
+        Row: {
+          category_id: string
+          created_at: string
+          description: string | null
+          end_time: string
+          id: string
+          is_all_day: boolean
+          location: string
+          priority: string
+          provider_id: string | null
+          start_time: string
+          status: string
+          title: string
+          updated_at: string | null
+          user_id: string
+          vehicle_id: string
+        }
+        Insert: {
+          category_id?: string
+          created_at?: string
+          description?: string | null
+          end_time: string
+          id?: string
+          is_all_day?: boolean
+          location: string
+          priority: string
+          provider_id?: string | null
+          start_time: string
+          status: string
+          title: string
+          updated_at?: string | null
+          user_id: string
+          vehicle_id: string
+        }
+        Update: {
+          category_id?: string
+          created_at?: string
+          description?: string | null
+          end_time?: string
+          id?: string
+          is_all_day?: boolean
+          location?: string
+          priority?: string
+          provider_id?: string | null
+          start_time?: string
+          status?: string
+          title?: string
+          updated_at?: string | null
+          user_id?: string
+          vehicle_id?: string
+        }
+        Relationships: [
           {
             foreignKeyName: "bookings_category_id_fkey"
             columns: ["category_id"]
@@ -89,105 +138,137 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "bookings_customer_id_fkey"
-            columns: ["customer_id"]
+            foreignKeyName: "bookings_provider_id_fkey"
+            columns: ["provider_id"]
             isOneToOne: false
-            referencedRelation: "customers"
+            referencedRelation: "service_providers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bookings_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
             referencedColumns: ["id"]
           },
         ]
-      }
-      business: {
-        Row: {
-          created_at: string
-          id: string
-          name: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          name: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          name?: string
-        }
-        Relationships: []
       }
       categories: {
         Row: {
           color: string
           created_at: string
           id: string
-          is_active: boolean
           name: string
+          sort_order: number
         }
         Insert: {
           color: string
           created_at?: string
           id?: string
-          is_active: boolean
           name: string
+          sort_order: number
         }
         Update: {
           color?: string
           created_at?: string
           id?: string
-          is_active?: boolean
           name?: string
+          sort_order?: number
         }
         Relationships: []
       }
-      customers: {
+      notes: {
         Row: {
-          business_id: string
+          created_at: string
+          id: string
+          note: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      service_providers: {
+        Row: {
+          address: string
+          contact_name: string
           created_at: string
           email: string
           id: string
           name: string
-          phone: string | null
+          notes: string
+          phone: string
         }
         Insert: {
-          business_id: string
+          address: string
+          contact_name: string
           created_at?: string
           email: string
           id?: string
           name: string
-          phone?: string | null
+          notes: string
+          phone: string
         }
         Update: {
-          business_id?: string
+          address?: string
+          contact_name?: string
           created_at?: string
           email?: string
           id?: string
           name?: string
-          phone?: string | null
+          notes?: string
+          phone?: string
         }
         Relationships: []
       }
-      profiles: {
+      vehicles: {
         Row: {
-          business_id: string
+          created_at: string
           id: string
+          make: string
+          model: string
+          notes: string | null
+          plant_number: string
+          plate_number: string
+          user_id: string
+          vin: string | null
+          year: string
         }
         Insert: {
-          business_id: string
+          created_at?: string
           id?: string
+          make: string
+          model: string
+          notes?: string | null
+          plant_number: string
+          plate_number: string
+          user_id?: string
+          vin?: string | null
+          year: string
         }
         Update: {
-          business_id?: string
+          created_at?: string
           id?: string
+          make?: string
+          model?: string
+          notes?: string | null
+          plant_number?: string
+          plate_number?: string
+          user_id?: string
+          vin?: string | null
+          year?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "profiles_business_id_fkey"
-            columns: ["business_id"]
-            isOneToOne: false
-            referencedRelation: "business"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
     }
     Views: {

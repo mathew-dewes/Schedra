@@ -5,15 +5,21 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
+import { createVehicle } from "@/lib/db/mutations/vehicles";
 import { vehicleFormSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 
 
 
 export default function VehicleForm() {
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter()
 
     
 const form = useForm<z.infer<typeof vehicleFormSchema>>({
@@ -24,16 +30,25 @@ const form = useForm<z.infer<typeof vehicleFormSchema>>({
         make: "",
         model: "",
         year: "",
+        vin: undefined
     
     }
 });
 
 
-function onSubmit(data: z.infer<typeof vehicleFormSchema>){
-    console.log(data);
-    console.log(form.formState.errors);
-    
-    
+function onSubmit(values: z.infer<typeof vehicleFormSchema>){
+    startTransition((async()=>{
+        const res = await createVehicle(values);
+
+        if (!res.success){
+            toast.error(res.message)
+        } else {
+            toast.success(res.message);
+            router.push('/dashboard')
+
+        }
+    }))
+
 }
     return (
         <Card className="w-full max-w-lg">
@@ -187,7 +202,7 @@ function onSubmit(data: z.infer<typeof vehicleFormSchema>){
                 </form>
             </CardContent>
             <CardFooter>
-                <Button type="submit" form="vehicleForm">Add vehicle</Button>
+                <Button disabled={isPending} type="submit" form="vehicleForm">Add vehicle</Button>
             </CardFooter>
 
         </Card>
