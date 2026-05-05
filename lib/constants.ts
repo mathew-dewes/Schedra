@@ -50,12 +50,25 @@ export const sidebarLinkData: SidebarLinkType = {
       ],
     },
     {
-      title: "Customers",
-      url: "/dashboard/customers",
+      title: "Providers",
+      url: "/dashboard/providers",
       items: [
         {
-          title: "+ Add Customer",
-          url: "/dashboard/customers/new",
+          title: "+ Add providers",
+          url: "/dashboard/providers/new",
+          isActive: true,
+        },
+
+ 
+      ],
+    },
+    {
+      title: "Vehicles",
+      url: "/dashboard/vehicles",
+      items: [
+        {
+          title: "+ Add vehicle",
+          url: "/dashboard/vehicles/new",
           isActive: true,
         },
 

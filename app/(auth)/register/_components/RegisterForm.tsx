@@ -74,7 +74,7 @@ export function RegisterForm({
                         control={form.control}
                         render={({ field, fieldState }) => (
                             <Field>
-                                <FieldLabel htmlFor="fullName">Full name (Business owner)</FieldLabel>
+                                <FieldLabel htmlFor="fullName">Full name</FieldLabel>
                                 <Input
                                     {...field}
                                     aria-invalid={fieldState.invalid}
@@ -94,13 +94,13 @@ export function RegisterForm({
                         control={form.control}
                         render={({ field, fieldState }) => (
                             <Field>
-                                <FieldLabel htmlFor="businessName">Business name</FieldLabel>
+                                <FieldLabel htmlFor="businessName">Company name</FieldLabel>
                                 <Input
                                     {...field}
                                     aria-invalid={fieldState.invalid}
                                     id="businessName"
                                     type="text"
-                                    placeholder="Business name"
+                                    placeholder="Company name"
                                 />
                                 {fieldState.invalid &&
                                     <FieldError errors={[fieldState.error]} />}
