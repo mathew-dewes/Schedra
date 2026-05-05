@@ -18,7 +18,7 @@ import { CenterType } from "@/lib/db/types"
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-export const ProviderColumns: ColumnDef<CenterType>[] = [
+export const CenterColumns: ColumnDef<CenterType>[] = [
     {
     id: "select",
     header: ({ table }) => (
@@ -44,7 +44,7 @@ export const ProviderColumns: ColumnDef<CenterType>[] = [
 
   {
     accessorKey: "name",
-    header: "Provider",
+    header: "Center",
   },
       {
     accessorKey: "contact_name",

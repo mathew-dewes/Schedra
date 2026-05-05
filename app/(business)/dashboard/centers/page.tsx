@@ -1,17 +1,17 @@
 
 import { getServiceCenters } from "@/lib/db/queries/centers";
-import { ProviderColumns } from "./_components/tables/ProviderColumns";
-import { ProviderTable } from "./_components/tables/ProviderTable";
+import { CenterColumns } from "./_components/tables/CenterColumns";
+import { CenterTable } from "./_components/tables/CenterTable";
 import { CenterType } from "@/lib/db/types";
 
 
-export default async function page(){
+export default async function page() {
 
   const centers = await getServiceCenters() as CenterType[];
 
-    return (
-       <div>
-      <ProviderTable columns={ProviderColumns} data={centers} />
+  return (
+    <div>
+      <CenterTable columns={CenterColumns} data={centers} />
     </div>
-    )
+  )
 }

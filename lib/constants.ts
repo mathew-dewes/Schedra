@@ -42,10 +42,6 @@ export const sidebarLinkData: SidebarLinkType = {
           url: "/dashboard/bookings/new",
         },
    
-        {
-          title: "Calendar",
-          url: "/dashboard/bookings/calendar",
-        },
       
       ],
     },

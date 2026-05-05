@@ -152,25 +152,28 @@ export type Database = {
       }
       categories: {
         Row: {
-          color: string
+          color: Database["public"]["Enums"]["category_color"]
           created_at: string
           id: string
           name: string
           sort_order: number
+          user_id: string
         }
         Insert: {
-          color: string
+          color: Database["public"]["Enums"]["category_color"]
           created_at?: string
           id?: string
           name: string
           sort_order: number
+          user_id?: string
         }
         Update: {
-          color?: string
+          color?: Database["public"]["Enums"]["category_color"]
           created_at?: string
           id?: string
           name?: string
           sort_order?: number
+          user_id?: string
         }
         Relationships: []
       }
@@ -282,6 +285,7 @@ export type Database = {
     }
     Enums: {
       booking_status: "Scheduled" | "In progress" | "Completed" | "Cancelled"
+      category_color: "red" | "green" | "yellow" | "orange" | "blue"
       vehicle_status:
         | "Available"
         | "In service"
@@ -418,6 +422,7 @@ export const Constants = {
   public: {
     Enums: {
       booking_status: ["Scheduled", "In progress", "Completed", "Cancelled"],
+      category_color: ["red", "green", "yellow", "orange", "blue"],
       vehicle_status: [
         "Available",
         "In service",

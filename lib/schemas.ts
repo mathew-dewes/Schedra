@@ -65,6 +65,11 @@ export const serviceProviderFormSchema = z.object({
   email: z.email(),
   address: z.string().min(1, 'Address is required'),
   notes: z.string().optional()
+});
+
+export const categoryFormSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  color: z.string().min(1, 'Please select a color')
 })
 
 
