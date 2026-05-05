@@ -14,7 +14,7 @@ export default async function page() {
   const vehicles = await getVehicles() as VehicleType[];
   
   return (
-    <div className="container mx-auto">
+    <div>
       <VehicleTable columns={VehicleColumns} data={vehicles} />
     </div>
   )

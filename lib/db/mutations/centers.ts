@@ -26,7 +26,7 @@ export async function createProvider(values: z.infer<typeof serviceProviderFormS
     };
 
 
-    const {error} = await supabase.from("service_providers").insert({
+    const {error} = await supabase.from("service_centers").insert({
         name: parsed.data.name,
         contact_name: parsed.data.contact_name,
         email: parsed.data.email,

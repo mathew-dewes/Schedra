@@ -63,12 +63,25 @@ export const sidebarLinkData: SidebarLinkType = {
       ],
     },
     {
-      title: "Providers",
-      url: "/dashboard/providers",
+      title: "Service Centers",
+      url: "/dashboard/centers",
       items: [
         {
-          title: "+ Add providers",
-          url: "/dashboard/providers/new",
+          title: "+ Add service center",
+          url: "/dashboard/centers/new",
+          isActive: true,
+        },
+
+ 
+      ],
+    },
+    {
+      title: "Categories",
+      url: "/dashboard/categories",
+      items: [
+        {
+          title: "+ Add categories",
+          url: "/dashboard/categories/new",
           isActive: true,
         },
 

@@ -20,14 +20,14 @@ export type Business = {
 };
 
 
-export type ServiceType = {
-id: string;
+export type CenterType = {
 name: string;
-description: string;
-duration_minutes: number;
-price: number;
-  
-}[] | [];
+contact_name: string,
+phone: string,
+email: string,
+address: string,
+notes: string,  
+};
 
 
 

@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
-import { createProvider } from "@/lib/db/mutations/providers";
+import { createProvider } from "@/lib/db/mutations/centers";
 import { serviceProviderFormSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,7 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
 
-export default function ProviderForm() {
+export default function CenterForm() {
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
 
@@ -40,7 +40,7 @@ export default function ProviderForm() {
                 toast.error(res.message)
             } else {
                 toast.success(res.message)
-                router.push('/dashboard/providers')
+                router.push('/dashboard/centers')
             }
 
         }))
@@ -48,7 +48,7 @@ export default function ProviderForm() {
     return (
         <Card className="w-full max-w-lg">
             <CardHeader>
-                <CardTitle>Provider Form</CardTitle>
+                <CardTitle>Service Center Form</CardTitle>
                 <CardDescription>
                     Help us improve by reporting bugs you encounter.
                 </CardDescription>
@@ -62,7 +62,7 @@ export default function ProviderForm() {
                             name="name"
                             render={({ field, fieldState }) => (
                                 <Field>
-                                    <FieldLabel>Service provider name</FieldLabel>
+                                    <FieldLabel>Service center name</FieldLabel>
                                     <Input
                                         {...field}
                                         aria-invalid={fieldState.invalid}

@@ -86,10 +86,9 @@ export type Database = {
           id: string
           is_all_day: boolean
           location: string
-          priority: string
           provider_id: string | null
           start_time: string
-          status: string
+          status: Database["public"]["Enums"]["booking_status"]
           title: string
           updated_at: string | null
           user_id: string
@@ -103,10 +102,9 @@ export type Database = {
           id?: string
           is_all_day?: boolean
           location: string
-          priority: string
           provider_id?: string | null
           start_time: string
-          status: string
+          status: Database["public"]["Enums"]["booking_status"]
           title: string
           updated_at?: string | null
           user_id: string
@@ -120,10 +118,9 @@ export type Database = {
           id?: string
           is_all_day?: boolean
           location?: string
-          priority?: string
           provider_id?: string | null
           start_time?: string
-          status?: string
+          status?: Database["public"]["Enums"]["booking_status"]
           title?: string
           updated_at?: string | null
           user_id?: string
@@ -141,7 +138,7 @@ export type Database = {
             foreignKeyName: "bookings_provider_id_fkey"
             columns: ["provider_id"]
             isOneToOne: false
-            referencedRelation: "service_providers"
+            referencedRelation: "service_centers"
             referencedColumns: ["id"]
           },
           {
@@ -198,7 +195,7 @@ export type Database = {
         }
         Relationships: []
       }
-      service_providers: {
+      service_centers: {
         Row: {
           address: string
           contact_name: string
@@ -243,6 +240,7 @@ export type Database = {
           notes: string | null
           plant_number: string
           plate_number: string
+          status: Database["public"]["Enums"]["vehicle_status"] | null
           user_id: string
           vin: string | null
           year: string
@@ -255,6 +253,7 @@ export type Database = {
           notes?: string | null
           plant_number: string
           plate_number: string
+          status?: Database["public"]["Enums"]["vehicle_status"] | null
           user_id?: string
           vin?: string | null
           year: string
@@ -267,6 +266,7 @@ export type Database = {
           notes?: string | null
           plant_number?: string
           plate_number?: string
+          status?: Database["public"]["Enums"]["vehicle_status"] | null
           user_id?: string
           vin?: string | null
           year?: string
@@ -281,7 +281,12 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      booking_status: "Scheduled" | "In progress" | "Completed" | "Cancelled"
+      vehicle_status:
+        | "Available"
+        | "In service"
+        | "Out of service"
+        | "Under maintenance"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -411,6 +416,14 @@ export const Constants = {
     Enums: {},
   },
   public: {
-    Enums: {},
+    Enums: {
+      booking_status: ["Scheduled", "In progress", "Completed", "Cancelled"],
+      vehicle_status: [
+        "Available",
+        "In service",
+        "Out of service",
+        "Under maintenance",
+      ],
+    },
   },
 } as const

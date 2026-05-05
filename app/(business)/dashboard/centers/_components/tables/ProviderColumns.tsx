@@ -13,12 +13,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
-import { CustomerColumn } from "@/lib/types/tableColumns"
+import { CenterType } from "@/lib/db/types"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-export const CustomerColumns: ColumnDef<CustomerColumn>[] = [
+export const ProviderColumns: ColumnDef<CenterType>[] = [
     {
     id: "select",
     header: ({ table }) => (
@@ -43,8 +43,12 @@ export const CustomerColumns: ColumnDef<CustomerColumn>[] = [
   },
 
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "name",
+    header: "Provider",
+  },
+      {
+    accessorKey: "contact_name",
+    header: "Contact person",
   },
   {
     accessorKey: "email",
@@ -60,27 +64,22 @@ export const CustomerColumns: ColumnDef<CustomerColumn>[] = [
       )
     },
   },
-  {
-    accessorKey: "amount",
-        header: () => <div>Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount)
- 
-      return <div className="font-medium">{formatted}</div>
-    },
+
+    {
+    accessorKey: "phone",
+    header: "Phone",
   },
+    {
+    accessorKey: "address",
+    header: "Address",
+  },
+
 
       {
       
     id: "actions",
      header: () => <div className="text-right mr-2">Actions</div>,
-    cell: ({ row }) => {
-      const payment = row.original
- 
+    cell: () => {
       return (
         <div className="flex justify-end mr-2">
 <DropdownMenu>
@@ -93,7 +92,7 @@ export const CustomerColumns: ColumnDef<CustomerColumn>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText("Hello")}
             >
               Copy payment ID
             </DropdownMenuItem>
