@@ -15,7 +15,7 @@ export async function getVehicles(){
         }
 
         const {data, error} = await supabase.from("vehicles")
-        .select("make, model, year, plant_number, plate_number")
+        .select("id, make, model, year, plant_number, plate_number")
         
         
         if (error){

@@ -27,6 +27,7 @@ export type Business = {
 
 
 export type CenterType = {
+id: string;
 name: string;
 contact_name: string,
 phone: string,
@@ -36,6 +37,7 @@ notes: string,
 };
 
 export type CategoryType = {
+    id: string;
     name: string;
     color: CategoryColor;
     bookingCount: number;
@@ -44,11 +46,22 @@ export type CategoryType = {
 
 
 export type VehicleType = {
+    id: string;
     make: string,
     model: string,
     year: string,
     plant_number: string,
     plate_number: string
 };
+
+export const BOOKING_STATUS = {
+  SCHEDULED: "scheduled",
+  IN_PROGRESS: "in_progress",
+  COMPLETED: "completed",
+  CANCELLED: "cancelled",
+} as const;
+
+export type BookingStatus =
+  typeof BOOKING_STATUS[keyof typeof BOOKING_STATUS];
 
 

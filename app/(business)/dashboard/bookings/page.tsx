@@ -1,6 +1,8 @@
 import { BookingColumn } from "@/lib/types/tableColumns";
 import { BookingColumns } from "./_components/Bookingcolumn";
 import { BookingTable } from "./_components/BookingTable";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 
 async function getData(): Promise<BookingColumn[]> {
@@ -59,7 +61,8 @@ export default async function page() {
 
   const data = await getData()
   return (
-    <div className="container mx-auto">
+    <div>
+      <Link className={buttonVariants({ size: "sm" })} href={'/dashboard/bookings/new'}>+ Add Booking</Link>
       <BookingTable columns={BookingColumns} data={data} />
     </div>
   )

@@ -16,7 +16,7 @@ export async function getServiceCenters() {
 
     const { data, error } = await supabase
     .from("service_centers")
-    .select("name, contact_name, phone, email, address")
+    .select("id, name, contact_name, phone, email, address")
     .eq("user_id", user_id)
 
     if (error) {
@@ -30,4 +30,5 @@ export async function getServiceCenters() {
     }
 
     return data
-}
+};
+

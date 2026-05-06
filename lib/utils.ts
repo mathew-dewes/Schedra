@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { BOOKING_STATUS } from "./db/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -38,3 +39,10 @@ export function convertToMoney(value: number){
         { style: 'currency', currency: 'NZD' }
     ).format(value)
 };
+
+export const BOOKING_STATUS_OPTIONS = [
+  { label: "Scheduled", value: BOOKING_STATUS.SCHEDULED },
+  { label: "In Progress", value: BOOKING_STATUS.IN_PROGRESS },
+  { label: "Completed", value: BOOKING_STATUS.COMPLETED },
+  { label: "Cancelled", value: BOOKING_STATUS.CANCELLED },
+] as const;

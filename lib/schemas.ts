@@ -22,28 +22,14 @@ export const registerSchema = z.object({
 
 
 export const bookingFormSchema = z.object({
-  date: z.date(),
-  service_type: z.string().min(1, "Service type is required"),
-  start_time: z.string().min(1, "Start time is required"),
-  customer_mode: z.enum(["existing", "new"]),
-customer_id: z.string().optional(),
-  customer: z
-    .object({
-      name: z.string().min(1),
-      email: z.string().email(),
-      phone: z.string().optional(),
-    })
-    .optional(),
-}).superRefine((data, ctx) => {
-  if (data.customer_mode === "existing") {
-    if (!data.customer_id || data.customer_id.trim().length === 0) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["customer_id"],
-        message: "Please select a customer",
-      });
-    }
-  }
+  title: z.string().min(1, 'Booking title is required'),
+  description: z.string().min(1, 'Plant number is required'),
+  status: z.string(),
+  start_time: z.date(),
+  end_time: z.date(),
+  center: z.string().min(1, 'Service center is required'),
+  vehicle: z.string(),
+  category: z.string()
 });
 
 
