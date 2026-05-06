@@ -80,14 +80,13 @@ export type Database = {
       bookings: {
         Row: {
           category_id: string
+          center_id: string | null
           created_at: string
           description: string | null
-          end_time: string
           id: string
           is_all_day: boolean
           location: string
-          provider_id: string | null
-          start_time: string
+          start_date: string
           status: Database["public"]["Enums"]["booking_status"]
           title: string
           updated_at: string | null
@@ -96,14 +95,13 @@ export type Database = {
         }
         Insert: {
           category_id?: string
+          center_id?: string | null
           created_at?: string
           description?: string | null
-          end_time: string
           id?: string
           is_all_day?: boolean
           location: string
-          provider_id?: string | null
-          start_time: string
+          start_date: string
           status: Database["public"]["Enums"]["booking_status"]
           title: string
           updated_at?: string | null
@@ -112,14 +110,13 @@ export type Database = {
         }
         Update: {
           category_id?: string
+          center_id?: string | null
           created_at?: string
           description?: string | null
-          end_time?: string
           id?: string
           is_all_day?: boolean
           location?: string
-          provider_id?: string | null
-          start_time?: string
+          start_date?: string
           status?: Database["public"]["Enums"]["booking_status"]
           title?: string
           updated_at?: string | null
@@ -136,7 +133,7 @@ export type Database = {
           },
           {
             foreignKeyName: "bookings_provider_id_fkey"
-            columns: ["provider_id"]
+            columns: ["center_id"]
             isOneToOne: false
             referencedRelation: "service_centers"
             referencedColumns: ["id"]
@@ -165,7 +162,7 @@ export type Database = {
           id?: string
           name: string
           sort_order: number
-          user_id?: string
+          user_id: string
         }
         Update: {
           color?: Database["public"]["Enums"]["category_color"]

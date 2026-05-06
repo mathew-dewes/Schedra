@@ -10,13 +10,14 @@ import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
-import { ServiceCenterComboBox } from "./ServiceCenterComboBox";
-import { VehicleComboBox } from "./VehicleComboBox";
+import { VehiclePopover } from "./VehiclePopover";
 import StatusSelect from "./StatusSelect";
 import CategorySelect from "./CategorySelect";
 import { Category, Center, Vehicle } from "@/lib/db/types";
 import { bookingFormDefaultValues } from "@/lib/helpers/defaults";
 import { StartDatePicker } from "./StartDatePicker";
+import { createBooking } from "@/lib/db/mutations/bookings";
+import { ServiceCenterPopover } from "./ServiceCenterPopover";
 
 
 
@@ -33,7 +34,7 @@ export default function BookingForm({ centers, vehicles, categories }:
 
     function onSubmit(values: z.infer<typeof bookingFormSchema>) {
         startTransition((async () => {
-            console.log(values);
+          await createBooking(values);
 
         }))
     }
@@ -72,7 +73,7 @@ export default function BookingForm({ centers, vehicles, categories }:
                             control={form.control}
                             name="center"
                             render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
+                                <Field className="sm:w-1/2" data-invalid={fieldState.invalid}>
                                     <FieldContent>
                                         <FieldLabel>
                                             Service Center
@@ -82,7 +83,7 @@ export default function BookingForm({ centers, vehicles, categories }:
                                         </FieldDescription>
 
                                     </FieldContent>
-                                    <ServiceCenterComboBox centers={centers} value={field.value} onChange={field.onChange} />
+                                     <ServiceCenterPopover value={field.value} onChange={field.onChange} centers={centers} />
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
                                 </Field>
@@ -93,7 +94,7 @@ export default function BookingForm({ centers, vehicles, categories }:
                             control={form.control}
                             name="vehicle"
                             render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
+                                <Field className="sm:w-1/2" data-invalid={fieldState.invalid}>
                                     <FieldContent>
                                         <FieldLabel>
                                             Vehicle
@@ -103,7 +104,7 @@ export default function BookingForm({ centers, vehicles, categories }:
                                         </FieldDescription>
 
                                     </FieldContent>
-                                    <VehicleComboBox value={field.value} onChange={field.onChange} vehicles={vehicles} />
+                                    <VehiclePopover value={field.value} onChange={field.onChange} vehicles={vehicles} />
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
                                 </Field>
