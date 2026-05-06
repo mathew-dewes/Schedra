@@ -23,13 +23,12 @@ export const registerSchema = z.object({
 
 export const bookingFormSchema = z.object({
   title: z.string().min(1, 'Booking title is required'),
-  description: z.string().min(1, 'Plant number is required'),
+  description: z.string().optional(),
   status: z.string(),
   start_time: z.date(),
-  end_time: z.date(),
   center: z.string().min(1, 'Service center is required'),
-  vehicle: z.string(),
-  category: z.string()
+  vehicle: z.string().min(1, 'Vehicle is required'),
+  category: z.string().min(1, 'Category is required')
 });
 
 

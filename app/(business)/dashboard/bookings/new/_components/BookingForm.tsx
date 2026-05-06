@@ -9,50 +9,25 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
-
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
-
-type Center = { id: string; name: string };
-type Vehicle = { id: string; name: string };
-type Category = {id: string, name: string, color: string}
-import {
-    Combobox,
-    ComboboxContent,
-    ComboboxEmpty,
-    ComboboxInput,
-    ComboboxItem,
-    ComboboxList,
-} from "@/components/ui/combobox"
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
-import { BOOKING_STATUS_OPTIONS } from "@/lib/utils";
+import { ServiceCenterComboBox } from "./ServiceCenterComboBox";
+import { VehicleComboBox } from "./VehicleComboBox";
+import StatusSelect from "./StatusSelect";
+import CategorySelect from "./CategorySelect";
+import { Category, Center, Vehicle } from "@/lib/db/types";
+import { bookingFormDefaultValues } from "@/lib/helpers/defaults";
+import { StartDatePicker } from "./StartDatePicker";
 
 
-export default function BookingForm({ centers, vehicles, categories}:
+
+export default function BookingForm({ centers, vehicles, categories }:
     { centers: Center[], vehicles: Vehicle[], categories: Category[] }
 ) {
     const [isPending, startTransition] = useTransition();
 
     const form = useForm<z.infer<typeof bookingFormSchema>>({
         resolver: zodResolver(bookingFormSchema),
-        defaultValues: {
-            title: "",
-            description: "",
-            category: "",
-            center: "",
-            vehicle: "",
-            start_time: new Date(),
-            end_time: new Date(),
-            status: "scheduled"
-
-        }
+        defaultValues: bookingFormDefaultValues
     });
 
 
@@ -107,28 +82,7 @@ export default function BookingForm({ centers, vehicles, categories}:
                                         </FieldDescription>
 
                                     </FieldContent>
-                                    <Combobox<Center>
-                                        items={centers}
-                                        value={centers.find(c => c.id === field.value) ?? null}
-                                        onValueChange={(item) => field.onChange(item?.id ?? "")}
-                                    >
-                                        <ComboboxInput
-                                            aria-invalid={fieldState.invalid}
-                                            value={
-                                                centers.find(c => c.id === field.value)?.name ?? ""
-                                            }
-                                            placeholder="Select a framework" />
-                                        <ComboboxContent>
-                                            <ComboboxEmpty>No items found.</ComboboxEmpty>
-                                            <ComboboxList>
-                                                {(item) => (
-                                                    <ComboboxItem key={item.id} value={item}>
-                                                        {item.name}
-                                                    </ComboboxItem>
-                                                )}
-                                            </ComboboxList>
-                                        </ComboboxContent>
-                                    </Combobox>
+                                    <ServiceCenterComboBox centers={centers} value={field.value} onChange={field.onChange} />
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
                                 </Field>
@@ -149,28 +103,7 @@ export default function BookingForm({ centers, vehicles, categories}:
                                         </FieldDescription>
 
                                     </FieldContent>
-                                    <Combobox<Vehicle>
-                                        items={vehicles}
-                                        value={vehicles.find(c => c.id === field.value) ?? null}
-                                        onValueChange={(item) => field.onChange(item?.id ?? "")}
-                                    >
-                                        <ComboboxInput
-                                            aria-invalid={fieldState.invalid}
-                                            placeholder="Select a framework"
-                                            value={
-                                                vehicles.find(c => c.id === field.value)?.name ?? ""
-                                            } />
-                                        <ComboboxContent>
-                                            <ComboboxEmpty>No items found.</ComboboxEmpty>
-                                            <ComboboxList>
-                                                {(item) => (
-                                                    <ComboboxItem key={item.id} value={item}>
-                                                        {item.name}
-                                                    </ComboboxItem>
-                                                )}
-                                            </ComboboxList>
-                                        </ComboboxContent>
-                                    </Combobox>
+                                    <VehicleComboBox value={field.value} onChange={field.onChange} vehicles={vehicles} />
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
                                 </Field>
@@ -191,23 +124,7 @@ export default function BookingForm({ centers, vehicles, categories}:
                                         </FieldDescription>
 
                                     </FieldContent>
-                                    <Select
-                                        value={field.value}
-                                        onValueChange={field.onChange}
-                                    >
-                                        <SelectTrigger className="w-full max-w-48">
-                                            <SelectValue placeholder="Select a status" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectGroup>
-                                                <SelectLabel>Status</SelectLabel>
-                                                {BOOKING_STATUS_OPTIONS.map((option) => {
-                                                    return <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
-                                                })}
-
-                                            </SelectGroup>
-                                        </SelectContent>
-                                    </Select>
+                                    <StatusSelect value={field.value} onChange={field.onChange} />
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
                                 </Field>
@@ -228,23 +145,26 @@ export default function BookingForm({ centers, vehicles, categories}:
                                         </FieldDescription>
 
                                     </FieldContent>
-                                    <Select
-                                        value={field.value}
-                                        onValueChange={field.onChange}
-                                    >
-                                        <SelectTrigger className="w-full max-w-48">
-                                            <SelectValue placeholder="Select a status" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectGroup>
-                                                <SelectLabel>Category</SelectLabel>
-                                                {categories.map((cat) => {
-                                                    return <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
-                                                })}
+                                    <CategorySelect value={field.value} onChange={field.onChange} categories={categories} />
+                                    {fieldState.invalid &&
+                                        <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
 
-                                            </SelectGroup>
-                                        </SelectContent>
-                                    </Select>
+                        />
+                        <Controller
+                            control={form.control}
+                            name="start_time"
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                         <FieldContent>
+                                        <FieldLabel>
+                                            Start Date
+                                        </FieldLabel>
+                                
+
+                                    </FieldContent>
+                                    <StartDatePicker value={field.value} onChange={field.onChange} />
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
                                 </Field>
@@ -271,7 +191,7 @@ export default function BookingForm({ centers, vehicles, categories}:
                                         />
                                         <InputGroupAddon align="block-end">
                                             <InputGroupText className="tabular-nums">
-                                                {field.value.length}/100 characters
+                                                {field.value?.length ?? 0}/100 characters
                                             </InputGroupText>
                                         </InputGroupAddon>
                                     </InputGroup>
@@ -290,14 +210,14 @@ export default function BookingForm({ centers, vehicles, categories}:
             </CardContent>
 
             <CardFooter>
-                    <Field orientation="horizontal">
-          <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
-          </Button>
-          <Button disabled={isPending} type="submit" form="bookingForm">
-            Submit
-          </Button>
-        </Field>    </CardFooter>
+                <Field orientation="horizontal">
+                    <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
+                        Reset
+                    </Button>
+                    <Button disabled={isPending} type="submit" form="bookingForm">
+                        Submit
+                    </Button>
+                </Field>    </CardFooter>
         </Card>
     )
 }

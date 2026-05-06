@@ -64,4 +64,6 @@ export const BOOKING_STATUS = {
 export type BookingStatus =
   typeof BOOKING_STATUS[keyof typeof BOOKING_STATUS];
 
-
+export type Center = { id: string; name: string };
+export type Vehicle = { id: string; name: string };
+export type Category = {id: string, name: string, color: string}
