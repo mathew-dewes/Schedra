@@ -14,7 +14,7 @@ export async function getCategories(){
             };
 
             const {data, error} = await supabase.from("categories").
-            select().eq("user_id", user_id);
+            select("name, color, bookings(count)").eq("user_id", user_id);
                 
         if (error){
             console.log("Error:", error);
@@ -22,7 +22,13 @@ export async function getCategories(){
             success: false,
             message: error.message
         }
-        }
+        };
 
-        return data
+        const formatted = data?.map((cat) => ({
+  name: cat.name,
+  color: cat.color,
+  bookingCount: cat.bookings?.[0]?.count ?? 0,
+}));
+
+        return formatted
 }

@@ -30,7 +30,7 @@ const form = useForm<z.infer<typeof vehicleFormSchema>>({
         make: "",
         model: "",
         year: "",
-        vin: undefined
+        vin: ""
     
     }
 });
@@ -103,6 +103,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                         <Field>
                              <FieldLabel>Year</FieldLabel>
                              <Input
+                              className="uppercase placeholder:normal-case"
                              {...field}
                              aria-invalid={fieldState.invalid}
                              type="text"
@@ -120,6 +121,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                         <Field>
                              <FieldLabel>Plant number</FieldLabel>
                              <Input
+                                className="uppercase placeholder:normal-case"
                              {...field}
                              aria-invalid={fieldState.invalid}
                              type="text"
@@ -137,6 +139,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                         <Field>
                              <FieldLabel>Licence plate number</FieldLabel>
                              <Input
+                                className="uppercase placeholder:normal-case"
                              {...field}
                              aria-invalid={fieldState.invalid}
                              type="text"
@@ -154,6 +157,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                         <Field>
                              <FieldLabel>VIN number - Optional</FieldLabel>
                              <Input
+                                className="uppercase placeholder:normal-case"
                              {...field}
                              aria-invalid={fieldState.invalid}
                              type="text"

@@ -29,8 +29,8 @@ export async function createVehicle(values: z.infer<typeof vehicleFormSchema>){
     const {error} = await supabase.from("vehicles").insert({
         make: parsed.data.make,
         model: parsed.data.model,
-        plant_number: parsed.data.plant_number,
-        plate_number: parsed.data.plate_number,
+        plant_number: parsed.data.plant_number.toUpperCase(),
+        plate_number: parsed.data.plate_number.toUpperCase(),
         year: parsed.data.year,
         user_id
     });

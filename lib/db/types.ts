@@ -1,5 +1,9 @@
 import { Database } from "../supabase/types";
 
+
+export type CategoryColor = Database["public"]["Enums"]["category_color"]
+
+
 export type Business = {
     id: string,
     name: string;
@@ -31,6 +35,12 @@ address: string,
 notes: string,  
 };
 
+export type CategoryType = {
+    name: string;
+    color: CategoryColor;
+    bookingCount: number;
+}
+
 
 
 export type VehicleType = {
@@ -42,4 +52,3 @@ export type VehicleType = {
 };
 
 
-export type CategoryColor = Database["public"]["Enums"]["category_color"]
