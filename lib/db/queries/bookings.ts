@@ -16,7 +16,7 @@ export async function getBookings(){
         const {data, error} = await supabase.from("bookings")
         .select(`id, title, description, start_date, status, 
             vehicles(make, model, plant_number, plate_number), 
-            categories(name),
+            categories(name, color),
             service_centers(name)
             `)
         .eq("user_id", user_id);
@@ -38,6 +38,7 @@ export async function getBookings(){
         status: booking.status,
         bookingDate: new Date(booking.start_date),
         category: booking.categories.name,
+        categoryColor: booking.categories.color,
         center: booking.service_centers?.name,
         plant: booking.vehicles.plant_number,
         vehicle: booking.vehicles.make + " " + booking.vehicles.model + " - " + booking.vehicles.plate_number

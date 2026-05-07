@@ -14,8 +14,16 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
-import { BookingType } from "@/lib/db/types"
+import { BookingStatus, BookingType } from "@/lib/db/types"
+import { cn } from "@/lib/utils"
 
+
+const bookingStatusStyles: Record<BookingStatus, string> = {
+  Scheduled: "bg-blue-400",
+  "In progress": "bg-orange-400 text-black",
+  Completed: "bg-green-400",
+  Cancelled: "bg-red-400",
+}
 
 export const BookingColumns: ColumnDef<BookingType>[] = [
     {
@@ -57,7 +65,7 @@ export const BookingColumns: ColumnDef<BookingType>[] = [
     accessorKey: "category",
     header: "Category",
     cell:({row})=>{
-      return <Badge>{row.original.category}</Badge>
+      return <Badge variant={"secondary"} >{row.original.category}</Badge>
 
     }
   },
@@ -80,8 +88,10 @@ export const BookingColumns: ColumnDef<BookingType>[] = [
     accessorKey: "status",
     header: "Status",
     cell:({row})=>{
-      return <Badge>{row.original.status}</Badge>
-
+return <div className="flex w-fit bg-secondary items-center gap-2 p-1.5 rounded">
+  <div className={cn(bookingStatusStyles[row.original.status], "size-4 rounded-full")}/>
+  <p>{row.original.status}</p>
+</div>
     }
   },
       {

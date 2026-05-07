@@ -37,6 +37,7 @@ export type BookingType = {
   title: string,
   bookingDate: Date
   category: string
+  categoryColor: string,
   vehicle: string
   plant: string
   center: string
@@ -44,12 +45,6 @@ export type BookingType = {
 
 }
 
-export const BOOKING_STATUS = {
-  SCHEDULED: "scheduled",
-  IN_PROGRESS: "in_progress",
-  COMPLETED: "completed",
-  CANCELLED: "cancelled",
-} as const;
 
 export type BookingStatus =
   Database["public"]["Enums"]["booking_status"]
