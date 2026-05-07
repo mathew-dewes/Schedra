@@ -7,7 +7,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { BookingStatusEnum } from "@/lib/types/enums";
+import { BookingTypeEnum } from "@/lib/types/enums";
 
 
 type StatusSelectProps = {
@@ -15,9 +15,9 @@ type StatusSelectProps = {
     onChange: (value: string) => void;
 };
 
-const BOOKING_STATUES = ["Scheduled", "In progress", "Completed", "Cancelled"] as BookingStatusEnum[]
+const BOOKING_TYPES = ["Repairs", "Servicing", "Breakdown"] as BookingTypeEnum[]
 
-export default function StatusSelect({ value, onChange }: StatusSelectProps){
+export default function BookingTypeSelect({ value, onChange }: StatusSelectProps){
     return (
                     <Select
                                         value={value}
@@ -28,9 +28,9 @@ export default function StatusSelect({ value, onChange }: StatusSelectProps){
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectGroup>
-                                                <SelectLabel>Status</SelectLabel>
-                                                {BOOKING_STATUES.map((status) => {
-                                                    return <SelectItem key={status} value={status}>{status}</SelectItem>
+                                                <SelectLabel>Types</SelectLabel>
+                                                {BOOKING_TYPES.map((type) => {
+                                                    return <SelectItem key={type} value={type}>{type}</SelectItem>
                                                 })}
 
                                             </SelectGroup>

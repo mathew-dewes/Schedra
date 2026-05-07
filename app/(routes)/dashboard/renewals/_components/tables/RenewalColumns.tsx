@@ -21,7 +21,7 @@ import { bookingStatusStyles } from "@/lib/constants"
 
 
 
-export const BookingColumns: ColumnDef<BookingEntry>[] = [
+export const RenewalColumns: ColumnDef<BookingEntry>[] = [
     {
     id: "select",
     header: ({ table }) => (

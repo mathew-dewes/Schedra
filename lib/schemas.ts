@@ -1,5 +1,5 @@
 import z from "zod";
-import { BOOKING_STATUS } from "./db/types";
+import { BookingTypeEnum } from "./types/enums";
 
 export const loginSchema = z.object({
   email: z.email(),
@@ -29,7 +29,9 @@ export const bookingFormSchema = z.object({
   start_date: z.date(),
   center_id: z.string().min(1, 'Service center is required'),
   vehicle_id: z.string().min(1, 'Vehicle is required'),
-  category_id: z.string().min(1, 'Category is required')
+  booking_type: z.enum(
+    ["Repairs", "Servicing", "Breakdown"] as BookingTypeEnum[], 
+    "Booking type is required")
 });
 
 
@@ -53,9 +55,14 @@ export const serviceProviderFormSchema = z.object({
   notes: z.string().optional()
 });
 
-export const categoryFormSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  color: z.string().min(1, 'Please select a color')
+
+export const renewalFormSchema = z.object({
+  type: z.string().min(1, 'Renewal type is required'),
+  vehicle_id: z.string().min(1, 'Please select a vehicle'),
+  due_date: z.date(),
+
 })
+
+
 
 

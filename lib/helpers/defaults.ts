@@ -1,12 +1,12 @@
-import { BookingStatus } from "../db/types";
+
+import { BookingStatusEnum, BookingTypeEnum } from "../types/enums";
 
 export const bookingFormDefaultValues = {
-    title: "",
-    center_id: "",
-    vehicle_id: "",
-    category_id: "",
-    description: "",
-    start_time: new Date(),
-    status: "Scheduled" as BookingStatus
-
-}
+                title: "",
+                center_id: "",
+                vehicle_id: "",
+                booking_type: "" as BookingTypeEnum,
+                description: "",
+                start_date: new Date(),
+                status: "Scheduled" as BookingStatusEnum
+        }

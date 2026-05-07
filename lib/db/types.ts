@@ -1,4 +1,6 @@
 import { Database } from "../supabase/types";
+import { BookingStatusEnum } from "../types/enums";
+
 
 
 export type CategoryColor = Database["public"]["Enums"]["category_color"]
@@ -41,13 +43,12 @@ export type BookingType = {
   vehicle: string
   plant: string
   center: string
-  status: BookingStatus
+  status: BookingStatusEnum
 
 }
 
 
-export type BookingStatus =
-  Database["public"]["Enums"]["booking_status"]
+
 
 export type Center = { id: string; name: string };
 export type Vehicle = { id: string; name: string };

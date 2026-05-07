@@ -12,11 +12,6 @@ export default async function page() {
     const serviceCenters = await getServiceCenters() as CenterType[];
     const userVehicles = await getVehicles() as VehicleType[];
   
-
-
-
-
-
     const centers = serviceCenters.map((item) => {
         return {
             id: item.id,

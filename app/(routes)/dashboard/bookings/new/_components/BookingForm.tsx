@@ -11,16 +11,15 @@ import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
 import { VehiclePopover } from "./VehiclePopover";
-import StatusSelect from "./StatusSelect";
-import CategorySelect from "./CategorySelect";
-import {Center, Vehicle } from "@/lib/db/types";
-import { bookingFormDefaultValues } from "@/lib/helpers/defaults";
+import { Center, Vehicle } from "@/lib/db/types";
 import { StartDatePicker } from "./StartDatePicker";
 import { createBooking } from "@/lib/db/mutations/bookings";
 import { ServiceCenterPopover } from "./ServiceCenterPopover";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { categories } from "@/lib/constants";
+import BookingTypeSelect from "./BookingTypeSelect";
+import StatusSelect from "./StatusSelect";
+import { bookingFormDefaultValues } from "@/lib/helpers/defaults";
 
 
 
@@ -41,6 +40,8 @@ export default function BookingForm({ centers, vehicles }:
     function onSubmit(values: z.infer<typeof bookingFormSchema>) {
         startTransition((async () => {
             const res = await createBooking(values);
+
+
 
             if (!res.success){
                 toast.error(res.message)
@@ -147,19 +148,19 @@ export default function BookingForm({ centers, vehicles }:
                         />
                         <Controller
                             control={form.control}
-                            name="category_id"
+                            name="booking_type"
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldContent>
                                         <FieldLabel>
-                                            Category
+                                            Booking type
                                         </FieldLabel>
                                         <FieldDescription>
-                                            Select a category from the list below
+                                            Select a booking type from the list below
                                         </FieldDescription>
 
                                     </FieldContent>
-                                    <CategorySelect value={field.value} onChange={field.onChange} categories={categories} />
+                                    <BookingTypeSelect value={field.value} onChange={field.onChange} />
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
                                 </Field>

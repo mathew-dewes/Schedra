@@ -14,9 +14,8 @@ export async function getBookings(){
         };
 
         const {data, error} = await supabase.from("bookings")
-        .select(`id, title, description, start_date, status, 
+        .select(`id, title, description, start_date, status, booking_type, 
             vehicles(make, model, plant_number, plate_number), 
-            categories(name, color),
             service_centers(name)
             `)
         .eq("user_id", user_id);
@@ -37,10 +36,9 @@ export async function getBookings(){
         title: booking.title,
         status: booking.status,
         bookingDate: new Date(booking.start_date),
-        category: booking.categories.name,
-        categoryColor: booking.categories.color,
         center: booking.service_centers?.name,
         plant: booking.vehicles.plant_number,
+        booking_type: booking.booking_type,
         vehicle: booking.vehicles.make + " " + booking.vehicles.model + " - " + booking.vehicles.plate_number
     
     }));

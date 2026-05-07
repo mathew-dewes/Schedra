@@ -5,13 +5,13 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
 import { getBookings } from "@/lib/db/queries/bookings";
-import { BookingType } from "@/lib/db/types";
+import { BookingEntry } from "@/lib/types/entries";
 
 
 export default async function page() {
 
 
-  const bookings = await getBookings() as BookingType[];
+  const bookings = await getBookings() as BookingEntry[];
 
   return (
     <div>

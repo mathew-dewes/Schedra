@@ -79,7 +79,7 @@ export type Database = {
       }
       bookings: {
         Row: {
-          category_id: string
+          booking_type: Database["public"]["Enums"]["booking_type"]
           center_id: string | null
           created_at: string
           description: string | null
@@ -92,7 +92,7 @@ export type Database = {
           vehicle_id: string
         }
         Insert: {
-          category_id: string
+          booking_type: Database["public"]["Enums"]["booking_type"]
           center_id?: string | null
           created_at?: string
           description?: string | null
@@ -105,7 +105,7 @@ export type Database = {
           vehicle_id: string
         }
         Update: {
-          category_id?: string
+          booking_type?: Database["public"]["Enums"]["booking_type"]
           center_id?: string | null
           created_at?: string
           description?: string | null
@@ -118,13 +118,6 @@ export type Database = {
           vehicle_id?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "bookings_category_id_fkey"
-            columns: ["category_id"]
-            isOneToOne: false
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "bookings_provider_id_fkey"
             columns: ["center_id"]
@@ -140,33 +133,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
-      }
-      categories: {
-        Row: {
-          color: Database["public"]["Enums"]["category_color"]
-          created_at: string
-          id: string
-          name: string
-          sort_order: number
-          user_id: string
-        }
-        Insert: {
-          color: Database["public"]["Enums"]["category_color"]
-          created_at?: string
-          id?: string
-          name: string
-          sort_order: number
-          user_id: string
-        }
-        Update: {
-          color?: Database["public"]["Enums"]["category_color"]
-          created_at?: string
-          id?: string
-          name?: string
-          sort_order?: number
-          user_id?: string
-        }
-        Relationships: []
       }
       notes: {
         Row: {
@@ -188,6 +154,56 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      renewals: {
+        Row: {
+          created_at: string
+          due_date: string
+          id: string
+          interval_days: number | null
+          notes: string | null
+          renewed_at: string | null
+          status: Database["public"]["Enums"]["renewal_status"]
+          type: Database["public"]["Enums"]["renewal_type"]
+          updated_at: string | null
+          user_id: string
+          vehicle_id: string
+        }
+        Insert: {
+          created_at?: string
+          due_date: string
+          id?: string
+          interval_days?: number | null
+          notes?: string | null
+          renewed_at?: string | null
+          status: Database["public"]["Enums"]["renewal_status"]
+          type: Database["public"]["Enums"]["renewal_type"]
+          updated_at?: string | null
+          user_id: string
+          vehicle_id: string
+        }
+        Update: {
+          created_at?: string
+          due_date?: string
+          id?: string
+          interval_days?: number | null
+          notes?: string | null
+          renewed_at?: string | null
+          status?: Database["public"]["Enums"]["renewal_status"]
+          type?: Database["public"]["Enums"]["renewal_type"]
+          updated_at?: string | null
+          user_id?: string
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "renewals_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       service_centers: {
         Row: {
@@ -276,7 +292,10 @@ export type Database = {
     }
     Enums: {
       booking_status: "Scheduled" | "In progress" | "Completed" | "Cancelled"
+      booking_type: "Repairs" | "Servicing" | "Breakdown"
       category_color: "red" | "green" | "yellow" | "orange" | "blue"
+      renewal_status: "Upcoming" | "Due" | "Overdue" | "Completed"
+      renewal_type: "WOF" | "REGO" | "RUC" | "Service"
       vehicle_status:
         | "Available"
         | "In service"
@@ -413,7 +432,10 @@ export const Constants = {
   public: {
     Enums: {
       booking_status: ["Scheduled", "In progress", "Completed", "Cancelled"],
+      booking_type: ["Repairs", "Servicing", "Breakdown"],
       category_color: ["red", "green", "yellow", "orange", "blue"],
+      renewal_status: ["Upcoming", "Due", "Overdue", "Completed"],
+      renewal_type: ["WOF", "REGO", "RUC", "Service"],
       vehicle_status: [
         "Available",
         "In service",
