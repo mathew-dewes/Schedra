@@ -62,7 +62,7 @@ export const BOOKING_STATUS = {
 } as const;
 
 export type BookingStatus =
-  typeof BOOKING_STATUS[keyof typeof BOOKING_STATUS];
+  Database["public"]["Enums"]["booking_status"]
 
 export type Center = { id: string; name: string };
 export type Vehicle = { id: string; name: string };

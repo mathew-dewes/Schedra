@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Vehicle } from "@/lib/db/types";
+import { useState } from "react";
 
 type Props = {
   centers: Vehicle[];
@@ -12,9 +13,10 @@ type Props = {
 };
 
 export function ServiceCenterPopover({ centers, value, onChange }: Props) {
-   const selectedCenter = centers.find(c => c.id === value)
+    const [open, setOpen] = useState(false) 
+  const selectedCenter = centers.find(c => c.id === value)
  return (
-<Popover>
+<Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline" role="combobox">
           {selectedCenter?.name ?? "Select a vehicle"}
@@ -33,7 +35,10 @@ export function ServiceCenterPopover({ centers, value, onChange }: Props) {
                 <CommandItem
                   key={center.id}
                   value={center.name}
-                  onSelect={() => onChange(center.id)}
+                  onSelect={() => {
+                    onChange(center.id)
+                      setOpen(false)
+                  }}
                 >
                   {center.name}
                 </CommandItem>

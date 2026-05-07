@@ -1,4 +1,5 @@
 import z from "zod";
+import { BOOKING_STATUS } from "./db/types";
 
 export const loginSchema = z.object({
   email: z.email(),
@@ -25,10 +26,10 @@ export const bookingFormSchema = z.object({
   title: z.string().min(1, 'Booking title is required'),
   description: z.string().optional(),
   status: z.string(),
-  start_time: z.date(),
-  center: z.string().min(1, 'Service center is required'),
-  vehicle: z.string().min(1, 'Vehicle is required'),
-  category: z.string().min(1, 'Category is required')
+  start_date: z.date(),
+  center_id: z.string().min(1, 'Service center is required'),
+  vehicle_id: z.string().min(1, 'Vehicle is required'),
+  category_id: z.string().min(1, 'Category is required')
 });
 
 

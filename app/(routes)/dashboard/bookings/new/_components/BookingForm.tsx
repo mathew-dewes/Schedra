@@ -18,6 +18,8 @@ import { bookingFormDefaultValues } from "@/lib/helpers/defaults";
 import { StartDatePicker } from "./StartDatePicker";
 import { createBooking } from "@/lib/db/mutations/bookings";
 import { ServiceCenterPopover } from "./ServiceCenterPopover";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 
 
@@ -25,7 +27,7 @@ export default function BookingForm({ centers, vehicles, categories }:
     { centers: Center[], vehicles: Vehicle[], categories: Category[] }
 ) {
     const [isPending, startTransition] = useTransition();
-
+    const router = useRouter()
     const form = useForm<z.infer<typeof bookingFormSchema>>({
         resolver: zodResolver(bookingFormSchema),
         defaultValues: bookingFormDefaultValues
@@ -34,7 +36,14 @@ export default function BookingForm({ centers, vehicles, categories }:
 
     function onSubmit(values: z.infer<typeof bookingFormSchema>) {
         startTransition((async () => {
-          await createBooking(values);
+            const res = await createBooking(values);
+
+            if (!res.success){
+                toast.error(res.message)
+            } else {
+                toast.success(res.message);
+                router.push("/dashboard/bookings")
+            }
 
         }))
     }
@@ -71,7 +80,7 @@ export default function BookingForm({ centers, vehicles, categories }:
                         />
                         <Controller
                             control={form.control}
-                            name="center"
+                            name="center_id"
                             render={({ field, fieldState }) => (
                                 <Field className="sm:w-1/2" data-invalid={fieldState.invalid}>
                                     <FieldContent>
@@ -92,7 +101,7 @@ export default function BookingForm({ centers, vehicles, categories }:
                         />
                         <Controller
                             control={form.control}
-                            name="vehicle"
+                            name="vehicle_id"
                             render={({ field, fieldState }) => (
                                 <Field className="sm:w-1/2" data-invalid={fieldState.invalid}>
                                     <FieldContent>
@@ -134,7 +143,7 @@ export default function BookingForm({ centers, vehicles, categories }:
                         />
                         <Controller
                             control={form.control}
-                            name="category"
+                            name="category_id"
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldContent>
@@ -155,7 +164,7 @@ export default function BookingForm({ centers, vehicles, categories }:
                         />
                         <Controller
                             control={form.control}
-                            name="start_time"
+                            name="start_date"
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                          <FieldContent>

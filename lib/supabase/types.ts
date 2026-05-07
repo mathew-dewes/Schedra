@@ -84,8 +84,6 @@ export type Database = {
           created_at: string
           description: string | null
           id: string
-          is_all_day: boolean
-          location: string
           start_date: string
           status: Database["public"]["Enums"]["booking_status"]
           title: string
@@ -94,13 +92,11 @@ export type Database = {
           vehicle_id: string
         }
         Insert: {
-          category_id?: string
+          category_id: string
           center_id?: string | null
           created_at?: string
           description?: string | null
           id?: string
-          is_all_day?: boolean
-          location: string
           start_date: string
           status: Database["public"]["Enums"]["booking_status"]
           title: string
@@ -114,8 +110,6 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
-          is_all_day?: boolean
-          location?: string
           start_date?: string
           status?: Database["public"]["Enums"]["booking_status"]
           title?: string
