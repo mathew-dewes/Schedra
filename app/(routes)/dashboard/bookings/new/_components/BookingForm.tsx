@@ -13,18 +13,22 @@ import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from 
 import { VehiclePopover } from "./VehiclePopover";
 import StatusSelect from "./StatusSelect";
 import CategorySelect from "./CategorySelect";
-import { Category, Center, Vehicle } from "@/lib/db/types";
+import {Center, Vehicle } from "@/lib/db/types";
 import { bookingFormDefaultValues } from "@/lib/helpers/defaults";
 import { StartDatePicker } from "./StartDatePicker";
 import { createBooking } from "@/lib/db/mutations/bookings";
 import { ServiceCenterPopover } from "./ServiceCenterPopover";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { categories } from "@/lib/constants";
 
 
 
-export default function BookingForm({ centers, vehicles, categories }:
-    { centers: Center[], vehicles: Vehicle[], categories: Category[] }
+
+
+
+export default function BookingForm({ centers, vehicles }:
+    { centers: Center[], vehicles: Vehicle[] }
 ) {
     const [isPending, startTransition] = useTransition();
     const router = useRouter()

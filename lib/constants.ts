@@ -1,4 +1,5 @@
 import {SidebarLinkType } from "@/components/component-types";
+import { Category } from "./db/types";
 
 export const publicNavLinks = [
     {href: '/', label: "Home"},
@@ -72,12 +73,12 @@ export const sidebarLinkData: SidebarLinkType = {
       ],
     },
     {
-      title: "Categories",
-      url: "/dashboard/categories",
+      title: "Renewals",
+      url: "/dashboard/renewals",
       items: [
         {
-          title: "+ Add categories",
-          url: "/dashboard/categories/new",
+          title: "+ Add Renewal",
+          url: "/dashboard/renewals/new",
           isActive: true,
         },
 
@@ -124,3 +125,5 @@ export const sidebarLinkData: SidebarLinkType = {
     },
   ],
 };
+
+export const categories = [{id: "d", color:"blue", name: "Hello"}] as Category[]

@@ -52,3 +52,5 @@ export type BookingStatus =
 export type Center = { id: string; name: string };
 export type Vehicle = { id: string; name: string };
 export type Category = {id: string, name: string, color: string}
+
+
