@@ -53,7 +53,7 @@ export default function CategoryForm() {
 
 
     return (
-        <Card className="w-full max-w-lg">
+        <Card className="w-full max-w-lg my-4">
             <CardHeader>
                 <CardTitle>Category Form</CardTitle>
                 <CardDescription>

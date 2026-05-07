@@ -1,7 +1,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -12,14 +12,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
-import { BookingColumn } from "@/lib/types/tableColumns"
 import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
+import { BookingType } from "@/lib/db/types"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 
-export const BookingColumns: ColumnDef<BookingColumn>[] = [
+export const BookingColumns: ColumnDef<BookingType>[] = [
     {
     id: "select",
     header: ({ table }) => (
@@ -50,48 +48,34 @@ export const BookingColumns: ColumnDef<BookingColumn>[] = [
     }
   
   },
-  {
-    accessorKey: "bookingTime",
-    header: "Time",
-    cell:({row})=>{
-      return <div>{format(row.original.bookingDate, "HH:MM aa") }</div>
-    }
-  
-  },
-
-
-  {
-    accessorKey: "service",
-    header: "Service",
-  },
-  
-  {
-    accessorKey: "customer",
-    header: "Customer",
-  },
-
-  {
-    accessorKey: "email",
-       header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-  },
-      {
-    accessorKey: "phone",
-    header: "Phone",
-  },
     {
-    accessorKey: "address",
-    header: "Address",
+    accessorKey: "title",
+    header: "Title",
   },
+
+      {
+    accessorKey: "category",
+    header: "Category",
+    cell:({row})=>{
+      return <Badge>{row.original.category}</Badge>
+
+    }
+  },
+
+  {
+    accessorKey: "vehicle",
+    header: "Vehicle",
+  },
+  
+  {
+    accessorKey: "plant",
+    header: "Plant",
+  },
+        {
+    accessorKey: "center",
+    header: "Center",
+  },
+
       {
     accessorKey: "status",
     header: "Status",

@@ -48,7 +48,7 @@ export default function BookingForm({ centers, vehicles, categories }:
         }))
     }
     return (
-        <Card className="w-full max-w-lg">
+        <Card className="w-full max-w-lg my-4">
             <CardHeader>
                 <CardTitle>Booking Form</CardTitle>
                 <CardDescription>

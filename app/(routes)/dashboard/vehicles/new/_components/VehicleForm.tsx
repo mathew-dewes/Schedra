@@ -51,7 +51,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
 
 }
     return (
-        <Card className="w-full max-w-lg">
+        <Card className="w-full max-w-lg my-4">
             <CardHeader>
                 <CardTitle>Vehicle Form</CardTitle>
                 <CardDescription>

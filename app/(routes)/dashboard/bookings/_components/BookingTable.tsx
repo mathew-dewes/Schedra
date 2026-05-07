@@ -76,10 +76,10 @@ export function BookingTable<TData, TValue>({
     <div>
             <div className="flex items-center py-4">
         <Input
-          placeholder="Filter customer..."
-          value={(table.getColumn("customer")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter plant number..."
+          value={(table.getColumn("plant")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("customer")?.setFilterValue(event.target.value)
+            table.getColumn("plant")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
