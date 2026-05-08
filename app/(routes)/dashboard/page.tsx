@@ -1,9 +1,9 @@
 import Welcome from "./_components/Welcome";
-import KeyStats from "./_components/KeyStats";
-import { ScheduleTable } from "./_components/ScheduleTable";
 import Actions from "./_components/Actions";
-import { UpcomingBookings } from "./_components/UpcomingBookings";
-import { RecentActivity } from "./_components/RecentActivity";
+
+import Critical from "./_components/critical/Critical";
+import Upcoming from "./_components/upcoming/Upcoming";
+import Overview from "./_components/overview/Overview";
 
 
 export default async function page() {
@@ -11,17 +11,11 @@ export default async function page() {
 
         return (
             <div className="space-y-10">
-                <Welcome />
                 <Actions />
-                <KeyStats />
-                <div className="grid grid-cols-2 gap-20">
-                    <ScheduleTable />
-                    <UpcomingBookings />
-                </div>
-                <RecentActivity />
-
-
-
+                <Welcome />
+                <Critical/>
+                <Upcoming/>
+                <Overview/>
             </div>
         )
 

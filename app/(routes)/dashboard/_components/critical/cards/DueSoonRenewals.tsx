@@ -1,11 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function ActiveServicesCard(){
+export default function DueSoonRenewals(){
     return (
            <Card className="w-full">
             <CardHeader>
-                <CardTitle>Active Services</CardTitle>
-                <CardDescription>3 services active</CardDescription>
+                <CardTitle>Due soon renewals</CardTitle>
+                <CardDescription>3 renewals overdue</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="font-semibold">

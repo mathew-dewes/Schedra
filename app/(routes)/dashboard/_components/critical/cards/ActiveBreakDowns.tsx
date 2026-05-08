@@ -1,16 +1,17 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function CustomerCard(){
+export default function ActiveBreakdowns(){
     return (
            <Card className="w-full">
             <CardHeader>
-                <CardTitle>Customers</CardTitle>
-                <CardDescription>Total: 24</CardDescription>
+                <CardTitle>Active Breakdowns</CardTitle>
+                <CardDescription>3 renewals overdue</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="font-semibold">
-                    <p>+3 this week (later feature)</p>
-            
+                    <p>Matts Burgers</p>
+                    <p>Matts Pies</p>
+                    <p>Matts Pizzas</p>
             
                 </div>
 

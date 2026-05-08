@@ -1,3 +1,4 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Table,
   TableBody,
@@ -54,10 +55,15 @@ const invoices = [
   },
 ]
 
-export function ScheduleTable() {
+export function UpcomingBookings() {
   return (
-    <div >
-      <h2>Today`s Schedule</h2>
+    <Card>
+        <CardHeader>
+            <CardTitle>Upcoming Bookings</CardTitle>
+        </CardHeader>
+        <CardContent>
+               
+    
  <Table>
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
@@ -85,7 +91,11 @@ export function ScheduleTable() {
         </TableRow>
       </TableFooter>
     </Table>
-    </div>
+  
+        </CardContent>
+
+    </Card>
+
    
   )
 }
