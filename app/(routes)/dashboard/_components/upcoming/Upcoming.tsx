@@ -4,7 +4,7 @@ import { UpcomingRenewals } from "./tables/UpcomingRenewals";
 
 export default function Upcoming(){
     return (
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid lg:grid-cols-2 gap-5">
             <UpcomingRenewals/>
             <UpcomingBookings/>
         </div>

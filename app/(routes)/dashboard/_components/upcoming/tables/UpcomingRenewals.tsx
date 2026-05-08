@@ -1,4 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Table,
   TableBody,
@@ -9,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import Link from "next/link"
 
 const invoices = [
   {
@@ -93,6 +95,9 @@ export function UpcomingRenewals() {
     </Table>
   
         </CardContent>
+        <CardFooter>
+          <Link className={buttonVariants()} href={'/dashboard/renewals'}>View all renewals</Link>
+        </CardFooter>
 
     </Card>
 

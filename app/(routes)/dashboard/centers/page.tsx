@@ -5,7 +5,7 @@ import { CenterTable } from "./_components/tables/CenterTable";
 import { CenterType } from "@/lib/db/types";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { ArrowLeftIcon } from "lucide-react";
+import ReturnToDash from "../_components/buttons/ReturnToDash";
 
 
 export default async function page() {
@@ -15,7 +15,7 @@ export default async function page() {
   return (
     <div>
                             <div className="flex gap-2">
- <Link className={buttonVariants({variant: "secondary"})} href={'/dashboard'}> <ArrowLeftIcon /></Link>
+<ReturnToDash/>
 <Link className={buttonVariants()} href={'/dashboard/centers/new'}>+ Add Service Center</Link>
         
             </div>

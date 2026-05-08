@@ -2,9 +2,9 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { RenewalTable } from "./_components/tables/RenewalTable";
 import { RenewalColumns } from "./_components/tables/RenewalColumns";
-import { ArrowLeftIcon } from "lucide-react";
 import { getRenewals } from "@/lib/db/queries/renewals";
 import { RenewalEntry } from "@/lib/types/entries";
+import ReturnToDash from "../_components/buttons/ReturnToDash";
 
 export default async function page(){
 
@@ -13,7 +13,7 @@ export default async function page(){
     return (
           <div>
       <div className="flex gap-2">
-        <Link className={buttonVariants({ variant: "secondary" })} href={'/dashboard'}><ArrowLeftIcon /></Link>
+       <ReturnToDash/>
         <Link className={buttonVariants()} href={'/dashboard/renewals/new'}>+ Add Renewal</Link>
 
       </div>
