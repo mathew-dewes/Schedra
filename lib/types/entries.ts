@@ -1,4 +1,4 @@
-import { BookingStatusEnum, BookingTypeEnum } from "./enums"
+import { BookingStatusEnum, BookingTypeEnum, RenewalStatusEnum, RenewalTypeEmum } from "./enums"
 
 export type BookingEntry = {
   id: string,
@@ -11,4 +11,14 @@ export type BookingEntry = {
   center: string,
   status: BookingStatusEnum
 
+};
+
+
+export type RenewalEntry = {
+  id: string,
+  dueDate: Date,
+  type: RenewalTypeEmum,
+  vehicle: string,
+  plant: string,
+  status: RenewalStatusEnum
 }

@@ -3,8 +3,13 @@ import Link from "next/link";
 import { RenewalTable } from "./_components/tables/RenewalTable";
 import { RenewalColumns } from "./_components/tables/RenewalColumns";
 import { ArrowLeftIcon } from "lucide-react";
+import { getRenewals } from "@/lib/db/queries/renewals";
+import { RenewalEntry } from "@/lib/types/entries";
 
-export default function page(){
+export default async function page(){
+
+  const renewals = await getRenewals() as RenewalEntry[];
+
     return (
           <div>
       <div className="flex gap-2">
@@ -13,7 +18,7 @@ export default function page(){
 
       </div>
 
-      <RenewalTable columns={RenewalColumns} data={[]} />
+      <RenewalTable columns={RenewalColumns} data={renewals} />
     </div>
     )
 }

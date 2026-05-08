@@ -1,6 +1,6 @@
 import {SidebarLinkType } from "@/components/component-types";
 import { Category } from "./db/types";
-import { BookingStatusEnum } from "./types/enums";
+import { BookingStatusEnum, RenewalStatusEnum } from "./types/enums";
 
 export const publicNavLinks = [
     {href: '/', label: "Home"},
@@ -135,4 +135,10 @@ export const bookingStatusStyles: Record<BookingStatusEnum, string> = {
   "In progress": "bg-orange-400 text-black",
   Completed: "bg-green-400",
   Cancelled: "bg-red-400",
+}
+export const renewalStatusStyles: Record<RenewalStatusEnum, string> = {
+  Upcoming: "bg-blue-400",
+  Due: "bg-orange-400 text-black",
+  Completed: "bg-green-400",
+  Overdue: "bg-red-400",
 }

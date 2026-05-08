@@ -15,13 +15,13 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
-import { BookingEntry } from "@/lib/types/entries"
-import { bookingStatusStyles } from "@/lib/constants"
+import { RenewalEntry } from "@/lib/types/entries"
+import { renewalStatusStyles } from "@/lib/constants"
 
 
 
 
-export const RenewalColumns: ColumnDef<BookingEntry>[] = [
+export const RenewalColumns: ColumnDef<RenewalEntry>[] = [
     {
     id: "select",
     header: ({ table }) => (
@@ -46,22 +46,19 @@ export const RenewalColumns: ColumnDef<BookingEntry>[] = [
   },
   {
     accessorKey: "bookingDate",
-    header: "Date",
+    header: "Due date",
     cell:({row})=>{
-      return <div>{format(row.original.bookingDate, "dd/MM/yy") }</div>
+      return <div>{format(row.original.dueDate, "dd/MM/yy") }</div>
     }
   
   },
-    {
-    accessorKey: "title",
-    header: "Title",
-  },
+
 
       {
-    accessorKey: "booking_type",
+    accessorKey: "type",
     header: "Type",
     cell:({row})=>{
-      return <Badge variant={"secondary"} >{row.original.booking_type}</Badge>
+      return <Badge variant={"secondary"} >{row.original.type}</Badge>
 
     }
   },
@@ -75,17 +72,13 @@ export const RenewalColumns: ColumnDef<BookingEntry>[] = [
     accessorKey: "plant",
     header: "Plant",
   },
-        {
-    accessorKey: "center",
-    header: "Center",
-  },
 
       {
     accessorKey: "status",
     header: "Status",
     cell:({row})=>{
 return <div className="flex w-fit bg-secondary items-center gap-2 p-1.5 rounded">
-  <div className={cn(bookingStatusStyles[row.original.status], "size-4 rounded-full")}/>
+  <div className={cn(renewalStatusStyles[row.original.status], "size-4 rounded-full")}/>
   <p>{row.original.status}</p>
 </div>
     }
