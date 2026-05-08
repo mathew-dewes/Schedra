@@ -20,5 +20,6 @@ export type RenewalEntry = {
   type: RenewalTypeEmum,
   vehicle: string,
   plant: string,
-  status: RenewalStatusEnum
+  status: RenewalStatusEnum,
+  vehicle_plate: string,
 }

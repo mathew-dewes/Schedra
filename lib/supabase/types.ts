@@ -157,39 +157,39 @@ export type Database = {
       }
       renewals: {
         Row: {
+          completed: boolean | null
           created_at: string
           due_date: string
           id: string
           interval_days: number | null
           notes: string | null
           renewed_at: string | null
-          status: Database["public"]["Enums"]["renewal_status"]
           type: Database["public"]["Enums"]["renewal_type"]
           updated_at: string | null
           user_id: string
           vehicle_id: string
         }
         Insert: {
+          completed?: boolean | null
           created_at?: string
           due_date: string
           id?: string
           interval_days?: number | null
           notes?: string | null
           renewed_at?: string | null
-          status: Database["public"]["Enums"]["renewal_status"]
           type: Database["public"]["Enums"]["renewal_type"]
           updated_at?: string | null
           user_id: string
           vehicle_id: string
         }
         Update: {
+          completed?: boolean | null
           created_at?: string
           due_date?: string
           id?: string
           interval_days?: number | null
           notes?: string | null
           renewed_at?: string | null
-          status?: Database["public"]["Enums"]["renewal_status"]
           type?: Database["public"]["Enums"]["renewal_type"]
           updated_at?: string | null
           user_id?: string

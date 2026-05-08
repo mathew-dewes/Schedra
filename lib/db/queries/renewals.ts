@@ -16,7 +16,7 @@ export async function getRenewals() {
     };
 
     const { data, error } = await supabase.from("renewals")
-        .select(`id, due_date, type, vehicles(make, model, year, plant_number)`).
+        .select(`id, due_date, type, vehicles(make, model, year, plant_number, plate_number)`).
         order("due_date", {ascending: true});
 
 
@@ -34,11 +34,12 @@ export async function getRenewals() {
         type: renewal.type,
         vehicle: renewal.vehicles.make + " " + renewal.vehicles.model,
         plant: renewal.vehicles.plant_number.toUpperCase(),
-        status: generateRenewalStatus(new Date(renewal.due_date))
+        status: generateRenewalStatus(new Date(renewal.due_date)),
+        vehicle_plate: renewal.vehicles.plate_number
 
     }));
 
-    console.log(formatted);
+ 
     
 
     return formatted;
