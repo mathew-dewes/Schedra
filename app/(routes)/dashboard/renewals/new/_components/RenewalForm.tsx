@@ -11,10 +11,10 @@ import z from "zod";
 import RenewalTypeSelect from "./RenewalTypeSelect";
 import { VehiclePopover } from "../../../bookings/new/_components/VehiclePopover";
 import { Vehicle } from "@/lib/db/types";
-import { StartDatePicker } from "../../../bookings/new/_components/StartDatePicker";
 import { createRenewal } from "@/lib/db/mutations/renewals";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { RenewalDatePicker } from "./RenewalDatePicker";
 
 export default function RenewalForm(
     {vehicles}:{vehicles: Vehicle[]}) {
@@ -108,9 +108,10 @@ export default function RenewalForm(
                                                                     Due Date
                                                                 </FieldLabel>
                                                         
-                        
+                                    <RenewalDatePicker value={field.value} onChange={field.onChange}/>
                                                             </FieldContent>
-                                                            <StartDatePicker value={field.value} onChange={field.onChange} />
+                                                            {/* <StartDatePicker value={field.value} onChange={field.onChange} /> */}
+                                                     
                                                             {fieldState.invalid &&
                                                                 <FieldError errors={[fieldState.error]} />}
                                                         </Field>

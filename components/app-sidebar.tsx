@@ -44,8 +44,8 @@ export function AppSidebar({businessName, ...props}: React.ComponentProps<typeof
             </SidebarMenuButton>          
           </SidebarMenuItem>
         </SidebarMenu>
-        <SidebarMenuItem >
-          <h2 className="font-semibold">{businessName}</h2>
+        <SidebarMenuItem>
+          <h2 className="font-semibold text-center">{businessName}</h2>
   
         </SidebarMenuItem>
       </SidebarHeader>

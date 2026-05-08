@@ -27,7 +27,7 @@ export async function createRenewal(values: z.infer<typeof renewalFormSchema>){
             }
         };
 
-        console.log(parsed);
+
 
         const {error} = await supabase.from("renewals").insert({
             type: parsed.data.type as RenewalTypeEmum,

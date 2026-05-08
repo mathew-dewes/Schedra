@@ -1,6 +1,7 @@
 "use server";
 
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
+import { generateRenewalStatus } from "@/lib/utils";
 
 
 export async function getRenewals() {
@@ -15,7 +16,8 @@ export async function getRenewals() {
     };
 
     const { data, error } = await supabase.from("renewals")
-        .select(`id, due_date, type, status, vehicles(make, model, year, plant_number)`);
+        .select(`id, due_date, type, vehicles(make, model, year, plant_number)`).
+        order("due_date", {ascending: true});
 
 
     if (error) {
@@ -32,9 +34,12 @@ export async function getRenewals() {
         type: renewal.type,
         vehicle: renewal.vehicles.make + " " + renewal.vehicles.model,
         plant: renewal.vehicles.plant_number.toUpperCase(),
-        status: renewal.status
+        status: generateRenewalStatus(new Date(renewal.due_date))
 
     }));
+
+    console.log(formatted);
+    
 
     return formatted;
 

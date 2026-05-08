@@ -61,6 +61,11 @@ export const renewalFormSchema = z.object({
   vehicle_id: z.string().min(1, 'Please select a vehicle'),
   due_date: z.date(),
 
+});
+
+
+export const businessFormSchema = z.object({
+  name: z.string().min(3)
 })
 
 

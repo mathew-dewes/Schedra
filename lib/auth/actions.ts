@@ -2,7 +2,7 @@
 
 import { createClientForServer } from "../supabase/server";
 import z from "zod";
-import { loginSchema, registerSchema } from "../schemas";
+import { businessFormSchema, loginSchema, registerSchema } from "../schemas";
 
 export async function SignOut(){
     const supabase = await createClientForServer();
@@ -89,4 +89,24 @@ export async function signInWithEmailPassword(values: z.infer<typeof loginSchema
                 }
 
 
+};
+
+
+export async function updateBusinessName(values: z.infer<typeof businessFormSchema>){
+   const supabase = await createClientForServer();
+
+        const parsed = businessFormSchema.safeParse(values);
+
+        if (!parsed.success){
+            return {success: false, message: "Validation failed"}
+        };
+
+        const {error} = await supabase.auth.updateUser({
+            data: {business_name: parsed.data.name}
+        });
+
+          if (error) {
+        return { success: false, message: error.message };
+    }
+    return { success: true, message: "Business name updated" };
 }
