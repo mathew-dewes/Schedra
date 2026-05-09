@@ -5,12 +5,16 @@ import { getBookings } from "@/lib/db/queries/bookings";
 import { BookingEntry, RenewalEntry } from "@/lib/types/entries";
 
 export default async function CriticalUpcoming() {
-    const renewals = await getRenewals() as RenewalEntry[];
-    const bookings = await getBookings() as BookingEntry[];
+
+    const [renewals, bookings] = await Promise.all([getRenewals(), getBookings()])
     return (
         <div>
-            <Critical renewals={renewals} bookings={bookings} />
-            <Upcoming />
+            <Critical 
+            renewals={renewals as RenewalEntry[]} 
+            bookings={bookings as BookingEntry[]} />
+            <Upcoming 
+            renewals={renewals as RenewalEntry[]} 
+            bookings={bookings as BookingEntry[]} />
         </div>
     )
 }

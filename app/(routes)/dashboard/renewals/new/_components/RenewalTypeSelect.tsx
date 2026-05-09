@@ -15,7 +15,7 @@ type StatusSelectProps = {
     onChange: (value: string) => void;
 };
 
-const RENEWAL_TYPES = ["Service", "REGO", "RUC", "WOF"] as RenewalTypeEmum[]
+const RENEWAL_TYPES = ["Registration", "Road user charge", "Warrant of fitness", "Service"] as RenewalTypeEmum[]
 
 export default function RenewalTypeSelect({ value, onChange }: StatusSelectProps){
     return (

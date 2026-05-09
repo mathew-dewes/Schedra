@@ -39,7 +39,8 @@ export async function getBookings(){
         center: booking.service_centers?.name,
         plant: booking.vehicles.plant_number,
         booking_type: booking.booking_type,
-        vehicle: booking.vehicles.make + " " + booking.vehicles.model + " - " + booking.vehicles.plate_number
+        vehicle: booking.vehicles.make + " " + booking.vehicles.model,
+        plate_number: booking.vehicles.plate_number
     
     }));
 

@@ -2,6 +2,7 @@
 import { BookingEntry, RenewalEntry } from "@/lib/types/entries";
 import { addDays, isPast, isWithinInterval } from "date-fns";
 import CriticalCard from "./CriticalCard";
+import { ShieldAlert, TriangleAlert } from "lucide-react";
 
 const now = new Date()
 
@@ -30,18 +31,29 @@ export default async function Critical({renewals, bookings}:{
     
     return (
         <div className="grid grid-cols-2 gap-5">
-            <CriticalCard 
+            <CriticalCard
+            icon={TriangleAlert} 
             title="Overdue" 
             description={`${overdue.length} Overdue Renewals`}
             renewals={overdue}
+            cardType="overdue"
             />
 
-            <CriticalCard title="Due Soon" 
+            <CriticalCard  icon={TriangleAlert}  title="Due Soon" 
             description={`${dueSoon.length} Renewals Due This Week`}
-            renewals={dueSoon}/>
+            renewals={dueSoon}
+            cardType="dueSoon"
+            />
 
-            <CriticalCard title="Active breakdowns" 
-            description={`${breakDowns.length} active breakdowns`}/>
+            <CriticalCard 
+            icon={ShieldAlert}  
+            title="Active breakdowns" 
+            description={`${breakDowns.length} active breakdowns`}
+            cardType="activeBreakdown"
+            spanFull={true}
+            hide={breakDowns.length == 0}
+            bookings={breakDowns}
+            />
   
         </div>
     )

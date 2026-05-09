@@ -295,7 +295,11 @@ export type Database = {
       booking_type: "Repairs" | "Servicing" | "Breakdown"
       category_color: "red" | "green" | "yellow" | "orange" | "blue"
       renewal_status: "Upcoming" | "Due" | "Overdue" | "Completed"
-      renewal_type: "WOF" | "REGO" | "RUC" | "Service"
+      renewal_type:
+        | "Warrant of fitness"
+        | "Registration"
+        | "Road user charge"
+        | "Service"
       vehicle_status:
         | "Available"
         | "In service"
@@ -435,7 +439,12 @@ export const Constants = {
       booking_type: ["Repairs", "Servicing", "Breakdown"],
       category_color: ["red", "green", "yellow", "orange", "blue"],
       renewal_status: ["Upcoming", "Due", "Overdue", "Completed"],
-      renewal_type: ["WOF", "REGO", "RUC", "Service"],
+      renewal_type: [
+        "Warrant of fitness",
+        "Registration",
+        "Road user charge",
+        "Service",
+      ],
       vehicle_status: [
         "Available",
         "In service",
