@@ -61,7 +61,7 @@ export const BookingColumns: ColumnDef<BookingEntry>[] = [
     accessorKey: "status",
     header: "Status",
     cell:({row})=>{
-return <div className="flex w-fit bg-secondary items-center gap-2 p-1.5 rounded">
+return <div className="flex w-fit items-center gap-2 p-1.5">
   <div className={cn(bookingStatusStyles[row.original.status], "size-4 rounded-full")}/>
   <p>{row.original.status}</p>
 </div>

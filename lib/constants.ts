@@ -1,5 +1,5 @@
 import {SidebarLinkType } from "@/components/component-types";
-import { BookingStatusEnum, RenewalStatusEnum } from "./types/enums";
+import { BookingStatusEnum, BookingTypeEnum, RenewalStatusEnum, VehicleStatusEnum } from "./types/enums";
 
 export const publicNavLinks = [
     {href: '/', label: "Home"},
@@ -112,6 +112,13 @@ export const renewalStatusStyles: Record<RenewalStatusEnum, string> = {
   Overdue: "bg-red-400",
 };
 
+export const vehicleStatusStyles: Record<VehicleStatusEnum, string> = {
+  Available: "bg-blue-400",
+  "Under maintenance": "bg-orange-400 text-black",
+  "In service": "bg-green-400",
+  "Out of service": "bg-red-400",
+};
+
 export const ACTIVITY_LABELS = {
   service_booking:
     "Service booking created",
@@ -134,3 +141,7 @@ export const ACTIVITY_LABELS = {
   service_reminder:
     "Service reminder added",
 };
+
+export const BOOKING_STATUES = ["Scheduled", "In progress", "Completed", "Cancelled"] as BookingStatusEnum[]
+
+export const BOOKING_TYPES = ["Repairs", "Servicing", "Breakdown"] as BookingTypeEnum[]

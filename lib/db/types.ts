@@ -1,5 +1,5 @@
 import { Database } from "../supabase/types";
-import { BookingStatusEnum } from "../types/enums";
+import { BookingStatusEnum, VehicleStatusEnum } from "../types/enums";
 
 
 
@@ -31,7 +31,8 @@ export type VehicleType = {
     model: string,
     year: string,
     plant_number: string,
-    plate_number: string
+    plate_number: string,
+    status: VehicleStatusEnum
 };
 
 export type BookingType = {

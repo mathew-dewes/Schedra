@@ -12,6 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { VehicleType } from "@/lib/db/types"
+import { vehicleStatusStyles } from "@/lib/constants"
+import { cn } from "@/lib/utils"
 
 
 
@@ -47,6 +49,16 @@ export const VehicleColumns: ColumnDef<VehicleType>[] = [
     accessorKey: "plate_number",
     header: "Plate number",
   },
+        {
+      accessorKey: "status",
+      header: "Status",
+      cell:({row})=>{
+  return <div className="flex w-fit items-center gap-2 p-1.5">
+    <div className={cn(vehicleStatusStyles[row.original.status], "size-4 rounded-full")}/>
+    <p>{row.original.status}</p>
+  </div>
+      }
+    },
       {
       
     id: "actions",

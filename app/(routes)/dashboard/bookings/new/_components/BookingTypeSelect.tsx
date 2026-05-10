@@ -7,15 +7,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { BookingTypeEnum } from "@/lib/types/enums";
+import { BOOKING_TYPES } from "@/lib/constants";
 
 
 type StatusSelectProps = {
     value?: string;
     onChange: (value: string) => void;
 };
-
-const BOOKING_TYPES = ["Repairs", "Servicing", "Breakdown"] as BookingTypeEnum[]
 
 export default function BookingTypeSelect({ value, onChange }: StatusSelectProps){
     return (
