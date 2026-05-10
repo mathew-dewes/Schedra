@@ -12,7 +12,7 @@ type GetBookingsProps = {
 export async function getBookings({
     status,
     type,
-}: GetBookingsProps) {
+}: GetBookingsProps = {}) {
     const user_id = await getUserId();
     const supabase = await createClientForServer();
 

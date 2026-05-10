@@ -15,10 +15,9 @@ import { BookingStatusEnum, BookingTypeEnum } from "@/lib/types/enums";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function BookingFilters() {
+
     const router = useRouter();
-
     const pathname = usePathname();
-
     const searchParams = useSearchParams();
 
     const currentType = searchParams.get("type") || "";
@@ -37,7 +36,7 @@ export default function BookingFilters() {
         router.push(`${pathname}?${params.toString()}`);
     }
 
-        function handleStatusChange(value: BookingStatusEnum) {
+    function handleStatusChange(value: BookingStatusEnum) {
         const params = new URLSearchParams(searchParams.toString());
 
         // remove param if empty
@@ -72,7 +71,7 @@ export default function BookingFilters() {
                 </Select>
 
                 <Select
-                   value={currentStatus}
+                    value={currentStatus}
                     onValueChange={handleStatusChange}
                 >
                     <SelectTrigger className="w-full max-w-48">
@@ -88,7 +87,7 @@ export default function BookingFilters() {
                         </SelectGroup>
                     </SelectContent>
                 </Select>
-                <Button disabled={!currentStatus && !currentType} onClick={()=>{
+                <Button disabled={!currentStatus && !currentType} onClick={() => {
                     router.replace(pathname)
                 }} variant={"secondary"}>Clear All</Button>
 

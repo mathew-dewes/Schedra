@@ -145,3 +145,5 @@ export const ACTIVITY_LABELS = {
 export const BOOKING_STATUES = ["Scheduled", "In progress", "Completed", "Cancelled"] as BookingStatusEnum[]
 
 export const BOOKING_TYPES = ["Repairs", "Servicing", "Breakdown"] as BookingTypeEnum[]
+
+export const VEHICLE_STATUES = ["Available", "In service", "Under maintenance", "Out of service"] as VehicleStatusEnum[]
