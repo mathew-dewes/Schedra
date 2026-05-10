@@ -1,10 +1,19 @@
 "use server";
 
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
+import { RenewalStatusEnum, RenewalTypeEmum } from "@/lib/types/enums";
 import { generateRenewalStatus } from "@/lib/utils";
 
 
-export async function getRenewals() {
+type GetRenewalsProps = {
+    status?: RenewalStatusEnum;
+    type?: RenewalTypeEmum;
+};
+
+export async function getRenewals({
+    status,
+    type,
+}: GetRenewalsProps = {}) {
     const user_id = await getUserId();
     const supabase = await createClientForServer();
 
@@ -15,11 +24,20 @@ export async function getRenewals() {
         }
     };
 
-    const { data, error } = await supabase.from("renewals")
+    let query = supabase.from("renewals")
         .select(`id, due_date, type, vehicles(make, model, year, plant_number, plate_number)`).
         order("due_date", {ascending: true});
 
 
+        if (type) {
+        query = query.eq("type", type);
+    };
+    
+   if (status){
+        query = query.order("created_at", {ascending: false})
+    };
+
+      const { data, error } = await query;
     if (error) {
         console.log("Error:", error);
         return {
@@ -39,9 +57,16 @@ export async function getRenewals() {
 
     }));
 
+       const filtered = status
+        ? formatted.filter(
+              (renewal) =>
+                  renewal.status === status
+          )
+        : formatted;
+
  
     
 
-    return formatted;
+    return filtered;
 
 }
