@@ -8,11 +8,15 @@ export default function page() {
     return (
         <div className="space-y-10">
                    <Actions />
-                   <Suspense fallback={"Loading data"}>
+                   <Suspense fallback={"Loading data..."}>
                     <CriticalUpcoming/>
                    </Suspense>
+
+                   <Suspense fallback="Loading data...">
+             <Overview />
+                   </Suspense>
           
-                   <Overview />
+      
                </div>
 
     )

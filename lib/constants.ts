@@ -1,5 +1,4 @@
 import {SidebarLinkType } from "@/components/component-types";
-import { Category } from "./db/types";
 import { BookingStatusEnum, RenewalStatusEnum } from "./types/enums";
 
 export const publicNavLinks = [
@@ -16,20 +15,6 @@ export const navLinks = [
     {href: '/availability', label: "Availability"},
     {href: '/customers', label: "Customers"}
 ];
-
-
-export const days = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-  "sunday",
-] as const;
-
-
-export const service_durations = ["30", "60", "90", "120", "150", "180"]
 
 
 export const sidebarLinkData: SidebarLinkType = {
@@ -127,9 +112,6 @@ export const sidebarLinkData: SidebarLinkType = {
   ],
 };
 
-export const categories = [{id: "d", color:"blue", name: "Hello"}] as Category[]
-
-
 export const bookingStatusStyles: Record<BookingStatusEnum, string> = {
   Scheduled: "bg-blue-400",
   "In progress": "bg-orange-400 text-black",
@@ -141,4 +123,27 @@ export const renewalStatusStyles: Record<RenewalStatusEnum, string> = {
   Due: "bg-orange-400 text-black",
   Completed: "bg-green-400",
   Overdue: "bg-red-400",
-}
+};
+
+export const ACTIVITY_LABELS = {
+  service_booking:
+    "Service booking created",
+
+  repair_booking:
+    "Repair booking created",
+
+  breakdown:
+    "Breakdown reported",
+
+  wof_reminder:
+    "WOF reminder added",
+
+  registration_reminder:
+    "Registration reminder added",
+
+  ruc_reminder:
+    "RUC reminder added",
+
+  service_reminder:
+    "Service reminder added",
+};
