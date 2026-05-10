@@ -23,8 +23,7 @@ export default function VehicleFilters(){
         
             function handleStatusChange(value: VehicleStatusEnum) {
                 const params = new URLSearchParams(searchParams.toString());
-        
-                // remove param if empty
+    
                 if (!value) {
                     params.delete("status");
                 } else {
@@ -33,19 +32,18 @@ export default function VehicleFilters(){
         
                 router.push(`${pathname}?${params.toString()}`);
             }
-          return (<div className="my-5">
-            <h2 className="mb-2">Fitler:</h2>
-            <div className="flex gap-2">
+          return (
+            <div className="flex gap-2 mt-4">
                 <Select
                     value={currentStatus}
                     onValueChange={handleStatusChange}
                 >
                     <SelectTrigger className="w-full max-w-48">
-                        <SelectValue placeholder="Filter type" />
+                        <SelectValue placeholder="Filter status" />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectLabel>Types</SelectLabel>
+                            <SelectLabel>Filter status</SelectLabel>
                             {VEHICLE_STATUES.map((type) => {
                                 return <SelectItem key={type} value={type}>{type}</SelectItem>
                             })}
@@ -61,5 +59,5 @@ export default function VehicleFilters(){
             </div>
 
 
-        </div>)
+     )
 }

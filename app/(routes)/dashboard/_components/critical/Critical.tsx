@@ -37,12 +37,14 @@ export default async function Critical({renewals, bookings}:{
             description={`${overdue.length} Overdue Renewals`}
             renewals={overdue}
             cardType="overdue"
+            disableLink={overdue.length == 0}
             />
 
             <CriticalCard  icon={TriangleAlert}  title="Due Soon" 
             description={`${dueSoon.length} Renewals Due This Week`}
             renewals={dueSoon}
             cardType="dueSoon"
+            disableLink={dueSoon.length == 0}
             />
 
             <CriticalCard 

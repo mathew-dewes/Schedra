@@ -30,7 +30,6 @@ export function RegisterForm({
         resolver: zodResolver(registerSchema),
         defaultValues: {
             name:"",
-            businessName:"",
             email: "",
             password: "",
             confirmPassword: ""
@@ -89,26 +88,7 @@ export function RegisterForm({
                     >
 
                     </Controller>
-                               <Controller
-                        name="businessName"
-                        control={form.control}
-                        render={({ field, fieldState }) => (
-                            <Field>
-                                <FieldLabel htmlFor="businessName">Company name</FieldLabel>
-                                <Input
-                                    {...field}
-                                    aria-invalid={fieldState.invalid}
-                                    id="businessName"
-                                    type="text"
-                                    placeholder="Company name"
-                                />
-                                {fieldState.invalid &&
-                                    <FieldError errors={[fieldState.error]} />}
-                            </Field>
-                        )}
-                    >
 
-                    </Controller>
                     <Controller
                         name="email"
                         control={form.control}

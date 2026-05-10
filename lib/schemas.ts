@@ -8,7 +8,6 @@ export const loginSchema = z.object({
 
 export const registerSchema = z.object({
   name: z.string('Full name is required').min(5, 'Full name must be 5 or more characters').max(30, 'Full name must be 30 or less characters'),
-  businessName: z.string('Business name is required').min(5, 'Business name must be 5 or more characters').max(30, 'Business name must be 30 or less characters'),
   email: z.email(),
   password: z.string().min(5, 'Password must be 5 or more characters').max(30, 'Password must be 30 or less characters'),
   confirmPassword: z.string().min(5, 'Password must be 5 or more characters').max(30, 'Password must be 30 or less characters'),
@@ -25,7 +24,6 @@ export const registerSchema = z.object({
 export const bookingFormSchema = z.object({
   title: z.string().min(1, 'Booking title is required'),
   description: z.string().optional(),
-  status: z.string(),
   start_date: z.date(),
   center_id: z.string().min(1, 'Service center is required'),
   vehicle_id: z.string().min(1, 'Vehicle is required'),

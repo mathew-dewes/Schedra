@@ -18,12 +18,7 @@ import { ServiceCenterPopover } from "./ServiceCenterPopover";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import BookingTypeSelect from "./BookingTypeSelect";
-import StatusSelect from "./StatusSelect";
 import { bookingFormDefaultValues } from "@/lib/helpers/defaults";
-
-
-
-
 
 
 export default function BookingForm({ centers, vehicles }:
@@ -125,27 +120,7 @@ export default function BookingForm({ centers, vehicles }:
                             )}
 
                         />
-                        <Controller
-                            control={form.control}
-                            name="status"
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldContent>
-                                        <FieldLabel>
-                                            Status
-                                        </FieldLabel>
-                                        <FieldDescription>
-                                            Select a booking status from the list below
-                                        </FieldDescription>
-
-                                    </FieldContent>
-                                    <StatusSelect value={field.value} onChange={field.onChange} />
-                                    {fieldState.invalid &&
-                                        <FieldError errors={[fieldState.error]} />}
-                                </Field>
-                            )}
-
-                        />
+               
                         <Controller
                             control={form.control}
                             name="booking_type"

@@ -2,7 +2,6 @@
 
 import { bookingFormSchema } from "@/lib/schemas";
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
-import { BookingStatusEnum } from "@/lib/types/enums";
 import z from "zod";
 
 
@@ -33,7 +32,7 @@ export async function createBooking(values: z.infer<typeof bookingFormSchema>) {
     const { error } = await supabase.from("bookings").insert({
         title: parsed.data.title,
         description: parsed.data.description ?? null,
-        status: parsed.data.status as BookingStatusEnum,
+        status: "Scheduled",
         start_date: parsed.data.start_date.toISOString(),
         center_id: parsed.data.center_id,
         vehicle_id: parsed.data.vehicle_id,

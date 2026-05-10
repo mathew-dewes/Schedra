@@ -25,8 +25,6 @@ export default function BookingFilters() {
 
     function handleTypeChange(value: BookingTypeEnum) {
         const params = new URLSearchParams(searchParams.toString());
-
-        // remove param if empty
         if (!value) {
             params.delete("type");
         } else {
@@ -38,8 +36,6 @@ export default function BookingFilters() {
 
     function handleStatusChange(value: BookingStatusEnum) {
         const params = new URLSearchParams(searchParams.toString());
-
-        // remove param if empty
         if (!value) {
             params.delete("status");
         } else {
@@ -49,9 +45,8 @@ export default function BookingFilters() {
         router.push(`${pathname}?${params.toString()}`);
     }
     return (
-        <div className="my-5">
-            <h2 className="mb-2">Fitler:</h2>
-            <div className="flex gap-2">
+      
+            <div className="flex gap-2 mt-4">
                 <Select
                     value={currentType}
                     onValueChange={handleTypeChange}
@@ -92,9 +87,6 @@ export default function BookingFilters() {
                 }} variant={"secondary"}>Clear All</Button>
 
             </div>
-
-
-        </div>
 
     )
 }

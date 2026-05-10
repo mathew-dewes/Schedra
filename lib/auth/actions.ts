@@ -31,10 +31,6 @@ export async function signUpWithEmailPassword(values: z.infer<typeof registerSch
                 password: parsed.data.confirmPassword,
             options:{
                 emailRedirectTo: `${process.env.SITE_URL}/dashboard`,
-                data:{
-                    business_name: parsed.data.businessName,
-                
-                }
             }});
 
                 if (error){

@@ -1,10 +1,11 @@
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { BookingEntry, RenewalEntry } from "@/lib/types/entries";
 import { cn } from "@/lib/utils";
 import { format, formatDistanceToNow } from "date-fns";
 import { LucideIcon } from "lucide-react";
+import Link from "next/link";
 
 type CardType = "overdue" | "dueSoon" | "activeBreakdown";
 
@@ -16,7 +17,8 @@ type Props = {
     icon: LucideIcon,
     cardType: CardType,
     spanFull?: boolean,
-    hide?: boolean
+    hide?: boolean,
+    disableLink?: boolean
 };
 
 
@@ -28,8 +30,19 @@ export default function CriticalCard({
     icon: Icon,
     cardType,
     spanFull = false,
-    hide = false
+    hide = false,
+    disableLink = false
 }: Props) {
+
+function actionLink(cardType:CardType ){
+    if (cardType === "dueSoon"){
+        return '/dashboard/renewals?status=Due'
+    } else {
+        return "/dashboard/renewals?status=Overdue"
+    }
+
+}
+
     return (
         <Card hidden={hide} className={cn(`w-full ${spanFull && "col-span-full"}`)}>
             <CardHeader>
@@ -66,8 +79,9 @@ export default function CriticalCard({
 
             </CardContent>
 
-            <CardFooter>
-                <Button>Action</Button>
+            <CardFooter hidden={disableLink}>
+                <Link  
+                href={actionLink(cardType)} className={buttonVariants()}>View renewals</Link>
             </CardFooter>
         </Card>
     )
