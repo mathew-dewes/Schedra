@@ -1,12 +1,12 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { getUserMetaData } from "@/lib/supabase/server";
 
-export default async function Layout({ children }: { children: React.ReactNode }) {
-const user = await getUserMetaData();
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+
     return (
         <SidebarProvider>
-            <AppSidebar businessName={user?.business_name} />
+            <AppSidebar/>
             <div className="w-full">
                 <SidebarTrigger />
                 <main className="mt-3">

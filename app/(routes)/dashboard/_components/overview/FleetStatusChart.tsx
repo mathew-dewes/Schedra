@@ -6,60 +6,65 @@ import { Pie, PieChart } from "recharts"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import {
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart"
+import { Button } from "@/components/ui/button"
 
-export const description = "A pie chart with a label"
+export const description = "A pie chart with a label";
 
-const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
-]
+const normalizeStatus = (status: string) => {
+  return status
+    .toLowerCase()
+    .replace(/\s+/g, "") // "In service" -> "inservice"
+}
+
+const colorMap: Record<string, string> = {
+  Available: "#3b82f6",
+  "In service": "#10b981",
+  "Out of service": "#ef4444",
+  "Under maintenance": "#f59e0b",
+}
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  available: {
+    label: "Available",
   },
-  chrome: {
-    label: "Chrome",
-    color: "var(--chart-1)",
+  inservice: {
+    label: "In Service",
   },
-  safari: {
-    label: "Safari",
-    color: "var(--chart-2)",
+  outofservice: {
+    label: "Out of Service",
   },
-  firefox: {
-    label: "Firefox",
-    color: "var(--chart-3)",
-  },
-  edge: {
-    label: "Edge",
-    color: "var(--chart-4)",
-  },
-  other: {
-    label: "Other",
-    color: "var(--chart-5)",
+  undermaintenance: {
+    label: "Under Maintenance",
   },
 } satisfies ChartConfig
 
-export function FleetStatusChart() {
+export function FleetStatusChart({
+  data,}: {  data?: { status: string; total: number }[]}) {
+ 
+  const chartData = data?.map((item) => {
+     const key = normalizeStatus(item.status)
+    return {
+    ...item,
+    statusKey: key,
+    fill: colorMap[item.status] || "#808080",}
+  })
+
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle>Fleet Status</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -68,7 +73,16 @@ export function FleetStatusChart() {
         >
           <PieChart>
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="visitors" label nameKey="browser" />
+            <Pie 
+              data={chartData} 
+              dataKey="total" 
+              nameKey="statusKey"
+              label 
+            />
+            <ChartLegend
+              content={<ChartLegendContent />}
+               className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2"
+            />
           </PieChart>
         </ChartContainer>
       </CardContent>
@@ -79,6 +93,7 @@ export function FleetStatusChart() {
         <div className="leading-none text-muted-foreground">
           Showing total visitors for the last 6 months
         </div>
+        <Button>View vehicles</Button>
       </CardFooter>
     </Card>
   )

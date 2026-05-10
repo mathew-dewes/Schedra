@@ -30,7 +30,7 @@ export default async function Critical({renewals, bookings}:{
 
     
     return (
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid lg:grid-cols-2 gap-5">
             <CriticalCard
             icon={TriangleAlert} 
             title="Overdue" 

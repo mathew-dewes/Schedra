@@ -86,29 +86,16 @@ export const sidebarLinkData: SidebarLinkType = {
           url: "/dashboard/reports/bookings",
         },
         {
-          title: "Services",
-          url: "/dashboard/reports/services",
+          title: "Renewals",
+          url: "/dashboard/reports/renewals",
         },
         {
-          title: "Customers",
-          url: "/dashboard/reports/customers",
+          title: "Vehicles",
+          url: "/dashboard/reports/vehicles",
         },
       ],
     },
-    {
-      title: "Settings",
-      url: "/dashboard/settings",
-      items: [
-        {
-          title: "Business Details",
-          url: "/dashboard/settings/business",
-        },
-        {
-          title: "Profile",
-          url: "/dashboard/settings/profile",
-        },
-      ],
-    },
+
   ],
 };
 

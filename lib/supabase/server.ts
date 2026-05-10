@@ -41,13 +41,3 @@ export async function getUserId(){
     return data.user?.id ?? null;
 };
 
-
-export async function getUserMetaData(){
-  const supabase = await createClientForServer();
-  const { data, error } = await supabase.auth.getUser();
-
-  if (error){
-    console.log(error);
-    }
-    return data.user?.user_metadata ?? null;
-};

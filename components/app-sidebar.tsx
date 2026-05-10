@@ -20,9 +20,7 @@ import { sidebarLinkData } from "@/lib/constants"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-export function AppSidebar({businessName, ...props}: React.ComponentProps<typeof Sidebar> & {
-  businessName: string
-}) {
+export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
 
   const path = usePathname();
   return (
@@ -44,10 +42,6 @@ export function AppSidebar({businessName, ...props}: React.ComponentProps<typeof
             </SidebarMenuButton>          
           </SidebarMenuItem>
         </SidebarMenu>
-        <SidebarMenuItem>
-          <h2 className="font-semibold text-center">{businessName}</h2>
-  
-        </SidebarMenuItem>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

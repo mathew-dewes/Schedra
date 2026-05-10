@@ -5,13 +5,13 @@ import { getVehicles } from "@/lib/db/queries/vehicles";
 
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { ArrowLeftIcon } from "lucide-react";
+import ReturnToDash from "../../_components/buttons/ReturnToDash";
 
 export default async function page() {
 
     const serviceCenters = await getServiceCenters() as CenterType[];
     const userVehicles = await getVehicles() as VehicleType[];
-  
+
     const centers = serviceCenters.map((item) => {
         return {
             id: item.id,
@@ -31,11 +31,11 @@ export default async function page() {
     return (
         <div>
             <div className="flex gap-2">
- <Link className={buttonVariants({variant: "secondary"})} href={'/dashboard'}> <ArrowLeftIcon /></Link>
-<Link className={buttonVariants()} href={'/dashboard/bookings'}>View Bookings</Link>
-        
+                <ReturnToDash />
+                <Link className={buttonVariants()} href={'/dashboard/bookings'}>View Bookings</Link>
+
             </div>
-               <BookingForm centers={centers} vehicles={vehicles} />
+            <BookingForm centers={centers} vehicles={vehicles} />
         </div>
     )
 }

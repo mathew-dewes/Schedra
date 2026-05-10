@@ -285,7 +285,14 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      vehicle_status_totals: {
+        Row: {
+          status: Database["public"]["Enums"]["vehicle_status"] | null
+          total: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

@@ -1,4 +1,5 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { BookingEntry, RenewalEntry } from "@/lib/types/entries";
 import { cn } from "@/lib/utils";
@@ -30,7 +31,7 @@ export default function CriticalCard({
     hide = false
 }: Props) {
     return (
-        <Card hidden={hide} className={cn(`w-full ${spanFull && "col-span-2"}`)}>
+        <Card hidden={hide} className={cn(`w-full ${spanFull && "col-span-full"}`)}>
             <CardHeader>
                 <CardTitle className="flex items-center gap-1">
                     {Icon && <Icon size={18}
@@ -38,15 +39,16 @@ export default function CriticalCard({
                 <CardDescription>{description}</CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="space-y-2">
-                    <Separator />
+                <div className="space-y-4">
+              
                     {renewals?.map((renewal) => (
                         <div className="space-y-1" key={renewal.id}>
                             <p className="font-semibold">{renewal.type}</p>
                             <p className="text-muted-foreground">Due: {format(renewal.dueDate, "dd/MM/yy")} - {formatDistanceToNow(renewal.dueDate, { addSuffix: true })}</p>
                             <p>{renewal.vehicle} {renewal.vehicle_plate}</p>
-                            <Separator />
+                           <Separator className="mt-2"/>
                         </div>
+                   
                     ))}
                     {bookings?.map((booking) => (
                         <div className="space-y-1" key={booking.id}>
@@ -56,13 +58,17 @@ export default function CriticalCard({
                                 <p>Repair location: {booking.center}</p>
 
                             </div>
-                            <Separator />
+                       
                         </div>
                     ))}
                 </div>
 
 
             </CardContent>
+
+            <CardFooter>
+                <Button>Action</Button>
+            </CardFooter>
         </Card>
     )
 }
