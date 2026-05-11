@@ -9,6 +9,7 @@ export type BookingEntry = {
   vehicle: string,
   plant: string,
   center: string,
+  center_email: string,
   status: BookingStatusEnum,
   plate_number: string
 

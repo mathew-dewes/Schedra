@@ -2,6 +2,8 @@
 
 import { bookingFormSchema } from "@/lib/schemas";
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
+import { BookingStatusEnum } from "@/lib/types/enums";
+import { revalidatePath } from "next/cache";
 import z from "zod";
 
 
@@ -56,4 +58,37 @@ export async function createBooking(values: z.infer<typeof bookingFormSchema>) {
 
 
 
-}
+};
+
+
+export async function changeBookingStatus(id: string, status: BookingStatusEnum) {
+    const supabase = await createClientForServer();
+    const user_id = await getUserId();
+
+
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    }
+
+    const { error } = await supabase.from("bookings").update({
+        status
+    }).eq("user_id", user_id).eq("id", id);
+    if (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message
+        }
+
+    };
+
+    revalidatePath('/dashboard/bookings')
+
+    return {
+        success: true,
+        message: `Booking status updated`
+    }
+};

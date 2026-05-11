@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { BookingEntry } from "@/lib/types/entries"
 import { bookingStatusStyles } from "@/lib/constants"
+import BookingStatusChanger from "./BookingStatusChanger"
 
 
 
@@ -72,7 +73,7 @@ return <div className="flex w-fit items-center gap-2 p-1.5">
     id: "actions",
      header: () => <div className="text-right mr-2">Actions</div>,
     cell: ({ row }) => {
-      const payment = row.original
+      const booking = row.original
  
       return (
         <div className="flex justify-end mr-2">
@@ -86,13 +87,16 @@ return <div className="flex w-fit items-center gap-2 p-1.5">
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(booking.center_email)}
             >
-              Copy payment ID
+              Copy center email
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+                     <BookingStatusChanger status="Scheduled" booking_id={booking.id}/>
+         <BookingStatusChanger status="In progress" booking_id={booking.id}/>
+         <BookingStatusChanger status="Completed" booking_id={booking.id}/>
+         <BookingStatusChanger status="Cancelled" booking_id={booking.id}/>
+            <DropdownMenuItem>Delete booking</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         </div>
