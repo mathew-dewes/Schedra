@@ -1,17 +1,17 @@
 import { buttonVariants } from "@/components/ui/button";
 import CenterForm from "./_components/CenterForm";
 import Link from "next/link";
-import { ArrowLeftIcon } from "lucide-react";
+import ReturnToDash from "../../_components/buttons/ReturnToDash";
 
-export default function page(){
+export default function page() {
     return (
         <div>
-                                  <div className="flex gap-2">
- <Link className={buttonVariants({variant: "secondary"})} href={'/dashboard'}> <ArrowLeftIcon /></Link>
-<Link className={buttonVariants()} href={'/dashboard/vehicles'}>View Service Centers</Link>
-        
+            <div className="flex gap-2">
+                <ReturnToDash />
+                <Link className={buttonVariants()} href={'/dashboard/vehicles'}>View Service Centers</Link>
+
             </div>
-            <CenterForm/>
+            <CenterForm />
         </div>
     )
 }

@@ -59,7 +59,7 @@ export const sidebarLinkData: SidebarLinkType = {
       ],
     },
     {
-      title: "Service Centers",
+      title: "Centers",
       url: "/dashboard/centers",
       items: [
         {

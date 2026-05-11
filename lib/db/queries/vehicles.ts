@@ -23,7 +23,7 @@ export async function getVehicles({
     }
 
     let query = supabase.from("vehicles")
-        .select("id, make, model, year, plant_number, plate_number, status")
+        .select("id, make, model, year, plant_number, plate_number, status").order("created_at",{ascending: false})
 
 
     if (status) {

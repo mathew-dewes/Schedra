@@ -6,9 +6,9 @@ import { VehicleStatusEnum } from "@/lib/types/enums";
 import { revalidatePath } from "next/cache";
 import z from "zod";
 
-export async function createVehicle(values: z.infer<typeof vehicleFormSchema>){
-      const supabase = await createClientForServer();
-        const user_id = await getUserId();
+export async function createVehicle(values: z.infer<typeof vehicleFormSchema>) {
+    const supabase = await createClientForServer();
+    const user_id = await getUserId();
 
     const parsed = vehicleFormSchema.safeParse(values);
 
@@ -28,7 +28,7 @@ export async function createVehicle(values: z.infer<typeof vehicleFormSchema>){
     };
 
 
-    const {error} = await supabase.from("vehicles").insert({
+    const { error } = await supabase.from("vehicles").insert({
         make: parsed.data.make,
         model: parsed.data.model,
         plant_number: parsed.data.plant_number.toUpperCase(),
@@ -37,8 +37,13 @@ export async function createVehicle(values: z.infer<typeof vehicleFormSchema>){
         user_id
     });
 
-        if (error) {
-        console.log(error);
+    if (error) {
+        if (error!.code === "23505") {
+            return {
+                success: false,
+                message: "Plant or licence plate number already exists",
+            };
+        }
         return {
             success: false,
             message: error.message
@@ -46,46 +51,15 @@ export async function createVehicle(values: z.infer<typeof vehicleFormSchema>){
 
     };
 
-        return {
+
+
+    return {
         success: true,
         message: `${parsed.data.make} ${parsed.data.model} was added`
     }
 };
 
-export async function changeVehicleStatus(id: string, status: VehicleStatusEnum){
-      const supabase = await createClientForServer();
-    const user_id = await getUserId();
-
-
-    if (!user_id) {
-        return {
-            success: false,
-            message: "Unauthorized"
-        }
-    };
-
-        const { error } = await supabase.from("vehicles").update({
-            status
-        }).eq("user_id", user_id).eq("id", id);
-        if (error) {
-            console.log(error);
-            return {
-                success: false,
-                message: error.message
-            }
-    
-        };
-    
-        revalidatePath('/dashboard/bookings')
-    
-        return {
-            success: true,
-            message: `Booking status updated`
-        }
-};
-
-
-export async function deleteVehicle(id: string){
+export async function changeVehicleStatus(id: string, status: VehicleStatusEnum) {
     const supabase = await createClientForServer();
     const user_id = await getUserId();
 
@@ -97,7 +71,40 @@ export async function deleteVehicle(id: string){
         }
     };
 
-       const { error } = await supabase.from("vehicles").delete().eq("user_id", user_id).eq("id", id);
+    const { error } = await supabase.from("vehicles").update({
+        status
+    }).eq("user_id", user_id).eq("id", id);
+    if (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message
+        }
+
+    };
+
+    revalidatePath('/dashboard/bookings')
+
+    return {
+        success: true,
+        message: `Booking status updated`
+    }
+};
+
+
+export async function deleteVehicle(id: string) {
+    const supabase = await createClientForServer();
+    const user_id = await getUserId();
+
+
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    };
+
+    const { error } = await supabase.from("vehicles").delete().eq("user_id", user_id).eq("id", id);
     if (error) {
         console.log(error);
         return {

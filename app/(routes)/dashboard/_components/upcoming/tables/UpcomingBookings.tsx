@@ -25,7 +25,9 @@ export function UpcomingBookings({bookings}:
                
     
  <Table>
-      <TableCaption>A list of your upcoming bookings.</TableCaption>
+      <TableCaption>
+         {bookings.length == 0 ? "You have no bookings." : "A list of your upcoming renewals."}
+      </TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-25">Date</TableHead>
@@ -49,7 +51,7 @@ export function UpcomingBookings({bookings}:
     </Table>
   
         </CardContent>
-         <CardFooter>
+         <CardFooter hidden={bookings.length == 0}>
           <Link className={buttonVariants()} href={'/dashboard/bookings'}>View all bookings</Link>
         </CardFooter>
 

@@ -25,7 +25,9 @@ export function UpcomingRenewals({renewals}:
                
     
  <Table>
-      <TableCaption>A list of your upcoming renewals.</TableCaption>
+      <TableCaption>
+        {renewals.length == 0 ? "You have no renewals." : "A list of your upcoming renewals."}
+        </TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-25">Due Date</TableHead>
@@ -57,7 +59,7 @@ export function UpcomingRenewals({renewals}:
     </Table>
   
         </CardContent>
-        <CardFooter>
+        <CardFooter hidden={renewals.length == 0}>
           <Link className={buttonVariants()} href={'/dashboard/renewals'}>View all renewals</Link>
         </CardFooter>
 

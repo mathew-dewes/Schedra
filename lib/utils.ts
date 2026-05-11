@@ -36,5 +36,11 @@ export function generateRenewalStatus(dueDate: Date) {
     }
 };
 
+export const normalizeText = (status: string) => {
+  return status
+    .toLowerCase()
+    .replace(/\s+/g, "")
+}
+
 
 

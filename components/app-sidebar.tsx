@@ -23,8 +23,10 @@ import { usePathname } from "next/navigation"
 export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
 
   const path = usePathname();
+
   return (
-    <Sidebar {...props}>
+    
+    <Sidebar {...props} >
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
