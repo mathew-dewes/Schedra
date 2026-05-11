@@ -12,8 +12,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { VehicleType } from "@/lib/db/types"
-import { vehicleStatusStyles } from "@/lib/constants"
+import { VEHICLE_STATUES, vehicleStatusStyles } from "@/lib/constants"
 import { cn } from "@/lib/utils"
+import VehicleStatusChanger from "../VehicleStatusChanger"
 
 
 
@@ -63,7 +64,8 @@ export const VehicleColumns: ColumnDef<VehicleType>[] = [
       
     id: "actions",
      header: () => <div className="text-right mr-2">Actions</div>,
-    cell: () => {
+    cell: ({row}) => {
+         const vehicle = row.original
       return (
         <div className="flex justify-end mr-2">
 <DropdownMenu>
@@ -75,14 +77,13 @@ export const VehicleColumns: ColumnDef<VehicleType>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText("Hello")}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            {VEHICLE_STATUES.map((status)=>{
+                      if (status == vehicle.status) return
+              return       <VehicleStatusChanger key={status} status={status} vehicle_id={vehicle.id}/>
+            })}
+                  <DropdownMenuSeparator />
+            <DropdownMenuItem>Delete vehicle</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         </div>

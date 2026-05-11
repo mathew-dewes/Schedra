@@ -1,19 +1,19 @@
 "use client";
 
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
-import { changeBookingStatus } from "@/lib/db/mutations/bookings";
-import { BookingStatusEnum } from "@/lib/types/enums";
+import { changeVehicleStatus } from "@/lib/db/mutations/vehicles";
+import { VehicleStatusEnum } from "@/lib/types/enums";
 import { useTransition } from "react";
 import { toast } from "sonner"
 
-export default function BookingStatusChanger({booking_id ,status}:
-    {booking_id: string, status: BookingStatusEnum}
+export default function VehicleStatusChanger({vehicle_id ,status}:
+    {vehicle_id: string, status: VehicleStatusEnum}
 ){
 const [isPending, startTransition] = useTransition()
 
 function handleUpdate(){
     startTransition((async()=>{
-    const res = await changeBookingStatus(booking_id ,status);
+    const res = await changeVehicleStatus(vehicle_id ,status);
 
     if (!res.success){
         toast.error(res.message)

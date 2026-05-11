@@ -15,8 +15,9 @@ import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { BookingEntry } from "@/lib/types/entries"
-import { bookingStatusStyles } from "@/lib/constants"
+import { BOOKING_STATUES, bookingStatusStyles } from "@/lib/constants"
 import BookingStatusChanger from "./BookingStatusChanger"
+import DeleteBookingButton from "./DeleteBookingButton"
 
 
 
@@ -92,11 +93,12 @@ return <div className="flex w-fit items-center gap-2 p-1.5">
               Copy center email
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-                     <BookingStatusChanger status="Scheduled" booking_id={booking.id}/>
-         <BookingStatusChanger status="In progress" booking_id={booking.id}/>
-         <BookingStatusChanger status="Completed" booking_id={booking.id}/>
-         <BookingStatusChanger status="Cancelled" booking_id={booking.id}/>
-            <DropdownMenuItem>Delete booking</DropdownMenuItem>
+            {BOOKING_STATUES.map((status)=>{
+            if (status == booking.status) return
+            return <BookingStatusChanger key={status} status={status} booking_id={booking.id}/>
+            })}
+                    <DropdownMenuSeparator />
+           <DeleteBookingButton booking_id={booking.id}/>
           </DropdownMenuContent>
         </DropdownMenu>
         </div>

@@ -28,7 +28,7 @@ export async function getBookings({
             vehicles(make, model, plant_number, plate_number), 
             service_centers(name, email)
             `)
-        .eq("user_id", user_id);
+        .eq("user_id", user_id).order("start_date", {ascending: true});
 
     if (status){
         query = query.eq("status", status)

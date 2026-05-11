@@ -2,6 +2,8 @@
 
 import { vehicleFormSchema } from "@/lib/schemas";
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
+import { VehicleStatusEnum } from "@/lib/types/enums";
+import { revalidatePath } from "next/cache";
 import z from "zod";
 
 export async function createVehicle(values: z.infer<typeof vehicleFormSchema>){
@@ -48,4 +50,36 @@ export async function createVehicle(values: z.infer<typeof vehicleFormSchema>){
         success: true,
         message: `${parsed.data.make} ${parsed.data.model} was added`
     }
+};
+
+export async function changeVehicleStatus(id: string, status: VehicleStatusEnum){
+      const supabase = await createClientForServer();
+    const user_id = await getUserId();
+
+
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    };
+
+        const { error } = await supabase.from("vehicles").update({
+            status
+        }).eq("user_id", user_id).eq("id", id);
+        if (error) {
+            console.log(error);
+            return {
+                success: false,
+                message: error.message
+            }
+    
+        };
+    
+        revalidatePath('/dashboard/bookings')
+    
+        return {
+            success: true,
+            message: `Booking status updated`
+        }
 }
