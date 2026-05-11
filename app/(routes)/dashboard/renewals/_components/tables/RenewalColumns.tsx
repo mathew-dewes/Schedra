@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { RenewalEntry } from "@/lib/types/entries"
 import { renewalStatusStyles } from "@/lib/constants"
+import Link from "next/link"
 
 
 
@@ -65,7 +66,7 @@ return <div className="flex w-fit items-center gap-2 p-1.5">
     id: "actions",
      header: () => <div className="text-right mr-2">Actions</div>,
     cell: ({ row }) => {
-      const payment = row.original
+      const renewal = row.original
  
       return (
         <div className="flex justify-end mr-2">
@@ -78,14 +79,12 @@ return <div className="flex w-fit items-center gap-2 p-1.5">
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={'/dashboard/renewals/update/' + renewal.id}>Update renewal</Link>
+              </DropdownMenuItem>
+                     <DropdownMenuSeparator />
+            <DropdownMenuItem>Remove renewal</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         </div>
