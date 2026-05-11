@@ -14,9 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { CenterType } from "@/lib/db/types"
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+import DeleteCenterButton from "../DeleteCenterButton"
 
 export const CenterColumns: ColumnDef<CenterType>[] = [
   {
@@ -56,7 +54,8 @@ export const CenterColumns: ColumnDef<CenterType>[] = [
       
     id: "actions",
      header: () => <div className="text-right mr-2">Actions</div>,
-    cell: () => {
+    cell: ({row}) => {
+      const center = row.original;
       return (
         <div className="flex justify-end mr-2">
 <DropdownMenu>
@@ -74,8 +73,7 @@ export const CenterColumns: ColumnDef<CenterType>[] = [
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+<DeleteCenterButton center_id={center.id}/>
           </DropdownMenuContent>
         </DropdownMenu>
         </div>

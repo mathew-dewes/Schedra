@@ -82,4 +82,35 @@ export async function changeVehicleStatus(id: string, status: VehicleStatusEnum)
             success: true,
             message: `Booking status updated`
         }
+};
+
+
+export async function deleteVehicle(id: string){
+    const supabase = await createClientForServer();
+    const user_id = await getUserId();
+
+
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    };
+
+       const { error } = await supabase.from("vehicles").delete().eq("user_id", user_id).eq("id", id);
+    if (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message
+        }
+
+    };
+
+    revalidatePath('/dashboard/vehicles')
+
+    return {
+        success: true,
+        message: `Vehicle deleted`
+    }
 }

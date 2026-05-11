@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -15,6 +14,7 @@ import { VehicleType } from "@/lib/db/types"
 import { VEHICLE_STATUES, vehicleStatusStyles } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import VehicleStatusChanger from "../VehicleStatusChanger"
+import DeleteVehicleButton from "../DeleteVehicleButton"
 
 
 
@@ -83,7 +83,7 @@ export const VehicleColumns: ColumnDef<VehicleType>[] = [
               return       <VehicleStatusChanger key={status} status={status} vehicle_id={vehicle.id}/>
             })}
                   <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete vehicle</DropdownMenuItem>
+           <DeleteVehicleButton vehicle_id={vehicle.id}/>
           </DropdownMenuContent>
         </DropdownMenu>
         </div>

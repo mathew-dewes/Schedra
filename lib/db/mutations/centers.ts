@@ -2,6 +2,7 @@
 
 import { serviceProviderFormSchema } from "@/lib/schemas";
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
+import { revalidatePath } from "next/cache";
 import z from "zod";
 
 export async function createProvider(values: z.infer<typeof serviceProviderFormSchema>) {
@@ -49,3 +50,33 @@ export async function createProvider(values: z.infer<typeof serviceProviderFormS
         message: `${parsed.data.name} was added`
     }
 };
+
+export async function deleteCenter(id: string){
+    const supabase = await createClientForServer();
+    const user_id = await getUserId();
+
+
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    };
+
+       const { error } = await supabase.from("service_centers").delete().eq("user_id", user_id).eq("id", id);
+    if (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message
+        }
+
+    };
+
+    revalidatePath('/dashboard/centers')
+
+    return {
+        success: true,
+        message: `Center deleted`
+    }
+}

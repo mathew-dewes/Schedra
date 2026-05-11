@@ -33,6 +33,19 @@ export const sidebarLinkData: SidebarLinkType = {
       ],
     },
         {
+      title: "Renewals",
+      url: "/dashboard/renewals",
+      items: [
+        {
+          title: "+ Add Renewal",
+          url: "/dashboard/renewals/new",
+          isActive: true,
+        },
+
+ 
+      ],
+    },
+        {
       title: "Vehicles",
       url: "/dashboard/vehicles",
       items: [
@@ -58,19 +71,7 @@ export const sidebarLinkData: SidebarLinkType = {
  
       ],
     },
-    {
-      title: "Renewals",
-      url: "/dashboard/renewals",
-      items: [
-        {
-          title: "+ Add Renewal",
-          url: "/dashboard/renewals/new",
-          isActive: true,
-        },
 
- 
-      ],
-    },
 
 
     {
