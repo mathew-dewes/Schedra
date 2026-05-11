@@ -19,7 +19,7 @@ export function UpcomingBookings({bookings}:
   return (
     <Card>
         <CardHeader>
-            <CardTitle>Upcoming Bookings</CardTitle>
+            <CardTitle className="text-center sm:text-left">Upcoming Bookings</CardTitle>
         </CardHeader>
         <CardContent>
                

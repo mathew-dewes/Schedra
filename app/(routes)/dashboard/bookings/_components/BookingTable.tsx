@@ -81,7 +81,7 @@ export function BookingTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn("plant")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="md:max-w-sm max-w-3/4 text-xs"
         />
                 <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -175,10 +175,7 @@ export function BookingTable<TData, TValue>({
           Next
         </Button>
       </div>
-      <div className="flex-1 text-sm text-muted-foreground">
-  {table.getFilteredSelectedRowModel().rows.length} of{" "}
-  {table.getFilteredRowModel().rows.length} row(s) selected.
-</div>
+
     </div>
   
   )

@@ -26,7 +26,7 @@ export function RecentActivity({activities}: Props) {
   return (
     <Card className="xl:col-span-2">
       <CardHeader>
-        <CardTitle>Recent Activity</CardTitle>
+        <CardTitle className="text-center sm:text-left">Recent Activity</CardTitle>
       </CardHeader>
       <CardContent>
  <Table>

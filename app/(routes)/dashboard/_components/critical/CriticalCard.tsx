@@ -46,10 +46,10 @@ function actionLink(cardType:CardType ){
     return (
         <Card hidden={hide} className={cn(`w-full ${spanFull && "col-span-full"}`)}>
             <CardHeader>
-                <CardTitle className="flex items-center gap-1">
+                <CardTitle className="flex items-center gap-1 justify-center sm:justify-start">
                     {Icon && <Icon size={18}
                         className={cn(`mb-1 ${cardType == "overdue" ? "text-red-400" : "text-orange-400"}`)} />}{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
+                <CardDescription className="text-center sm:text-left">{description}</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">

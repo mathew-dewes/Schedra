@@ -67,7 +67,7 @@ const totalVehicles = data?.reduce((sum, item) => {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Vehicle Status</CardTitle>
+        <CardTitle className="text-center sm:text-left">Vehicle Status</CardTitle>
                <CardDescription>
                 <div className="flex items-center flex-wrap gap-5">
                   {VEHICLE_STATUES.map((status)=>{

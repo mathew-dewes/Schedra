@@ -19,7 +19,7 @@ export function UpcomingRenewals({renewals}:
   return (
     <Card>
         <CardHeader>
-            <CardTitle>Upcoming Renewals</CardTitle>
+            <CardTitle className="text-center sm:text-left">Upcoming Renewals</CardTitle>
         </CardHeader>
         <CardContent>
                
