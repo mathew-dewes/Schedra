@@ -30,7 +30,7 @@ export function generateRenewalStatus(dueDate: Date) {
             end: addDays(now, 7)
         }
     )) {
-        return "Due"
+        return "Due Soon"
     }  else {
         return "Upcoming"
     }

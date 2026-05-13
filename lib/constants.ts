@@ -103,12 +103,11 @@ export const sidebarLinkData: SidebarLinkType = {
 export const bookingStatusStyles: Record<BookingStatusEnum, string> = {
   Scheduled: "bg-blue-400",
   "In progress": "bg-orange-400 text-black",
-  Completed: "bg-green-400",
-  Cancelled: "bg-red-400",
+  Completed: "bg-green-400"
 }
 export const renewalStatusStyles: Record<RenewalStatusEnum, string> = {
   Upcoming: "bg-blue-400",
-  Due: "bg-orange-400 text-black",
+  "Due Soon": "bg-orange-400 text-black",
   Completed: "bg-green-400",
   Overdue: "bg-red-400",
 };

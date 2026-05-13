@@ -38,6 +38,7 @@ export default async function Critical({renewals, bookings}:{
             renewals={overdue}
             cardType="overdue"
             disableLink={overdue.length == 0}
+            hide={overdue.length == 0}
             />
 
             <CriticalCard  icon={TriangleAlert}  title="Due Soon" 
@@ -45,6 +46,7 @@ export default async function Critical({renewals, bookings}:{
             renewals={dueSoon}
             cardType="dueSoon"
             disableLink={dueSoon.length == 0}
+            hide={dueSoon.length == 0}
             />
 
             <CriticalCard 

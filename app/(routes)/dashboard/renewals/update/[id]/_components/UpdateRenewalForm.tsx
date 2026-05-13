@@ -31,7 +31,7 @@ const router = useRouter()
         resolver: zodResolver(updateRenewalFormSchema),
         defaultValues: {
             dueDate: new Date(),
-            notes: renewal.notes
+            notes: renewal.notes ?? ""
         }
     });
 

@@ -298,10 +298,10 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      booking_status: "Scheduled" | "In progress" | "Completed" | "Cancelled"
+      booking_status: "Scheduled" | "In progress" | "Completed"
       booking_type: "Repairs" | "Servicing" | "Breakdown"
       category_color: "red" | "green" | "yellow" | "orange" | "blue"
-      renewal_status: "Upcoming" | "Due" | "Overdue" | "Completed"
+      renewal_status: "Upcoming" | "Due Soon" | "Overdue" | "Completed"
       renewal_type:
         | "Warrant of fitness"
         | "Registration"
@@ -442,10 +442,10 @@ export const Constants = {
   },
   public: {
     Enums: {
-      booking_status: ["Scheduled", "In progress", "Completed", "Cancelled"],
+      booking_status: ["Scheduled", "In progress", "Completed"],
       booking_type: ["Repairs", "Servicing", "Breakdown"],
       category_color: ["red", "green", "yellow", "orange", "blue"],
-      renewal_status: ["Upcoming", "Due", "Overdue", "Completed"],
+      renewal_status: ["Upcoming", "Due Soon", "Overdue", "Completed"],
       renewal_type: [
         "Warrant of fitness",
         "Registration",

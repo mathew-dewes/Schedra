@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils"
 import { RenewalEntry } from "@/lib/types/entries"
 import { renewalStatusStyles } from "@/lib/constants"
 import Link from "next/link"
+import DeleteRenewalButton from "../DeleteRenewalButton"
 
 
 
@@ -40,6 +41,16 @@ export const RenewalColumns: ColumnDef<RenewalEntry>[] = [
 
     }
   },
+        {
+    accessorKey: "status",
+    header: "Status",
+    cell:({row})=>{
+return <div className="flex w-fit items-center gap-2 p-1.5">
+  <div className={cn(renewalStatusStyles[row.original.status], "size-3 rounded-full")}/>
+  <p>{row.original.status}</p>
+</div>
+    }
+  },
 
   {
     accessorKey: "vehicle",
@@ -51,16 +62,7 @@ export const RenewalColumns: ColumnDef<RenewalEntry>[] = [
     header: "Plant",
   },
 
-      {
-    accessorKey: "status",
-    header: "Status",
-    cell:({row})=>{
-return <div className="flex w-fit items-center gap-2 p-1.5">
-  <div className={cn(renewalStatusStyles[row.original.status], "size-4 rounded-full")}/>
-  <p>{row.original.status}</p>
-</div>
-    }
-  },
+
       {
       
     id: "actions",
@@ -84,7 +86,7 @@ return <div className="flex w-fit items-center gap-2 p-1.5">
               <Link href={'/dashboard/renewals/update/' + renewal.id}>Update renewal</Link>
               </DropdownMenuItem>
                      <DropdownMenuSeparator />
-            <DropdownMenuItem>Remove renewal</DropdownMenuItem>
+           <DeleteRenewalButton renewal_id={renewal.id}/>
           </DropdownMenuContent>
         </DropdownMenu>
         </div>

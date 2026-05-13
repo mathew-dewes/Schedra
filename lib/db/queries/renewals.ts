@@ -102,7 +102,8 @@ export async function getRenewal(renewal_id: string){
         vehicle: renewal.vehicles.make + " " + renewal.vehicles.model,
         plant: renewal.vehicles.plant_number.toUpperCase(),
         status: generateRenewalStatus(new Date(renewal.due_date)),
-        vehicle_plate: renewal.vehicles.plate_number
+        vehicle_plate: renewal.vehicles.plate_number,
+        notes: renewal.notes
     };
 
 }
