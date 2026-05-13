@@ -62,6 +62,12 @@ export const renewalFormSchema = z.object({
 });
 
 
+export const updateRenewalFormSchema = z.object({
+  dueDate: z.date(),
+  notes: z.string().optional()
+})
+
+
 export const businessFormSchema = z.object({
   name: z.string().min(3)
 })

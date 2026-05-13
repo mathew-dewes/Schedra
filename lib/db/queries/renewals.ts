@@ -69,4 +69,40 @@ export async function getRenewals({
 
     return filtered;
 
+};
+
+
+export async function getRenewal(renewal_id: string){
+    const user_id = await getUserId();
+    const supabase = await createClientForServer();
+
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    };
+
+    const {data: renewal, error} = await supabase.from("renewals")
+    .select("id, vehicles(make, model, plate_number, plant_number), type, due_date, notes")
+    .eq("id", renewal_id).single();
+       
+    if (error) {
+        console.log("Error:", error);
+        return {
+            success: false,
+            message: error.message
+        }
+    };
+
+    return {
+        id: renewal.id,
+        dueDate: new Date(renewal.due_date),
+        type: renewal.type,
+        vehicle: renewal.vehicles.make + " " + renewal.vehicles.model,
+        plant: renewal.vehicles.plant_number.toUpperCase(),
+        status: generateRenewalStatus(new Date(renewal.due_date)),
+        vehicle_plate: renewal.vehicles.plate_number
+    };
+
 }

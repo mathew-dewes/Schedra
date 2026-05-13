@@ -26,6 +26,7 @@ export type RenewalEntry = {
   plant: string,
   status: RenewalStatusEnum,
   vehicle_plate: string,
+  notes: string
 };
 
 export type Activity = {

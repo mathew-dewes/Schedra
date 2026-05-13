@@ -2,6 +2,7 @@
 
 
 import { Calendar } from "@/components/ui/calendar";
+import { addYears } from "date-fns";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -10,7 +11,10 @@ type Props = {
 }
 
 export function RenewalDatePicker({ value, onChange }: Props) {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
+
+  const currentYear = new Date().getFullYear();
+  const maxYear = addYears(new Date(), 1).getFullYear()
 
  useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -26,8 +30,8 @@ export function RenewalDatePicker({ value, onChange }: Props) {
             className="rounded-lg border"
             captionLayout="dropdown"
             defaultMonth={new Date()}
-            fromYear={2026}
-            toYear={2030}
+            fromYear={currentYear}
+            toYear={maxYear}
             disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
 
         />

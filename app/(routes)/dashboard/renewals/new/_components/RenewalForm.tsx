@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 import { RenewalDatePicker } from "./RenewalDatePicker";
 
 export default function RenewalForm(
-    {vehicles}:{vehicles: Vehicle[]}) {
+    { vehicles }: { vehicles: Vehicle[] }) {
     const [isPending, startTransition] = useTransition();
     const router = useRouter()
     const form = useForm<z.infer<typeof renewalFormSchema>>({
@@ -34,7 +34,7 @@ export default function RenewalForm(
         startTransition((async () => {
             const res = await createRenewal(values);
 
-            if (!res.success){
+            if (!res.success) {
                 toast.error(res.message)
             } else {
                 toast.success(res.message);
@@ -55,27 +55,27 @@ export default function RenewalForm(
             <CardContent>
                 <form id="renewalForm" onSubmit={form.handleSubmit(onSubmit)}>
                     <FieldGroup>
-                     <Controller
-                                             control={form.control}
-                                             name="vehicle_id"
-                                             render={({ field, fieldState }) => (
-                                                 <Field className="sm:w-1/2" data-invalid={fieldState.invalid}>
-                                                     <FieldContent>
-                                                         <FieldLabel>
-                                                             Vehicle
-                                                         </FieldLabel>
-                                                         <FieldDescription>
-                                                             Select a service center from the list below
-                                                         </FieldDescription>
-                 
-                                                     </FieldContent>
-                                                     <VehiclePopover value={field.value} onChange={field.onChange} vehicles={vehicles} />
-                                                     {fieldState.invalid &&
-                                                         <FieldError errors={[fieldState.error]} />}
-                                                 </Field>
-                                             )}
-                 
-                                         />
+                        <Controller
+                            control={form.control}
+                            name="vehicle_id"
+                            render={({ field, fieldState }) => (
+                                <Field className="sm:w-1/2" data-invalid={fieldState.invalid}>
+                                    <FieldContent>
+                                        <FieldLabel>
+                                            Vehicle
+                                        </FieldLabel>
+                                        <FieldDescription>
+                                            Select a service center from the list below
+                                        </FieldDescription>
+
+                                    </FieldContent>
+                                    <VehiclePopover value={field.value} onChange={field.onChange} vehicles={vehicles} />
+                                    {fieldState.invalid &&
+                                        <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+
+                        />
                         <Controller
                             control={form.control}
                             name="type"
@@ -98,26 +98,26 @@ export default function RenewalForm(
                             )}
                         />
 
-                            <Controller
-                                                    control={form.control}
-                                                    name="due_date"
-                                                    render={({ field, fieldState }) => (
-                                                        <Field data-invalid={fieldState.invalid}>
-                                                                 <FieldContent>
-                                                                <FieldLabel>
-                                                                    Due Date
-                                                                </FieldLabel>
-                                                        
-                                    <RenewalDatePicker value={field.value} onChange={field.onChange}/>
-                                                            </FieldContent>
-                                                            {/* <StartDatePicker value={field.value} onChange={field.onChange} /> */}
-                                                     
-                                                            {fieldState.invalid &&
-                                                                <FieldError errors={[fieldState.error]} />}
-                                                        </Field>
-                                                    )}
-                        
-                                                />
+                        <Controller
+                            control={form.control}
+                            name="due_date"
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldContent>
+                                        <FieldLabel>
+                                            Due Date
+                                        </FieldLabel>
+
+                                        <RenewalDatePicker value={field.value} onChange={field.onChange} />
+                                    </FieldContent>
+                                    {/* <StartDatePicker value={field.value} onChange={field.onChange} /> */}
+
+                                    {fieldState.invalid &&
+                                        <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+
+                        />
                     </FieldGroup>
                 </form>
             </CardContent>
