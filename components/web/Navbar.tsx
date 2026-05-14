@@ -13,8 +13,8 @@ export default async function Navbar() {
     
     return (
         <div className="flex justify-between md:mx-10 lg:mx-20 mx-5 my-5">
-            {session ? <Link href={'/dashboard'}><h1 className="font-semibold">Schedra</h1></Link>:
-            <h1 className="font-semibold">Schedra</h1>}
+         <Link href={session ?'/dashboard' : "/"}><h1 className="font-semibold">Schedra</h1></Link>
+        
    
        
       <NavLinks session={!!session}/>

@@ -8,18 +8,23 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-export default function FeatureCard(){
-    return <Card size="sm" className="mx-auto w-full max-w-sm">
+type Props = {
+  title: string,
+  description: string,
+  content: string
+}
+
+export default function FeatureCard({title, description, content}: Props){
+    return <Card size="sm" className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle>Small Card</CardTitle>
+        <CardTitle>{title}</CardTitle>
         <CardDescription>
-          This card uses the small size variant.
+          {description}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <p>
-          The card component supports a size prop that can be set to
-          &quot;sm&quot; for a more compact appearance.
+          {content}
         </p>
       </CardContent>
       <CardFooter>

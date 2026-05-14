@@ -1,13 +1,29 @@
-import { Card, CardContent } from "@/components/ui/card";
 
-export default function Inspiration(){
+import { Button } from "@/components/ui/button"
+import {
+    Card,
+
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+export default function Inspiration() {
     return (
-        <section className="py-10">
-            <h2 className="font-medium text-xl mt-5">Inspiration</h2>
-        <p className="font-bold text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, quo.</p>
-        <Card className="w-full mt-2">
-            <CardContent>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio veritatis vel delectus obcaecati laborum alias pariatur molestiae facilis ratione reiciendis ex, dolor excepturi vero rem blanditiis porro corporis perferendis et?</CardContent>
-        </Card>
+        <section>
+            <Card className="mx-auto w-full max-w-lg">
+                <CardHeader>
+                    <CardTitle className="text-center">Inspiration</CardTitle>
+                    <CardDescription>
+                        Due to past experience in fleet operations, My team faced many challenges around scheduling vehicles with service providers and keeping track of upcoming renewals and vehicle statuses. I have developed Schedra in a way that solves these challenges by displaying and alerting key metrics around upcoming renewals and bookings eliminating the need for manual traceability.
+                    </CardDescription>
+                </CardHeader>
+                <CardFooter>
+                    <Button className="w-full">View Github</Button>
+            
+                </CardFooter>
+            </Card>
+
         </section>
     )
 }
