@@ -15,7 +15,7 @@ type Props = {
 }
 
 export default function HowToCard({stepNumber, title, content}: Props){
-    return <Card size="sm" className="w-full max-w-sm">
+    return <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>
             <div>
