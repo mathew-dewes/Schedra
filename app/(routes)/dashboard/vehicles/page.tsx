@@ -1,13 +1,7 @@
-
-import { VehicleTable } from "./_components/tables/VehicleTable";
-import { VehicleColumns } from "./_components/tables/VehicleColumns";
-import { getVehicles } from "@/lib/db/queries/vehicles";
-import { VehicleType } from "@/lib/db/types";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
-import ReturnToDash from "../_components/buttons/ReturnToDash";
-import VehicleFilters from "./_components/VehicleFilters";
 import { VehicleStatusEnum } from "@/lib/types/enums";
+import Vehicles from "./Vehicles";
+import { Suspense } from "react";
+import { SkeletonTable } from "@/components/web/skeletons/SkeletonTable";
 
 
 type Props = {
@@ -23,17 +17,11 @@ export default async function page({
 }: Props) {
 
   const params = await searchParams;
-  const vehicles = await getVehicles(params) as VehicleType[];
 
   return (
-    <div>
-      <div className="flex gap-2">
-        <ReturnToDash />
-        <Link className={buttonVariants()} href={'/dashboard/vehicles/new'}>+ Add Vehicle</Link>
+    <Suspense fallback={<SkeletonTable/>}>
+ <Vehicles params={params}/>
+    </Suspense>
 
-      </div>
-<VehicleFilters/>
-      <VehicleTable columns={VehicleColumns} data={vehicles} />
-    </div>
   )
 }

@@ -16,8 +16,8 @@ import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { BookingEntry } from "@/lib/types/entries"
 import { BOOKING_STATUES, bookingStatusStyles } from "@/lib/constants"
-import BookingStatusChanger from "./BookingStatusChanger"
-import DeleteBookingButton from "./DeleteBookingButton"
+import BookingStatusChanger from "../BookingStatusChanger"
+import DeleteBookingButton from "../DeleteBookingButton"
 
 
 

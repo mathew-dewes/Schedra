@@ -1,13 +1,8 @@
 
-import { BookingColumns } from "./_components/Bookingcolumn";
-import { BookingTable } from "./_components/BookingTable";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
-import { getBookings } from "@/lib/db/queries/bookings";
-import { BookingEntry } from "@/lib/types/entries";
-import ReturnToDash from "../_components/buttons/ReturnToDash";
-import BookingFilters from "./_components/BookingFilters";
 import { BookingStatusEnum, BookingTypeEnum } from "@/lib/types/enums";
+import Bookings from "./_components/Bookings";
+import { Suspense } from "react";
+import { SkeletonTable } from "@/components/web/skeletons/SkeletonTable";
 
 
 type Props = {
@@ -22,17 +17,14 @@ export default async function page({
 }: Props) {
 
   const params = await searchParams;
-  const bookings = await getBookings(params) as BookingEntry[];
 
   return (
-    <div>
-      <div className="flex gap-2">
-        <ReturnToDash />
-        <Link className={buttonVariants()} href={'/dashboard/bookings/new'}>+ Add Booking</Link>
+ 
+    <Suspense fallback={<SkeletonTable/>}>
+    <Bookings params={params}/>
+    </Suspense>
+  
 
-      </div>
-      <BookingFilters />
-      <BookingTable columns={BookingColumns} data={bookings} />
-    </div>
+
   )
 }
