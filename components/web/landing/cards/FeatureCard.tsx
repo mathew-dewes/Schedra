@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -27,10 +25,6 @@ export default function FeatureCard({title, description, content}: Props){
           {content}
         </p>
       </CardContent>
-      <CardFooter>
-        <Button variant="outline" size="sm" className="w-full">
-          Action
-        </Button>
-      </CardFooter>
+
     </Card>
 }
