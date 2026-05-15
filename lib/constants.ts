@@ -146,7 +146,7 @@ export const BOOKING_STATUES = ["Scheduled", "In progress", "Completed"] as Book
 
 export const VEHICLE_STATUES = ["Available", "In service", "Under maintenance", "Out of service"] as VehicleStatusEnum[];
 
-export const RENEWAL_STATUES = ["Completed", "Upcoming", "Due", "Overdue"] as RenewalStatusEnum[]
+export const RENEWAL_STATUES = ["Completed", "Upcoming", "Due Soon", "Overdue"] as RenewalStatusEnum[]
 
 export const RENEWAL_TYPES = ["Service", "Registration", "Road user charge", "Warrant of fitness"] as RenewalTypeEmum[];
 

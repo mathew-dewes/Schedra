@@ -31,7 +31,6 @@ export function UpcomingBookings({bookings}:
       <TableHeader>
         <TableRow>
           <TableHead className="w-25">Date</TableHead>
-          <TableHead>Type</TableHead>
           <TableHead>Center</TableHead>
           <TableHead>Vehicle</TableHead>
           <TableHead className="text-right">REGO</TableHead>
@@ -41,7 +40,6 @@ export function UpcomingBookings({bookings}:
         {bookings.map((booking) => (
           <TableRow key={booking.id}>
             <TableCell className="font-medium">{format(booking.bookingDate, "dd/MM/yy")}</TableCell>
-            <TableCell className="font-medium">{booking.booking_type}</TableCell>
             <TableCell className="font-medium">{booking.center}</TableCell>
             <TableCell className="font-medium">{booking.vehicle}</TableCell>
             <TableCell className="text-right">{booking.plate_number}</TableCell>

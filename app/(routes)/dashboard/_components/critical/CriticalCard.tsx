@@ -36,7 +36,7 @@ export default function CriticalCard({
 
 function actionLink(cardType:CardType ){
     if (cardType === "dueSoon"){
-        return '/dashboard/renewals?status=Due'
+        return '/dashboard/renewals?status=Due+Soon'
     } else {
         return "/dashboard/renewals?status=Overdue"
     }
