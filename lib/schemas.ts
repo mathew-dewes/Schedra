@@ -1,5 +1,4 @@
 import z from "zod";
-import { BookingTypeEnum } from "./types/enums";
 
 export const loginSchema = z.object({
   email: z.email(),
@@ -26,10 +25,7 @@ export const bookingFormSchema = z.object({
   description: z.string().optional(),
   start_date: z.date(),
   center_id: z.string().min(1, 'Service center is required'),
-  vehicle_id: z.string().min(1, 'Vehicle is required'),
-  booking_type: z.enum(
-    ["Repairs", "Servicing", "Breakdown"] as BookingTypeEnum[], 
-    "Booking type is required")
+  vehicle_id: z.string().min(1, 'Vehicle is required')
 });
 
 

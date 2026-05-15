@@ -1,4 +1,4 @@
-import { BookingStatusEnum, BookingTypeEnum, RenewalStatusEnum, RenewalTypeEmum } from "./types/enums";
+import { BookingStatusEnum, RenewalStatusEnum, RenewalTypeEmum } from "./types/enums";
 
 
 // Entries
@@ -7,7 +7,6 @@ export type BookingEntry = {
   id: string,
   title: string,
   bookingDate: Date,
-  booking_type: BookingTypeEnum,
   categoryColor: string,
   vehicle: string,
   plant: string,
@@ -31,17 +30,9 @@ export type RenewalEntry = {
 
 export type Activity = {
   id: string,
-  activity: ActivityType,
+  activity: string,
+  type: "Renewal" | "Booking"
   vehicle: string,
-  time: Date
+  time: Date,
 };
 
-
-type ActivityType =
-  | "service_booking"
-  | "repair_booking"
-  | "breakdown"
-  | "wof_reminder"
-  | "registration_reminder"
-  | "ruc_reminder"
-  | "service_reminder";

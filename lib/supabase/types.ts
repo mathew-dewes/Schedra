@@ -79,7 +79,6 @@ export type Database = {
       }
       bookings: {
         Row: {
-          booking_type: Database["public"]["Enums"]["booking_type"]
           center_id: string | null
           created_at: string
           description: string | null
@@ -92,7 +91,6 @@ export type Database = {
           vehicle_id: string
         }
         Insert: {
-          booking_type: Database["public"]["Enums"]["booking_type"]
           center_id?: string | null
           created_at?: string
           description?: string | null
@@ -105,7 +103,6 @@ export type Database = {
           vehicle_id: string
         }
         Update: {
-          booking_type?: Database["public"]["Enums"]["booking_type"]
           center_id?: string | null
           created_at?: string
           description?: string | null
@@ -299,7 +296,6 @@ export type Database = {
     }
     Enums: {
       booking_status: "Scheduled" | "In progress" | "Completed"
-      booking_type: "Repairs" | "Servicing" | "Breakdown"
       category_color: "red" | "green" | "yellow" | "orange" | "blue"
       renewal_status: "Upcoming" | "Due Soon" | "Overdue" | "Completed"
       renewal_type:
@@ -443,7 +439,6 @@ export const Constants = {
   public: {
     Enums: {
       booking_status: ["Scheduled", "In progress", "Completed"],
-      booking_type: ["Repairs", "Servicing", "Breakdown"],
       category_color: ["red", "green", "yellow", "orange", "blue"],
       renewal_status: ["Upcoming", "Due Soon", "Overdue", "Completed"],
       renewal_type: [

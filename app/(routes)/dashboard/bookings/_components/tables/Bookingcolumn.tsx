@@ -12,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { format } from "date-fns"
-import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { BookingEntry } from "@/lib/types/entries"
 import { BOOKING_STATUES, bookingStatusStyles } from "@/lib/constants"
@@ -36,15 +35,6 @@ export const BookingColumns: ColumnDef<BookingEntry>[] = [
     header: "Title",
   },
 
-      {
-    accessorKey: "booking_type",
-    header: "Type",
-    cell:({row})=>{
-      return <Badge variant={"secondary"} >{row.original.booking_type}</Badge>
-
-    }
-  },
-
   {
     accessorKey: "vehicle",
     header: "Vehicle",
@@ -53,6 +43,10 @@ export const BookingColumns: ColumnDef<BookingEntry>[] = [
   {
     accessorKey: "plant",
     header: "Plant",
+  },
+  {
+    accessorKey: "plate_number",
+    header: "REGO",
   },
         {
     accessorKey: "center",

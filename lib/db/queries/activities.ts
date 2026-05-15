@@ -15,7 +15,9 @@ export async function getRecentActivities() {
     };
 
     const { error: bookingError, data: bookings } = await supabase.from("bookings").select(`
-            id, created_at, booking_type, vehicles(make, model, plate_number)`).limit(5).eq("user_id", user_id);
+            id, title, created_at, vehicles(make, model, plate_number)`) .eq("user_id", user_id)
+  .order("created_at", { ascending: false })
+  .limit(5);
 
     if (bookingError) {
         console.log("Error:", bookingError);
@@ -27,7 +29,9 @@ export async function getRecentActivities() {
 
 
     const { error: renewalError, data: renewals } = await supabase.from("renewals").select(`
-        id, created_at, type, vehicles(make, model, plate_number)`).limit(5).eq("user_id", user_id);
+        id, created_at, type, vehicles(make, model, plate_number)`) .eq("user_id", user_id)
+  .order("created_at", { ascending: false })
+  .limit(5);
 
     if (renewalError) {
         console.log("Error:", renewalError);
@@ -40,30 +44,23 @@ export async function getRecentActivities() {
     const bookingActivities: Activity[] =
         bookings.map((booking) => ({
             id: booking.id,
-
-            activity:
-                booking.booking_type === "Servicing"
-                    ? "service_booking"
-                    : booking.booking_type === "Repairs"
-                        ? "repair_booking"
-                        : "breakdown",
-
+            activity: booking.title,
+            type: "Booking",
             vehicle: booking.vehicles.make + " " + booking.vehicles.model + " - " + booking.vehicles.plate_number,
-
             time: new Date(booking.created_at),
         }));
 
-          const renewalActivities: Activity[] =
-    renewals.map((renewal) => ({
-      id: renewal.id,
-      activity: renewal.type == "Warrant of fitness"
-      ? "wof_reminder" : renewal.type === "Registration" ? "registration_reminder" : "ruc_reminder",
-      vehicle: renewal.vehicles.make + " " + renewal.vehicles.model + " - " + renewal.vehicles.plate_number,
-      time: new Date(renewal.created_at),
-    }));
+    const renewalActivities: Activity[] =
+        renewals.map((renewal) => ({
+            id: renewal.id,
+            activity: renewal.type,
+            type: "Renewal",
+            vehicle: renewal.vehicles.make + " " + renewal.vehicles.model + " - " + renewal.vehicles.plate_number,
+            time: new Date(renewal.created_at),
+        }));
 
-      return [
-    ...bookingActivities,
-    ...renewalActivities,
-  ]
+    return [
+        ...bookingActivities,
+        ...renewalActivities,
+    ]
 }

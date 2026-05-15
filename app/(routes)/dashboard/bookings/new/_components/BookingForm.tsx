@@ -17,7 +17,6 @@ import { createBooking } from "@/lib/db/mutations/bookings";
 import { ServiceCenterPopover } from "./ServiceCenterPopover";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import BookingTypeSelect from "./BookingTypeSelect";
 import { bookingFormDefaultValues } from "@/lib/helpers/defaults";
 
 
@@ -121,27 +120,6 @@ export default function BookingForm({ centers, vehicles }:
 
                         />
                
-                        <Controller
-                            control={form.control}
-                            name="booking_type"
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldContent>
-                                        <FieldLabel>
-                                            Booking type
-                                        </FieldLabel>
-                                        <FieldDescription>
-                                            Select a booking type from the list below
-                                        </FieldDescription>
-
-                                    </FieldContent>
-                                    <BookingTypeSelect value={field.value} onChange={field.onChange} />
-                                    {fieldState.invalid &&
-                                        <FieldError errors={[fieldState.error]} />}
-                                </Field>
-                            )}
-
-                        />
                         <Controller
                             control={form.control}
                             name="start_date"

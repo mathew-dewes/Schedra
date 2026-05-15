@@ -1,5 +1,5 @@
 
-import { BookingStatusEnum, BookingTypeEnum } from "@/lib/types/enums";
+import { BookingStatusEnum } from "@/lib/types/enums";
 import Bookings from "./_components/Bookings";
 import { Suspense } from "react";
 import { SkeletonTable } from "@/components/web/skeletons/SkeletonTable";
@@ -8,7 +8,6 @@ import { SkeletonTable } from "@/components/web/skeletons/SkeletonTable";
 type Props = {
     searchParams: Promise<{
         status?: BookingStatusEnum;
-        type?: BookingTypeEnum;
     }>;
 };
 

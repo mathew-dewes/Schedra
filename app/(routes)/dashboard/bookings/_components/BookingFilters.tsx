@@ -10,8 +10,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { BOOKING_STATUES, BOOKING_TYPES } from "@/lib/constants";
-import { BookingStatusEnum, BookingTypeEnum } from "@/lib/types/enums";
+import { BOOKING_STATUES } from "@/lib/constants";
+import { BookingStatusEnum } from "@/lib/types/enums";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function BookingFilters() {
@@ -22,17 +22,6 @@ export default function BookingFilters() {
 
     const currentType = searchParams.get("type") || "";
     const currentStatus = searchParams.get("status") || "";
-
-    function handleTypeChange(value: BookingTypeEnum) {
-        const params = new URLSearchParams(searchParams.toString());
-        if (!value) {
-            params.delete("type");
-        } else {
-            params.set("type", value);
-        }
-
-        router.push(`${pathname}?${params.toString()}`);
-    }
 
     function handleStatusChange(value: BookingStatusEnum) {
         const params = new URLSearchParams(searchParams.toString());
@@ -47,24 +36,7 @@ export default function BookingFilters() {
     return (
       
             <div className="flex gap-2 mt-4">
-                <Select
-                    value={currentType}
-                    onValueChange={handleTypeChange}
-                >
-                    <SelectTrigger className="w-full max-w-48">
-                        <SelectValue placeholder="Filter type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            <SelectLabel>Types</SelectLabel>
-                            {BOOKING_TYPES.map((type) => {
-                                return <SelectItem key={type} value={type}>{type}</SelectItem>
-                            })}
-
-                        </SelectGroup>
-                    </SelectContent>
-                </Select>
-
+    
                 <Select
                     value={currentStatus}
                     onValueChange={handleStatusChange}

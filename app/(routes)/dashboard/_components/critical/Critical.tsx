@@ -1,15 +1,18 @@
 
-import { BookingEntry, RenewalEntry } from "@/lib/types/entries";
+import { RenewalEntry } from "@/lib/types/entries";
 import { addDays, isPast, isWithinInterval } from "date-fns";
 import CriticalCard from "./CriticalCard";
-import { ShieldAlert, TriangleAlert } from "lucide-react";
+import { TriangleAlert } from "lucide-react";
 
 const now = new Date()
 
 
-export default async function Critical({renewals, bookings}:{
-    renewals: RenewalEntry[], bookings: BookingEntry[]
+export default async function Critical({renewals, }:{
+    renewals: RenewalEntry[]
 }){
+
+
+    
 
     const overdue = renewals.filter((renewal)=>{
         return isPast(renewal.dueDate)
@@ -23,11 +26,7 @@ export default async function Critical({renewals, bookings}:{
         )
     });
 
-    const breakDowns = bookings.filter((booking)=>{
-        return booking.booking_type == "Breakdown"
-    })
-
-
+ 
     
     return (
         <div className="grid lg:grid-cols-2 gap-5">
@@ -49,16 +48,7 @@ export default async function Critical({renewals, bookings}:{
             hide={dueSoon.length == 0}
             />
 
-            <CriticalCard 
-            icon={ShieldAlert}  
-            title="Active breakdowns" 
-            description={`${breakDowns.length} active breakdowns`}
-            cardType="activeBreakdown"
-            spanFull={true}
-            hide={breakDowns.length == 0}
-            bookings={breakDowns}
-            />
-  
+    
         </div>
     )
 }

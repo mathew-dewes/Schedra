@@ -9,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ACTIVITY_LABELS } from "@/lib/constants";
 import { Activity } from "@/lib/types";
 
 
@@ -33,14 +32,16 @@ export function RecentActivity({activities}: Props) {
       <TableHeader>
         <TableRow>
           <TableHead>Activity</TableHead>
+          <TableHead>Type</TableHead>
           <TableHead>Vehicle</TableHead>
-                 <TableHead className="text-right">Time</TableHead>
+                 <TableHead className="text-right">Entered</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {activities.map((row) => (
           <TableRow key={row.id}>
-            <TableCell>{ACTIVITY_LABELS[row.activity]}</TableCell>
+            <TableCell>{row.activity}</TableCell>
+            <TableCell>{row.type}</TableCell>
             <TableCell>{row.vehicle}</TableCell>
             <TableCell className="text-right">{formatDistanceToNow(row.time, { addSuffix: true })}</TableCell>
        

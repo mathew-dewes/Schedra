@@ -38,7 +38,6 @@ export async function createBooking(values: z.infer<typeof bookingFormSchema>) {
         start_date: parsed.data.start_date.toISOString(),
         center_id: parsed.data.center_id,
         vehicle_id: parsed.data.vehicle_id,
-        booking_type: parsed.data.booking_type,
         user_id,
     });
 

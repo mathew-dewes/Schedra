@@ -23,8 +23,7 @@ export default async function CriticalUpcoming() {
         <div>
             {!isCritial ? <p>You have no critical renewals at this time, Well done!</p> : 
              <Critical 
-            renewals={renewals} 
-            bookings={bookings} />}
+            renewals={renewals} />}
            
             <Upcoming 
             renewals={renewals} 
