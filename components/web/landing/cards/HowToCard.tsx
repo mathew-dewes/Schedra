@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { StepForward } from "lucide-react";
 
 
 type Props = {
@@ -19,17 +18,15 @@ export default function HowToCard({stepNumber, title, content}: Props){
       <CardHeader>
         <CardTitle>
             <div>
-                <div className="flex items-center gap-0.5">
-                <StepForward size={15} />
-                <p>Step {stepNumber}</p>
-                </div>
+                <p className="text-xs mb-2">Step {stepNumber}</p>
+             
                
-                <p>{title}</p>
+                <p className="text-lg">{title}</p>
             </div>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <p>
+        <p className="text-muted-foreground">
          {content}
         </p>
       </CardContent>

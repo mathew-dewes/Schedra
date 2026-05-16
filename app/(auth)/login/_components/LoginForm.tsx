@@ -60,12 +60,6 @@ export function LoginForm({
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FieldGroup>
                     <div className="flex flex-col items-center gap-2 text-center">
-                        <a
-                            href="#"
-                            className="flex flex-col items-center gap-2 font-medium"
-                        >
-                            <span className="sr-only">Login</span>
-                        </a>
                         <h1 className="text-xl font-bold">Login</h1>
                         <FieldDescription>
                             Don&apos;t have an account? <Link href="/register">Register</Link>
@@ -82,7 +76,7 @@ export function LoginForm({
                                     aria-invalid={fieldState.invalid}
                                     id="email"
                                     type="email"
-                                    placeholder="m@example.com"
+                                    placeholder="Enter email address"
                                 />
                                 {fieldState.invalid &&
                                     <FieldError errors={[fieldState.error]} />}
@@ -121,8 +115,7 @@ export function LoginForm({
                 </FieldGroup>
             </form>
             <FieldDescription className="px-6 text-center">
-                By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-                and <a href="#">Privacy Policy</a>.
+                Forgot your password? Click <Link href={'/password/reset'}>HERE</Link> to request a new one
             </FieldDescription>
         </div>
     )

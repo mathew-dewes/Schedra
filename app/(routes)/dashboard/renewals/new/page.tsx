@@ -1,26 +1,28 @@
-import RenewalForm from "./_components/RenewalForm";
+
+import { Suspense } from "react";
+import { LoadingForm } from "@/components/web/skeletons/LoadingForm";
+import ReturnToDash from "../../_components/buttons/ReturnToDash";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { getVehicles } from "@/lib/db/queries/vehicles";
-import { VehicleType } from "@/lib/db/types";
-import ReturnToDash from "../../_components/buttons/ReturnToDash";
+import RenewalForm from "./_components/RenewalForm";
 
 export default async function page() {
-    const userVehicles = await getVehicles() as VehicleType[];
-    const vehicles = userVehicles.map((item) => {
-        return {
-            id: item.id,
-            name: item.make + " " + item.model + " - " + item.plate_number
-        }
-    })
+
     return (
         <div>
-            <div className="flex gap-2">
+         <div className="flex gap-2">
                 <ReturnToDash />
                 <Link className={buttonVariants()} href={'/dashboard/renewals'}>View Renewals</Link>
 
             </div>
-            <RenewalForm vehicles={vehicles} />
+
+      <Suspense fallback={<LoadingForm />}>
+    <RenewalForm/>
+        </Suspense>
+   
         </div>
+     
+  
+  
     )
 }

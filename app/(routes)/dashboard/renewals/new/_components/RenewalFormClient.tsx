@@ -1,0 +1,137 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { renewalFormSchema } from "@/lib/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
+import { Controller, useForm } from "react-hook-form";
+import z from "zod";
+import RenewalTypeSelect from "./RenewalTypeSelect";
+import { VehiclePopover } from "../../../bookings/new/_components/VehiclePopover";
+import { Vehicle } from "@/lib/db/types";
+import { createRenewal } from "@/lib/db/mutations/renewals";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { RenewalDatePicker } from "./RenewalDatePicker";
+
+export default function RenewalFormClient(
+    { vehicles }: { vehicles: Vehicle[] }) {
+    const [isPending, startTransition] = useTransition();
+    const router = useRouter()
+    const form = useForm<z.infer<typeof renewalFormSchema>>({
+        resolver: zodResolver(renewalFormSchema),
+        defaultValues: {
+            type: "",
+            due_date: new Date(),
+            vehicle_id: ""
+        }
+    });
+
+
+    function onSubmit(values: z.infer<typeof renewalFormSchema>) {
+        startTransition((async () => {
+            const res = await createRenewal(values);
+
+            if (!res.success) {
+                toast.error(res.message)
+            } else {
+                toast.success(res.message);
+                router.push('/dashboard/renewals')
+            }
+
+        }))
+    }
+    return (
+        <Card className="w-full max-w-lg my-4">
+            <CardHeader>
+                <CardTitle>Renewal Form</CardTitle>
+                <CardDescription>
+                    Help us improve by reporting bugs you encounter.
+                </CardDescription>
+            </CardHeader>
+
+            <CardContent>
+                <form id="renewalForm" onSubmit={form.handleSubmit(onSubmit)}>
+                    <FieldGroup>
+                        <Controller
+                            control={form.control}
+                            name="vehicle_id"
+                            render={({ field, fieldState }) => (
+                                <Field className="sm:w-1/2" data-invalid={fieldState.invalid}>
+                                    <FieldContent>
+                                        <FieldLabel>
+                                            Vehicle
+                                        </FieldLabel>
+                                        <FieldDescription>
+                                            Select a service center from the list below
+                                        </FieldDescription>
+
+                                    </FieldContent>
+                                    <VehiclePopover value={field.value} onChange={field.onChange} vehicles={vehicles} />
+                                    {fieldState.invalid &&
+                                        <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+
+                        />
+                        <Controller
+                            control={form.control}
+                            name="type"
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldContent>
+                                        <FieldLabel>
+                                            Renewal Type
+                                        </FieldLabel>
+                                        <FieldDescription>
+                                            Select a renewal type from the list below
+                                        </FieldDescription>
+
+                                    </FieldContent>
+                                    <RenewalTypeSelect value={field.value} onChange={field.onChange} />
+                                    <FieldLabel>Renewal Type</FieldLabel>
+                                    {fieldState.invalid &&
+                                        <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            control={form.control}
+                            name="due_date"
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldContent>
+                                        <FieldLabel>
+                                            Due Date
+                                        </FieldLabel>
+
+                                        <RenewalDatePicker value={field.value} onChange={field.onChange} />
+                                    </FieldContent>
+                                    {/* <StartDatePicker value={field.value} onChange={field.onChange} /> */}
+
+                                    {fieldState.invalid &&
+                                        <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+
+                        />
+                    </FieldGroup>
+                </form>
+            </CardContent>
+
+            <CardFooter>
+                <Field orientation="horizontal">
+                    <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
+                        Reset
+                    </Button>
+                    <Button disabled={isPending} type="submit" form="renewalForm">
+                        Submit
+                    </Button>
+                </Field>    </CardFooter>
+
+        </Card>
+    )
+}
