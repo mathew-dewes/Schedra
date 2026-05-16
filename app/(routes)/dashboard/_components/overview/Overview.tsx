@@ -1,18 +1,19 @@
 
 import { getRecentActivities } from "@/lib/db/queries/activities";
 import { RecentActivity } from "./cards/RecentActivity";
-import { FleetStatusChart } from "./FleetStatusChart";
+
 import { Activity } from "@/lib/types";
-import { getVehicleStatusTotals } from "@/lib/db/queries/vehicles";
+import { OverviewChart } from "./OverviewChart";
 
 export default async function Overview(){
-const [recentActivities, totals] = await Promise.all([getRecentActivities(), getVehicleStatusTotals()])
+const recentActivities = await getRecentActivities();
 
     return (
-        <div className="grid xl:grid-cols-3 gap-5">
+        <div className="grid xl:grid-cols-5 col-span-1 gap-5">
             <RecentActivity 
             activities={recentActivities as Activity[]}/>
-            <FleetStatusChart data={totals as { status: string; total: number}[]}/>
+            <OverviewChart/>
+          
         </div>
     )
 }

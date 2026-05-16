@@ -30,6 +30,13 @@ export default async function Critical({renewals, }:{
     
     return (
         <div className="grid lg:grid-cols-2 gap-5">
+            <CriticalCard  icon={TriangleAlert}  title="Due Soon" 
+            description={`${dueSoon.length} Renewals Due This Week`}
+            renewals={dueSoon}
+            cardType="dueSoon"
+            disableLink={dueSoon.length == 0}
+    
+            />
             <CriticalCard
             icon={TriangleAlert} 
             title="Overdue" 
@@ -37,16 +44,10 @@ export default async function Critical({renewals, }:{
             renewals={overdue}
             cardType="overdue"
             disableLink={overdue.length == 0}
-            hide={overdue.length == 0}
+     
             />
 
-            <CriticalCard  icon={TriangleAlert}  title="Due Soon" 
-            description={`${dueSoon.length} Renewals Due This Week`}
-            renewals={dueSoon}
-            cardType="dueSoon"
-            disableLink={dueSoon.length == 0}
-            hide={dueSoon.length == 0}
-            />
+    
 
     
         </div>

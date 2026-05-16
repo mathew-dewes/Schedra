@@ -75,23 +75,20 @@ export const sidebarLinkData: SidebarLinkType = {
 
 
     {
-      title: "Reports",
+      title: "Export data",
       url: "/dashboard/reports",
       items: [
+
         {
-          title: "Overview",
-          url: "/dashboard/reports",
-        },
-        {
-          title: "Bookings",
+          title: "Export Bookings",
           url: "/dashboard/reports/bookings",
         },
         {
-          title: "Renewals",
+          title: "Export Renewals",
           url: "/dashboard/reports/renewals",
         },
         {
-          title: "Vehicles",
+          title: "Export Vehicles",
           url: "/dashboard/reports/vehicles",
         },
       ],

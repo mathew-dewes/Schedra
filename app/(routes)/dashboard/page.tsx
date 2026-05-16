@@ -9,8 +9,6 @@ export default function page() {
     return (
         <div className="space-y-10">
             <Actions />
-        
-
             <Suspense fallback={<CriticalUpcomingSkeleton/>}>
                 <CriticalUpcoming />
             </Suspense>

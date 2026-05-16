@@ -17,7 +17,6 @@ type Props = {
     icon: LucideIcon,
     cardType: CardType,
     spanFull?: boolean,
-    hide?: boolean,
     disableLink?: boolean
 };
 
@@ -30,7 +29,6 @@ export default function CriticalCard({
     icon: Icon,
     cardType,
     spanFull = false,
-    hide = false,
     disableLink = false
 }: Props) {
 
@@ -44,7 +42,7 @@ function actionLink(cardType:CardType ){
 }
 
     return (
-        <Card hidden={hide} className={cn(`w-full ${spanFull && "col-span-full"}`)}>
+        <Card  className={cn(`w-full ${spanFull && "col-span-full"}`)}>
             <CardHeader>
                 <CardTitle className="flex items-center gap-1 justify-center sm:justify-start">
                     {Icon && <Icon size={18}
