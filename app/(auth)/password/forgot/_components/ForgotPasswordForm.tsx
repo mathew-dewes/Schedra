@@ -11,43 +11,44 @@ import {
 
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { useTransition } from "react"
+import { useState, useTransition } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { loginSchema } from "@/lib/schemas"
+import { forgotPasswordSchema } from "@/lib/schemas"
 import z from "zod"
 import { ButtonSpinner } from "@/components/ui/buttonSpinner"
-import Link from "next/link"
-import { signInWithEmailPassword } from "@/lib/auth/actions"
+import { sendResetPasswordEmail } from "@/lib/auth/actions"
 import { toast } from "sonner"
-import { useRouter } from "next/navigation"
 
-export function LoginForm({
+
+export function ForgotPasswordForm({
     className,
     ...props
 }: React.ComponentProps<"div">) {
 
     const [isPending, startTransition] = useTransition();
-    const router = useRouter()
+    const [emailSent, setEmailSent] = useState(false)
     const form = useForm({
-        resolver: zodResolver(loginSchema),
+        resolver: zodResolver(forgotPasswordSchema),
         defaultValues: {
             email: "",
-            password: ""
         }
     });
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
+  function onSubmit(values: z.infer<typeof forgotPasswordSchema>) {
         startTransition(async () => {
-            const res = await signInWithEmailPassword(values);
 
-            if (!res.success){
-                toast.error(res.message)
-            } else {
-                toast.success(res.message);
-                router.push('/dashboard')
+            console.log("Hello");
+            
+  const res = await sendResetPasswordEmail(values);
 
-            }
+  if (!res.success){
+    toast.error(res.message)
+  } else {
+    toast.success(res.message);
+    setEmailSent(true);
+  }
+   
     
         
 
@@ -60,9 +61,9 @@ export function LoginForm({
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FieldGroup>
                     <div className="flex flex-col items-center gap-2 text-center">
-                        <h1 className="text-xl font-bold">Login</h1>
+                        <h1 className="text-xl font-bold">Forgot Password</h1>
                         <FieldDescription>
-                            Don&apos;t have an account? <Link href="/register">Register</Link>
+                            Please enter your email address
                         </FieldDescription>
                     </div>
                     <Controller
@@ -85,38 +86,19 @@ export function LoginForm({
                     >
 
                     </Controller>
-                    <Controller
-                        name="password"
-                        control={form.control}
-                        render={({ field, fieldState }) => (
-                            <Field>
-                                <FieldLabel htmlFor="password">Password</FieldLabel>
-                                <Input
-                                    {...field}
-                                    aria-invalid={fieldState.invalid}
-                                    id="password"
-                                    type="password"
-                                    placeholder="Enter password"
-                                />
-                                {fieldState.invalid &&
-                                    <FieldError errors={[fieldState.error]} />}
-                            </Field>
-                        )}
-                    >
-
-                    </Controller>
-
+    
                     <Field>
-                        {isPending ? <ButtonSpinner text="Logging in"/> : <Button>Login</Button>}
+                        {isPending ? <ButtonSpinner text="Validating"/> : <Button type="submit">Submit</Button>}
                        
                     </Field>
                  
     
                 </FieldGroup>
             </form>
-            <FieldDescription className="px-6 text-center">
-                Forgot your password? Click <Link href={'/password/forgot'}>HERE</Link> to request a new one
+                    <FieldDescription className="px-6 text-center">
+                {emailSent && "Please check your email"}
             </FieldDescription>
+
         </div>
     )
 }

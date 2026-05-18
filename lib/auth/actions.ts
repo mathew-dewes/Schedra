@@ -2,107 +2,143 @@
 
 import { createClientForServer } from "../supabase/server";
 import z from "zod";
-import { businessFormSchema, loginSchema, registerSchema } from "../schemas";
+import { loginSchema, registerSchema, resetPasswordSchema } from "../schemas";
 
-export async function SignOut(){
+export async function SignOut() {
     const supabase = await createClientForServer();
-    const {error} = await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
 
-    if (error){
+    if (error) {
         console.log(error);
-        
+
     } else {
-        return {success: true, message: "Signout out successful"}
+        return { success: true, message: "Signout out successful" }
     }
 };
 
 
-export async function signUpWithEmailPassword(values: z.infer<typeof registerSchema>){
+export async function signUpWithEmailPassword(values: z.infer<typeof registerSchema>) {
     const supabase = await createClientForServer();
 
-        const parsed = registerSchema.safeParse(values);
+    const parsed = registerSchema.safeParse(values);
 
-        if (!parsed.success){
-            return {success: false, message: "Validation failed"}
-        };
+    if (!parsed.success) {
+        return { success: false, message: "Validation failed" }
+    };
 
-            const {error} = await supabase.auth.signUp({
-                email: parsed.data.email,
-                password: parsed.data.confirmPassword,
-            options:{
-                emailRedirectTo: `${process.env.SITE_URL}/dashboard`,
-            }});
+    const { error } = await supabase.auth.signUp({
+        email: parsed.data.email,
+        password: parsed.data.confirmPassword,
+        options: {
+            emailRedirectTo: `${process.env.SITE_URL}/dashboard`,
+        }
+    });
 
-                if (error){
-                    console.log('Error', error);
-                    return {
-                        success: false,
-                        message: error.message
-                    }
-                    
-                }
+    if (error) {
+        console.log('Error', error);
+        return {
+            success: false,
+            message: error.message
+        }
+
+    }
 
 
-                return {
-                    success:true,
-                    message: 'Please check your email',
-            
+    return {
+        success: true,
+        message: 'Please check your email',
 
-                }
+
+    }
 
 
 }
-export async function signInWithEmailPassword(values: z.infer<typeof loginSchema>){
+export async function signInWithEmailPassword(values: z.infer<typeof loginSchema>) {
     const supabase = await createClientForServer();
 
-        const parsed = loginSchema.safeParse(values);
+    const parsed = loginSchema.safeParse(values);
 
-        if (!parsed.success){
-            return {success: false, message: "Validation failed"}
-        };
+    if (!parsed.success) {
+        return { success: false, message: "Validation failed" }
+    };
 
-            const {error} = await supabase.auth.signInWithPassword({
-                email: parsed.data.email,
-                password: parsed.data.password});
+    const { error } = await supabase.auth.signInWithPassword({
+        email: parsed.data.email,
+        password: parsed.data.password
+    });
 
-                if (error){
-                    console.log('Error', error);
-                    return {
-                        success: false,
-                        message: error.message
-                    }
-                    
-                }
+    if (error) {
+        console.log('Error', error);
+        return {
+            success: false,
+            message: error.message
+        }
 
-            
-                
+    }
 
-                return {
-                    success:true,
-                    message: 'Login in successful',
-            
 
-                }
+
+
+    return {
+        success: true,
+        message: 'Login in successful',
+
+
+    }
 
 
 };
 
+export async function sendResetPasswordEmail(values: z.infer<typeof resetPasswordSchema>) {
+    const supabase = await createClientForServer();
+    const parsed = resetPasswordSchema.safeParse(values);
 
-export async function updateBusinessName(values: z.infer<typeof businessFormSchema>){
-   const supabase = await createClientForServer();
+    if (!parsed.success) {
+        return { success: false, message: "Validation failed" }
+    };
+    const { error } = await supabase.auth.resetPasswordForEmail(
+        parsed.data.email
+    );
 
-        const parsed = businessFormSchema.safeParse(values);
+    
+    if (error) {
+        console.log('Error', error);
+        return {
+            success: false,
+            message: error.message
+        }
 
-        if (!parsed.success){
-            return {success: false, message: "Validation failed"}
-        };
-
-        const {error} = await supabase.auth.updateUser({
-            data: {business_name: parsed.data.name}
-        });
-
-          if (error) {
-        return { success: false, message: error.message };
     }
-    return { success: true, message: "Business name updated" };
+
+    return {
+        success: true,
+        message: 'Please check your email',
+
+
+    }
+};
+
+
+export async function updatePassword(password: string) {
+    const supabase = await createClientForServer();
+
+    const { error } = await supabase.auth.updateUser({
+        password
+    });
+
+    if (error) {
+        console.log('Error', error);
+        return {
+            success: false,
+            message: error.message
+        }
+
+    }
+
+    return {
+        success: true,
+        message: 'Password updated',
+
+
+    }
 }

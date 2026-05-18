@@ -6,6 +6,14 @@ export const loginSchema = z.object({
   password: z.string().min(5, 'Password must be 5 or more characters').max(30, 'Password must be 30 or less characters')
 });
 
+export const forgotPasswordSchema = z.object({
+  email: z.email()
+})
+
+export const resetPasswordSchema = z.object({
+  email: z.email()
+})
+
 export const registerSchema = z.object({
   name: z.string('Full name is required').min(5, 'Full name must be 5 or more characters').max(30, 'Full name must be 30 or less characters'),
   email: z.email(),
