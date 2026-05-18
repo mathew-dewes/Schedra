@@ -41,12 +41,27 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
         const res = await createVehicle(values);
 
         if (!res.success){
-            toast.error(res.message)
-        } else {
-            toast.success(res.message);
-            router.push('/dashboard/vehicles')
-
+            if (res.fieldErrors?.plant_number) {
+                form.setError("plant_number", {
+                    type: "server",
+                    message: res.fieldErrors.plant_number
+                });
+            }
+            if (res.fieldErrors?.plate_number) {
+                form.setError("plate_number", {
+                    type: "server",
+                    message: res.fieldErrors.plate_number
+                });
+            }
+            if (!res.fieldErrors?.plant_number && !res.fieldErrors?.plate_number) {
+                toast.error(res.message)
+            }
+            return;
         }
+
+        toast.success(res.message);
+        router.push('/dashboard/vehicles')
+
     }))
 
 }

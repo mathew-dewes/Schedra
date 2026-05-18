@@ -1,4 +1,5 @@
 import z from "zod";
+import { RENEWAL_TYPES } from "./constants";
 
 export const loginSchema = z.object({
   email: z.email(),
@@ -51,7 +52,7 @@ export const serviceProviderFormSchema = z.object({
 
 
 export const renewalFormSchema = z.object({
-  type: z.string().min(1, 'Renewal type is required'),
+  type: z.enum(RENEWAL_TYPES, "Please select a renewal type"),
   vehicle_id: z.string().min(1, 'Please select a vehicle'),
   due_date: z.date(),
 

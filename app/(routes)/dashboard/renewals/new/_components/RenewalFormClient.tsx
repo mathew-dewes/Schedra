@@ -23,7 +23,7 @@ export default function RenewalFormClient(
     const form = useForm<z.infer<typeof renewalFormSchema>>({
         resolver: zodResolver(renewalFormSchema),
         defaultValues: {
-            type: "",
+            type: "Registration",
             due_date: new Date(),
             vehicle_id: ""
         }
@@ -32,10 +32,24 @@ export default function RenewalFormClient(
 
     function onSubmit(values: z.infer<typeof renewalFormSchema>) {
         startTransition((async () => {
-            const res = await createRenewal(values);
+            const selectedVehicle = vehicles.find((vehicle) => {
+                return vehicle.id == values.vehicle_id
+            }) as Vehicle;
+
+
+
+            const res = await createRenewal(values, selectedVehicle);
 
             if (!res.success) {
-                toast.error(res.message)
+                if (res.fieldErrors?.type) {
+                    form.setError("type", {
+                        type: "server",
+                        message: res.fieldErrors.type
+                    });
+
+                }
+                toast.error(res.message);
+
             } else {
                 toast.success(res.message);
                 router.push('/dashboard/renewals')
@@ -110,8 +124,6 @@ export default function RenewalFormClient(
 
                                         <RenewalDatePicker value={field.value} onChange={field.onChange} />
                                     </FieldContent>
-                                    {/* <StartDatePicker value={field.value} onChange={field.onChange} /> */}
-
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
                                 </Field>

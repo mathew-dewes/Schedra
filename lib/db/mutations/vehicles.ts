@@ -27,6 +27,44 @@ export async function createVehicle(values: z.infer<typeof vehicleFormSchema>) {
         }
     };
 
+    const plantNumber = parsed.data.plant_number.toUpperCase();
+    const plateNumber = parsed.data.plate_number.toUpperCase();
+
+    const { data: existingVehicles, error: validateVehicleError } = await supabase
+        .from("vehicles")
+        .select("plant_number, plate_number")
+        .eq("user_id", user_id)
+        .or(`plant_number.eq.${plantNumber},plate_number.eq.${plateNumber}`)
+        .limit(1);
+
+    if (validateVehicleError) {
+        console.log(validateVehicleError);
+        return {
+            success: false,
+            message: validateVehicleError.message
+        };
+    }
+
+    const existing = existingVehicles?.[0];
+    if (existing?.plant_number === plantNumber) {
+        return {
+            success: false,
+            message: `Plant number ${parsed.data.plant_number} is already in use`,
+            fieldErrors: {
+                plant_number: `Plant number ${parsed.data.plant_number} is already in use`
+            }
+        };
+    }
+
+    if (existing?.plate_number === plateNumber) {
+        return {
+            success: false,
+            message: `Plate number ${parsed.data.plate_number} is already in use`,
+            fieldErrors: {
+                plate_number: `Plate number ${parsed.data.plate_number} is already in use`
+            }
+        };
+    }
 
     const { error } = await supabase.from("vehicles").insert({
         make: parsed.data.make,
@@ -38,12 +76,7 @@ export async function createVehicle(values: z.infer<typeof vehicleFormSchema>) {
     });
 
     if (error) {
-        if (error!.code === "23505") {
-            return {
-                success: false,
-                message: "Plant or licence plate number already exists",
-            };
-        }
+
         return {
             success: false,
             message: error.message

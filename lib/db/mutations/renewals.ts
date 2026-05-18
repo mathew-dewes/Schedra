@@ -5,11 +5,14 @@ import { createClientForServer, getUserId } from "@/lib/supabase/server";
 import { RenewalTypeEmum } from "@/lib/types/enums";
 import { revalidatePath } from "next/cache";
 import z from "zod";
+import { Vehicle } from "../types";
 
 
-export async function createRenewal(values: z.infer<typeof renewalFormSchema>){
+export async function createRenewal(values: z.infer<typeof renewalFormSchema>, vehicle: Vehicle){
       const supabase = await createClientForServer();
         const user_id = await getUserId();
+
+        
     
         const parsed = renewalFormSchema.safeParse(values);
     
@@ -27,6 +30,32 @@ export async function createRenewal(values: z.infer<typeof renewalFormSchema>){
     
             }
         };
+
+        const { data: typeExist, error: validateTypeError } = await supabase
+  .from("renewals")
+  .select("type")
+  .eq("user_id", user_id)
+  .eq("type", parsed.data.type)
+  .limit(1);
+
+
+     if (validateTypeError) {
+        console.log(validateTypeError);
+        return {
+            success: false,
+            message: validateTypeError.message
+        };
+
+    };
+    if (typeExist?.length) {
+  return {
+    success: false,
+    message: `Renewal type ${parsed.data.type} is already used for ${vehicle.name}`,
+    fieldErrors: {
+      type: `Renewal type ${parsed.data.type} is already used for ${vehicle.name}`
+    }
+  };
+}
 
 
 

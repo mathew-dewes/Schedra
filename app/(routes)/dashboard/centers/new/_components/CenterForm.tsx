@@ -32,19 +32,27 @@ export default function CenterForm() {
         }
     });
 
-    function onSubmit(values: z.infer<typeof serviceProviderFormSchema>) {
-        startTransition((async () => {
-            const res = await createProvider(values);
+function onSubmit(values: z.infer<typeof serviceProviderFormSchema>) {
+  startTransition(async () => {
+    const res = await createProvider(values);
 
-            if (!res.success){
-                toast.error(res.message)
-            } else {
-                toast.success(res.message)
-                router.push('/dashboard/centers')
-            }
-
-        }))
+    if (!res.success) {
+      if (res.fieldErrors?.email) {
+        form.setError("email", {
+          type: "server",
+          message: res.fieldErrors.email
+        });
+        
+      } else {
+        toast.error(res.message);
+      }
+      return;
     }
+
+    toast.success(res.message);
+    router.push("/dashboard/centers");
+  });
+}
     return (
         <Card className="w-full max-w-lg my-4">
             <CardHeader>

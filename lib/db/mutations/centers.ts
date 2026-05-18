@@ -27,6 +27,32 @@ export async function createProvider(values: z.infer<typeof serviceProviderFormS
     };
 
 
+const { data: emailExist, error: validateEmailError } = await supabase
+  .from("service_centers")
+  .select("email")
+  .eq("user_id", user_id)
+  .eq("email", parsed.data.email)
+  .limit(1);
+
+
+     if (validateEmailError) {
+        console.log(validateEmailError);
+        return {
+            success: false,
+            message: validateEmailError.message
+        };
+
+    };
+    if (emailExist?.length) {
+  return {
+    success: false,
+    message: `Email address ${parsed.data.email} is already used under another center`,
+    fieldErrors: {
+      email: `Email address ${parsed.data.email} is already used under another center`
+    }
+  };
+}
+
     const {error} = await supabase.from("service_centers").insert({
         name: parsed.data.name,
         contact_name: parsed.data.contact_name,
