@@ -128,3 +128,17 @@
     @apply font-sans;
   }
 }
+
+@theme {
+  --animate-bounce-right: bounce-right 1s infinite;
+
+  @keyframes bounce-right {
+    0%, 100% {
+      transform: translateX(0);
+    }
+
+    50% {
+      transform: translateX(3px);
+    }
+  }
+}

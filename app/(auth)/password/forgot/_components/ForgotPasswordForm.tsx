@@ -94,7 +94,7 @@ export function ForgotPasswordForm({
                 </FieldGroup>
             </form>
             <FieldDescription className="flex items-center gap-2" hidden={!emailSent}>
-                        <CircleCheck color="green" /><p>Please check your email<br/> Note: The reset link maybe in your spam folder</p>
+                        <CircleCheck color="green" />Please check your email<br/> Note: The reset link maybe in your spam folder
             </FieldDescription>
 
         </div>
