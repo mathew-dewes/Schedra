@@ -14,13 +14,12 @@ import { Input } from "@/components/ui/input"
 import { useTransition } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { loginSchema, resetPasswordSchema } from "@/lib/schemas"
+import { forgotPasswordSchema } from "@/lib/schemas"
 import z from "zod"
 import { ButtonSpinner } from "@/components/ui/buttonSpinner"
-import Link from "next/link"
-import { signInWithEmailPassword, updatePassword } from "@/lib/auth/actions"
+import { updatePassword } from "@/lib/auth/actions"
 import { toast } from "sonner"
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 
 export function ResetPasswordForm({
     className,
@@ -28,18 +27,24 @@ export function ResetPasswordForm({
 }: React.ComponentProps<"div">) {
 
     const [isPending, startTransition] = useTransition();
-    const router = useRouter()
+    const router = useRouter();
     const form = useForm({
-        resolver: zodResolver(loginSchema),
+        resolver: zodResolver(forgotPasswordSchema),
         defaultValues: {
-            email: "",
             password: ""
         }
     });
 
-  function onSubmit(values: z.infer<typeof resetPasswordSchema>) {
+  function onSubmit(values: z.infer<typeof forgotPasswordSchema>) {
         startTransition(async () => {
-       const res = await updatePassword(values)
+       const res = await updatePassword(values);
+
+       if (!res.success){
+        toast.error(res.message)
+       } else {
+        toast.success(res.message);
+        router.push('/dashboard')
+       }
        
     
         
@@ -55,7 +60,7 @@ export function ResetPasswordForm({
                     <div className="flex flex-col items-center gap-2 text-center">
                         <h1 className="text-xl font-bold">Reset Password</h1>
                         <FieldDescription>
-                            Don&apos;t have an account? <Link href="/register">Register</Link>
+                        Please enter a new password
                         </FieldDescription>
                     </div>
               
@@ -70,7 +75,7 @@ export function ResetPasswordForm({
                                     aria-invalid={fieldState.invalid}
                                     id="password"
                                     type="password"
-                                    placeholder="Enter password"
+                                    placeholder="Enter new password"
                                 />
                                 {fieldState.invalid &&
                                     <FieldError errors={[fieldState.error]} />}

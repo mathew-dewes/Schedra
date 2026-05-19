@@ -3,16 +3,16 @@ import { RENEWAL_TYPES } from "./constants";
 
 export const loginSchema = z.object({
   email: z.email(),
-  password: z.string().min(5, 'Password must be 5 or more characters').max(30, 'Password must be 30 or less characters')
+  password: z.string().min(6, 'Password must be 6 or more characters').max(30, 'Password must be 30 or less characters')
 });
 
-export const forgotPasswordSchema = z.object({
+export const forgotPasswordEmailSchema = z.object({
   email: z.email()
 })
 
-export const resetPasswordSchema = z.object({
-  email: z.email()
-})
+export const forgotPasswordSchema = z.object({
+  password: z.string().min(6, "Password must be 6 or more characters ")
+});
 
 export const registerSchema = z.object({
   name: z.string('Full name is required').min(5, 'Full name must be 5 or more characters').max(30, 'Full name must be 30 or less characters'),

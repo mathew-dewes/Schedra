@@ -2,7 +2,7 @@
 
 import { createClientForServer } from "../supabase/server";
 import z from "zod";
-import { loginSchema, registerSchema, resetPasswordSchema } from "../schemas";
+import { loginSchema, registerSchema, forgotPasswordEmailSchema, forgotPasswordSchema } from "../schemas";
 
 export async function SignOut() {
     const supabase = await createClientForServer();
@@ -89,9 +89,9 @@ export async function signInWithEmailPassword(values: z.infer<typeof loginSchema
 
 };
 
-export async function sendResetPasswordEmail(values: z.infer<typeof resetPasswordSchema>) {
+export async function sendResetPasswordEmail(values: z.infer<typeof forgotPasswordEmailSchema>) {
     const supabase = await createClientForServer();
-    const parsed = resetPasswordSchema.safeParse(values);
+    const parsed = forgotPasswordEmailSchema.safeParse(values);
 
     if (!parsed.success) {
         return { success: false, message: "Validation failed" }
@@ -112,18 +112,24 @@ export async function sendResetPasswordEmail(values: z.infer<typeof resetPasswor
 
     return {
         success: true,
-        message: 'Please check your email',
+        message: 'If an account exists, a reset email has been sent.',
 
 
     }
 };
 
 
-export async function updatePassword(password: string) {
+export async function updatePassword(values: z.infer<typeof forgotPasswordSchema>) {
     const supabase = await createClientForServer();
 
+       const parsed = forgotPasswordSchema.safeParse(values);
+
+    if (!parsed.success) {
+        return { success: false, message: "Validation failed" }
+    };
+
     const { error } = await supabase.auth.updateUser({
-        password
+        password: parsed.data.password
     });
 
     if (error) {
