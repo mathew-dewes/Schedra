@@ -36,3 +36,12 @@ export type Activity = {
   time: Date,
 };
 
+
+export type RenewalChartEntry = {
+  date: string,
+  WOF: number,
+  REGO: number,
+  RUC: number,
+  SERVICE: number
+}
+

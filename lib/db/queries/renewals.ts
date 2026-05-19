@@ -106,4 +106,81 @@ export async function getRenewal(renewal_id: string){
         notes: renewal.notes
     };
 
+};
+
+
+export async function getRenewalChartData(){
+    const user_id = await getUserId();
+    const supabase = await createClientForServer();
+
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    };
+
+    const {data, error} = await supabase.from("renewals").select("due_date, type")
+    .eq("user_id", user_id);
+
+       if (error) {
+        console.log("Error:", error);
+        return {
+            success: false,
+            message: error.message
+        }
+    };
+
+      const chartMap: Record<
+    string,
+    {
+      date: string;
+      WOF: number;
+      REGO: number;
+      RUC: number;
+      SERVICE: number;
+    }
+  > = {};
+
+    for (let i = 0; i < 30; i++) {
+    const date = new Date();
+
+    date.setDate(date.getDate() + i);
+
+    const formattedDate = date.toISOString().split("T")[0];
+
+    chartMap[formattedDate] = {
+      date: formattedDate,
+      WOF: 0,
+      REGO: 0,
+      RUC: 0,
+      SERVICE: 0,
+    };
+  }
+  data.forEach((renewal) => {
+    const date = renewal.due_date.split("T")[0];
+
+    // Ignore dates outside the next 30 days
+    if (!chartMap[date]) return;
+
+    switch (renewal.type) {
+      case "Warrant of fitness":
+        chartMap[date].WOF += 1;
+        break;
+
+      case "Registration":
+        chartMap[date].REGO += 1;
+        break;
+
+      case "Road user charge":
+        chartMap[date].RUC += 1;
+        break;
+
+      case "Service":
+        chartMap[date].SERVICE += 1;
+        break;
+    }
+  });
+
+  return Object.values(chartMap);
 }
