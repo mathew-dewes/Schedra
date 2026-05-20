@@ -29,8 +29,7 @@ const form = useForm<z.infer<typeof vehicleFormSchema>>({
         plate_number: "",
         make: "",
         model: "",
-        year: "",
-        vin: ""
+        year: ""
     
     }
 });
@@ -165,25 +164,6 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                         </Field>
                     )}
                     />
-                    <Controller
-                    control={form.control}
-                    name="vin"
-                    render={({field, fieldState})=>(
-                        <Field>
-                             <FieldLabel>VIN number - Optional</FieldLabel>
-                             <Input
-                                className="uppercase placeholder:normal-case"
-                             {...field}
-                             aria-invalid={fieldState.invalid}
-                             type="text"
-                             placeholder="Enter vehicle plant number"
-                             />
-                              {fieldState.invalid &&
-                                    <FieldError errors={[fieldState.error]} />}
-                        </Field>
-                    )}
-                    />
-
                          <Controller
               name="notes"
               control={form.control}

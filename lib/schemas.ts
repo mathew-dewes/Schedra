@@ -44,7 +44,6 @@ export const vehicleFormSchema = z.object({
   make: z.string().min(1, 'Vehicle make is required'),
   model: z.string().min(1, 'Vehicle model is required'),
   year: z.string().min(1, 'Vehicle year is required'),
-  vin: z.string().optional(),
   notes: z.string().optional()
 });
 
