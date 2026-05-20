@@ -1,12 +1,17 @@
-import { LoginForm } from "./_components/LoginForm";
+import Login from "./_components/Login";
+
+type Props = {
+  searchParams: Promise<{[key: string]: string}>
+  
+}
 
 
-export default function LoginPage() {
+export default async function page({searchParams}:Props) {
+
+  const showDemo = (await searchParams).demo;
+
+  
   return (
-    <div className="flex mt-10 flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <LoginForm />
-      </div>
-    </div>
+   <Login demo={showDemo == "true"}/>
   )
 }

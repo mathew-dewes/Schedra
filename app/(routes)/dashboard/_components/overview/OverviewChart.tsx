@@ -78,8 +78,8 @@ export function OverviewChart({renewalData}:{
     <Card className="pt-0 xl:col-span-3 col-span-5">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1">
-          <CardTitle>Renewal forcast</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-center sm:text-left">Renewal forcast</CardTitle>
+          <CardDescription className="text-center sm:text-left">
             Showing upcoming renewals for the next 30 days
           </CardDescription>
         </div>

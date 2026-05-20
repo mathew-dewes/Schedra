@@ -12,7 +12,7 @@ type Props = {
 }
 
 export default function FeatureCard({title, description}: Props){
-    return <Card  className="w-full max-w-xs"  >
+    return <Card size="sm" className="w-full max-w-xs"  >
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>

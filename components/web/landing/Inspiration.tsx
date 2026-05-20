@@ -4,8 +4,8 @@ export default function Inspiration() {
     return (
         <section>
          <div className="max-w-3xl m-auto">
-              <h2 className="font-semibold text-2xl text-center">Inspiration</h2>
-              <p className="text-muted-foreground mt-3">{inspiration}</p>
+              <h2 className="font-bold text-xl text-center">Inspiration</h2>
+              <p className="text-muted-foreground text-sm mt-3">{inspiration}</p>
             </div>
 
         </section>

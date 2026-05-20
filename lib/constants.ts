@@ -73,27 +73,6 @@ export const sidebarLinkData: SidebarLinkType = {
     },
 
 
-
-    {
-      title: "Export data",
-      url: "/dashboard/reports",
-      items: [
-
-        {
-          title: "Export Bookings",
-          url: "/dashboard/reports/bookings",
-        },
-        {
-          title: "Export Renewals",
-          url: "/dashboard/reports/renewals",
-        },
-        {
-          title: "Export Vehicles",
-          url: "/dashboard/reports/vehicles",
-        },
-      ],
-    },
-
   ],
 };
 
