@@ -1,0 +1,101 @@
+make,model,year,plant_number,plate_number,status,user_id
+Ford,Ranger,2021,P3.001,DHA104,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Ford,Ranger,2021,P3.002,AVW696,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Ford,Ranger,2021,P3.003,JLY327,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Ford,Ranger,2021,P3.004,OVS986,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Ford,Ranger,2021,P3.005,RQM745,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Ford,Ranger,2021,P3.006,GMK601,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Ford,Ranger,2021,P3.007,HJC680,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Ford,Ranger,2021,P3.008,YGF578,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Ford,Ranger,2021,P3.009,VSY596,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Ford,Ranger,2021,P3.010,UPW399,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.011,RBM711,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.012,RQF493,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.013,GRB749,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.014,KVS962,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.015,EJP660,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.016,FAX214,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.017,WKQ767,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.018,GCI520,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.019,KXD953,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,Hilux,2018,P3.020,XEH835,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.021,FVW127,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.022,OJR215,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.023,VTI561,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.024,OFX339,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.025,MXW982,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.026,VOK343,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.027,BOB855,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.028,JQY358,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.029,QDL301,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mitsubishi ,Triton,2019,P3.030,MBJ798,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.031,ZTN869,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.032,EBM159,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.033,WNW644,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.034,FPA960,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.035,HCF767,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.036,GTB381,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.037,XOI917,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.038,MLB430,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.039,PFU693,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Mazda ,BT-50,2016,P3.040,ENS962,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.041,LFM457,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.042,LJZ692,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.043,VSN983,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.044,UHQ973,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.045,XYS401,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.046,MQI764,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.047,NRC603,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.048,HUE115,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.049,ZWL367,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,Navara,2014,P3.050,TMW595,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.051,YCF727,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.052,OSI976,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.053,FTY773,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.054,TBE693,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.055,EWN521,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.056,YRS277,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.057,ANT113,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.058,HAF390,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.059,BCF105,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Isuzu,D-Max,2022,P3.060,FHF349,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.061,VCN173,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.062,TFD917,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.063,CCG566,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.064,CSX766,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.065,VGF712,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.066,VHE975,In service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.067,UCK373,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.068,IVP459,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.069,NMT612,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.070,HCB194,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Toyota,RAV4,2024,P3.071,BWI158,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.072,MOB428,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.073,NXI622,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.074,MSD706,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.075,DKT390,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.076,YTZ215,Under maintenance,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.077,QAF251,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.078,ZAG728,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.079,TPA430,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.080,BGG765,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Holden,Colorado,2021,P3.081,IPO573,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.082,VWF851,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.083,ESF616,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.084,FWS542,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.085,QLP199,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.086,GTR242,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.087,KLF231,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.088,STD531,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.089,WQO258,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.090,ZPE176,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Volkswagen,Amarok,2018,P3.091,OWL473,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,X-Trail,2015,P3.092,YUD502,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,X-Trail,2015,P3.093,CBC341,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,X-Trail,2015,P3.094,DDV642,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,X-Trail,2015,P3.095,KGI629,Avaiable,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,X-Trail,2015,P3.096,TKD508,Out of service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,X-Trail,2015,P3.097,VNE105,Out of service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,X-Trail,2015,P3.098,MXR744,Out of service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,X-Trail,2015,P3.099,UAE664,Out of service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
+Nissan,X-Trail,2015,P3.100,TJE697,Out of service,da2b720c-33ee-4748-a1c9-0b54bc4debd3
