@@ -3,7 +3,7 @@
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
 import { RenewalStatusEnum, RenewalTypeEmum } from "@/lib/types/enums";
 import { generateRenewalStatus } from "@/lib/utils";
-import { subDays } from "date-fns";
+import { addDays, subDays } from "date-fns";
 
 
 type GetRenewalsProps = {
@@ -75,6 +75,48 @@ export async function getRenewals({
     return filtered;
 
 };
+
+export async function getRecentRenewals(){
+       const user_id = await getUserId();
+    const supabase = await createClientForServer();
+    const aWeekFromNow = addDays(new Date(), 7);
+
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    };
+
+    const query = supabase.from("renewals")
+        .select(`id, due_date, type, vehicles(make, model, year, plant_number, plate_number)`)
+        .lte("due_date", aWeekFromNow.toISOString())
+        .order("due_date", {ascending: true})
+  
+
+      const { data, error } = await query;
+    if (error) {
+        console.log("Error:", error);
+        return {
+            success: false,
+            message: error.message
+        }
+    };
+
+    const formatted = data?.map((renewal) => ({
+        id: renewal.id,
+        dueDate: new Date(renewal.due_date),
+        type: renewal.type,
+        vehicle: renewal.vehicles.make + " " + renewal.vehicles.model,
+        plant: renewal.vehicles.plant_number.toUpperCase(),
+        status: generateRenewalStatus(new Date(renewal.due_date)),
+        vehicle_plate: renewal.vehicles.plate_number
+
+    }));
+
+    return formatted;
+
+}
 
 
 export async function getRenewal(renewal_id: string){

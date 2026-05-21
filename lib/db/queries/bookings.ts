@@ -26,13 +26,13 @@ export async function getBookings({
             vehicles(make, model, plant_number, plate_number), 
             service_centers(name, email)
             `)
-        .eq("user_id", user_id).order("start_date", {ascending: true});
+        .eq("user_id", user_id).order("start_date", { ascending: true });
 
-    if (status){
+    if (status) {
         query = query.eq("status", status)
     };
 
-      const { data, error } = await query;
+    const { data, error } = await query;
 
     if (error) {
         console.log("Error:", error);
@@ -60,3 +60,53 @@ export async function getBookings({
 
     return formatted
 };
+
+export async function getUpcomingBookings() {
+    const user_id = await getUserId();
+    const supabase = await createClientForServer();
+
+    if (!user_id) {
+        return {
+            success: false,
+            message: "Unauthorized"
+        }
+    };
+
+    const query = supabase.from("bookings")
+        .select(`id, title, description, start_date, status, 
+            vehicles(make, model, plant_number, plate_number), 
+            service_centers(name, email)
+            `)
+        .eq("user_id", user_id).order("start_date", { ascending: true }).limit(10);
+
+
+
+    const { data, error } = await query;
+
+    if (error) {
+        console.log("Error:", error);
+        return {
+            success: false,
+            message: error.message
+        }
+    };
+
+
+
+    const formatted = data?.map((booking) => ({
+
+        id: booking.id,
+        title: booking.title,
+        status: booking.status,
+        bookingDate: new Date(booking.start_date),
+        center: booking.service_centers?.name,
+        center_email: booking.service_centers?.email,
+        plant: booking.vehicles.plant_number,
+        vehicle: booking.vehicles.make + " " + booking.vehicles.model,
+        plate_number: booking.vehicles.plate_number
+
+    }));
+
+    return formatted
+};
+

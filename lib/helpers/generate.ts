@@ -45,19 +45,18 @@ export function randomNumber(min: number, max:  number) {
 };
 
 
-export function generateDueDate() {
-  const rand = Math.random();
-
+export function generateDueDate(index: number) {
+  
   const date = new Date();
 
   // overdue
-  if (rand < 0.15) {
+   if (index < 5) {
     date.setDate(date.getDate() - randomNumber(1, 90));
     return date;
   }
 
   // due soon
-  if (rand < 0.30) {
+  if (index < 10) {
     date.setDate(date.getDate() + randomNumber(0, 7));
     return date;
   }

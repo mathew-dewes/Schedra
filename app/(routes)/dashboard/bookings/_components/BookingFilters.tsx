@@ -10,7 +10,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { BOOKING_STATUES } from "@/lib/constants";
+import { BOOKING_STATUSES } from "@/lib/constants";
 import { BookingStatusEnum } from "@/lib/types/enums";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -47,7 +47,7 @@ export default function BookingFilters() {
                     <SelectContent>
                         <SelectGroup>
                             <SelectLabel>Status</SelectLabel>
-                            {BOOKING_STATUES.map((status) => {
+                            {BOOKING_STATUSES.map((status) => {
                                 return <SelectItem key={status} value={status}>{status}</SelectItem>
                             })}
 

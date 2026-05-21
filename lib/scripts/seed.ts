@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { BOOKING_STATUSES, RENEWAL_TYPES } from "../constants";
+import { RENEWAL_TYPES } from "../constants";
 import { BookingInsert, RenewalInsert, Vehicle } from "../db/types";
 import { generateDueDate, generateRandomDate, getRandom } from "../helpers/generate";
 import { createClient } from "@supabase/supabase-js";
@@ -41,13 +41,14 @@ async function seedData() {
         await supabase.from('renewals').delete().eq("user_id", demo_user_id);
         await supabase.from('bookings').delete().eq("user_id", demo_user_id);
 
+        let i = 0;
 
         for (const vehicle of vehicles as Vehicle[]) {
             for (const type of RENEWAL_TYPES) {
                 renewals.push({
                     vehicle_id: vehicle.id,
                     type,
-                    due_date: generateDueDate().toISOString(),
+                    due_date: generateDueDate(i++).toISOString(),
                     user_id: demo_user_id
                 })
             }
@@ -57,7 +58,7 @@ async function seedData() {
             bookings.push({
                 vehicle_id: getRandom(vehicles).id,
                 start_date: generateRandomDate().toISOString(),
-                status: getRandom(BOOKING_STATUSES),
+                status: getRandom(["Scheduled","Completed"]),
                 title: "Testing seeding data",
                 center_id: getRandom(centers).id,
                 user_id: demo_user_id

@@ -14,7 +14,7 @@ import {
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 import { BookingEntry } from "@/lib/types/entries"
-import { BOOKING_STATUES, bookingStatusStyles } from "@/lib/constants"
+import { BOOKING_STATUSES, bookingStatusStyles } from "@/lib/constants"
 import BookingStatusChanger from "../BookingStatusChanger"
 import DeleteBookingButton from "../DeleteBookingButton"
 
@@ -87,7 +87,7 @@ return <div className="flex w-fit items-center gap-2 p-1.5">
               Copy center email
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            {BOOKING_STATUES.map((status)=>{
+            {BOOKING_STATUSES.map((status)=>{
             if (status == booking.status) return
             return <BookingStatusChanger key={status} status={status} booking_id={booking.id}/>
             })}
