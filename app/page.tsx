@@ -5,7 +5,9 @@ import HowItWorks from "@/components/web/landing/HowItWorks";
 import Inspiration from "@/components/web/landing/Inspiration";
 
 
-export default async function page(){
+export default  function page(){
+
+
   return (
     <div className="space-y-15 mb-40">
       <Hero/>

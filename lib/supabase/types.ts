@@ -131,34 +131,12 @@ export type Database = {
           },
         ]
       }
-      notes: {
-        Row: {
-          created_at: string
-          id: string
-          note: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          note: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          note?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       renewals: {
         Row: {
           completed: boolean | null
           created_at: string
           due_date: string
           id: string
-          interval_days: number | null
           notes: string | null
           renewed_at: string | null
           type: Database["public"]["Enums"]["renewal_type"]
@@ -171,7 +149,6 @@ export type Database = {
           created_at?: string
           due_date: string
           id?: string
-          interval_days?: number | null
           notes?: string | null
           renewed_at?: string | null
           type: Database["public"]["Enums"]["renewal_type"]
@@ -184,7 +161,6 @@ export type Database = {
           created_at?: string
           due_date?: string
           id?: string
-          interval_days?: number | null
           notes?: string | null
           renewed_at?: string | null
           type?: Database["public"]["Enums"]["renewal_type"]

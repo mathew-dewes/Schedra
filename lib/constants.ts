@@ -118,7 +118,7 @@ export const ACTIVITY_LABELS = {
     "Service reminder added",
 };
 
-export const BOOKING_STATUES = ["Scheduled", "In progress", "Completed"] as BookingStatusEnum[]
+export const BOOKING_STATUSES = ["Scheduled", "In progress", "Completed"] as BookingStatusEnum[]
 
 export const VEHICLE_STATUES = ["Available", "In service", "Under maintenance", "Out of service"] as VehicleStatusEnum[];
 

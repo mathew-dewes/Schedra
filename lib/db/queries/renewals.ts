@@ -3,6 +3,7 @@
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
 import { RenewalStatusEnum, RenewalTypeEmum } from "@/lib/types/enums";
 import { generateRenewalStatus } from "@/lib/utils";
+import { subDays } from "date-fns";
 
 
 type GetRenewalsProps = {
@@ -17,6 +18,9 @@ export async function getRenewals({
     const user_id = await getUserId();
     const supabase = await createClientForServer();
 
+    const ninetyDaysAgo = subDays(new Date(), 90);
+    
+
     if (!user_id) {
         return {
             success: false,
@@ -25,8 +29,9 @@ export async function getRenewals({
     };
 
     let query = supabase.from("renewals")
-        .select(`id, due_date, type, vehicles(make, model, year, plant_number, plate_number)`).
-        order("due_date", {ascending: true});
+        .select(`id, due_date, type, vehicles(make, model, year, plant_number, plate_number)`)
+        .gte("due_date", ninetyDaysAgo.toISOString())
+        .order("due_date", {ascending: true});
 
 
         if (type) {

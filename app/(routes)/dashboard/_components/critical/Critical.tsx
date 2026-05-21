@@ -1,6 +1,6 @@
 
 import { RenewalEntry } from "@/lib/types/entries";
-import { addDays, isPast, isWithinInterval } from "date-fns";
+import { addDays, isWithinInterval, subDays } from "date-fns";
 import CriticalCard from "./CriticalCard";
 import { TriangleAlert } from "lucide-react";
 
@@ -11,11 +11,11 @@ export default async function Critical({renewals, }:{
     renewals: RenewalEntry[]
 }){
 
-
-    
-
     const overdue = renewals.filter((renewal)=>{
-        return isPast(renewal.dueDate)
+        return isWithinInterval(renewal.dueDate,
+                {start: subDays(now, 90), end:now 
+                }
+            )
     });
 
     const dueSoon = renewals.filter((renewal)=>{

@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { addDays, isBefore, isWithinInterval } from "date-fns";
+import { addDays, isWithinInterval, subDays } from "date-fns";
 
 
 export function cn(...inputs: ClassValue[]) {
@@ -21,13 +21,14 @@ export function convertToMoney(value: number) {
 export function generateRenewalStatus(dueDate: Date) {
     const now = new Date();
 
-    if (isBefore(dueDate, now)) {
-        return "Overdue";
-    }
+      if (isWithinInterval(dueDate,
+        {start: subDays(now, 90), end:now 
+        }
+    )) {
+        return "Overdue"
+    } 
     if (isWithinInterval(dueDate,
-        {
-            start: now,
-            end: addDays(now, 7)
+        {start: now, end: addDays(now, 7)
         }
     )) {
         return "Due Soon"
