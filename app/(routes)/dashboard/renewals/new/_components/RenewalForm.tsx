@@ -1,12 +1,12 @@
 
 import { getVehicles } from "@/lib/db/queries/vehicles";
-import { VehicleType } from "@/lib/db/types";
+import { Vehicle } from "@/lib/db/types";
 import RenewalFormClient from "./RenewalFormClient";
 
 
 
 export default async function RenewalForm(){
-const userVehicles = await getVehicles() as VehicleType[];
+const userVehicles = await getVehicles() as Vehicle[];
 const vehicles = userVehicles.map((item) => {
             return {
                 id: item.id,

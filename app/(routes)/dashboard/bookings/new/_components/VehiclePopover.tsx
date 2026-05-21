@@ -3,11 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Vehicle } from "@/lib/db/types";
 import { useState } from "react";
 
+
+
+
 type Props = {
-  vehicles: Vehicle[];
+  vehicles: {
+    id: string, name: string
+    
+}[];
   value?: string; 
   onChange: (value: string) => void;
 };

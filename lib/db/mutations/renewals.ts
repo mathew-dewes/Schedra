@@ -5,8 +5,11 @@ import { createClientForServer, getUserId } from "@/lib/supabase/server";
 import { RenewalTypeEmum } from "@/lib/types/enums";
 import { revalidatePath } from "next/cache";
 import z from "zod";
-import { Vehicle } from "../types";
 
+type Vehicle = {
+    id: string, name: string
+    
+}
 
 export async function createRenewal(values: z.infer<typeof renewalFormSchema>, vehicle: Vehicle){
       const supabase = await createClientForServer();
@@ -36,6 +39,7 @@ export async function createRenewal(values: z.infer<typeof renewalFormSchema>, v
   .select("type")
   .eq("user_id", user_id)
   .eq("type", parsed.data.type)
+  .eq("vehicle_id", vehicle.id)
   .limit(1);
 
 

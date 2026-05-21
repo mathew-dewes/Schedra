@@ -10,14 +10,19 @@ import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import RenewalTypeSelect from "./RenewalTypeSelect";
 import { VehiclePopover } from "../../../bookings/new/_components/VehiclePopover";
-import { Vehicle } from "@/lib/db/types";
 import { createRenewal } from "@/lib/db/mutations/renewals";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { RenewalDatePicker } from "./RenewalDatePicker";
 
+
+type Vehicle = {
+    id: string, name: string
+    
+}
+
 export default function RenewalFormClient(
-    { vehicles }: { vehicles: Vehicle[] }) {
+    { vehicles }: { vehicles: Vehicle[]}) {
     const [isPending, startTransition] = useTransition();
     const router = useRouter()
     const form = useForm<z.infer<typeof renewalFormSchema>>({

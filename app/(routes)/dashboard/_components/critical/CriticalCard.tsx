@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -53,10 +54,14 @@ function actionLink(cardType:CardType ){
                 <div className="space-y-4">
               
                     {renewals?.map((renewal) => (
-                        <div className="space-y-1" key={renewal.id}>
-                            <p className="font-semibold">{renewal.type}</p>
+                        <div className="space-y-2" key={renewal.id}>
+                             <p className="font-semibold">{renewal.vehicle} {renewal.vehicle_plate}</p>
+                            <div className="flex items-center gap-2">
+                                 <Badge variant={"outline"}>{renewal.type}</Badge>
                             <p className="text-muted-foreground">Due: {format(renewal.dueDate, "dd/MM/yy")} - {formatDistanceToNow(renewal.dueDate, { addSuffix: true })}</p>
-                            <p>{renewal.vehicle} {renewal.vehicle_plate}</p>
+                            </div>
+
+                           
                            <Separator className="mt-2"/>
                         </div>
                    
