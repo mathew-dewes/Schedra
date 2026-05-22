@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { RENEWAL_TYPES } from "../constants";
+import { BOOKING_STATUSES, RENEWAL_TYPES } from "../constants";
 import { BookingInsert, RenewalInsert, Vehicle } from "../db/types";
 import { generateDueDate, generateRandomDate, getRandom } from "../helpers/generate";
 import { createClient } from "@supabase/supabase-js";
@@ -55,11 +55,13 @@ async function seedData() {
         };
 
         for (let i = 0; i < 40; i++) {
+            const randomStatus = getRandom(BOOKING_STATUSES)
+            
             bookings.push({
                 vehicle_id: getRandom(vehicles).id,
                 start_date: generateRandomDate().toISOString(),
-                status: getRandom(["Scheduled","Completed"]),
-                title: "Testing seeding data",
+                status: randomStatus,
+                title: getRandom(["Service", "Repairs"]),
                 center_id: getRandom(centers).id,
                 user_id: demo_user_id
             })

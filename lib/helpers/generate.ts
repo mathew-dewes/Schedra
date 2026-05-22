@@ -2,6 +2,8 @@
 // function generateVehiclePlate() {
 //   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+import { BookingStatusEnum } from "../types/enums";
+
 //   const randomLetters = Array.from({ length: 3 }, () =>
 //     letters[Math.floor(Math.random() * letters.length)]
 //   ).join("");
@@ -76,4 +78,13 @@ export function generateRandomDate(): Date {
     const offset = Math.floor(Math.random() * 180);
     now.setDate(now.getDate() + offset);
     return now;
+};
+
+
+export function generateBookingTitle(status: BookingStatusEnum){
+if (status == "Completed"){
+  
+}
+
+
 }

@@ -125,4 +125,3 @@ export const VEHICLE_STATUES = ["Available", "In service", "Under maintenance", 
 export const RENEWAL_STATUES = ["Completed", "Upcoming", "Due Soon", "Overdue"] as RenewalStatusEnum[]
 
 export const RENEWAL_TYPES = ["Service", "Registration", "Road user charge", "Warrant of fitness"] as RenewalTypeEmum[];
-
