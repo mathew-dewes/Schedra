@@ -17,7 +17,22 @@ export type BookingInsert = Database["public"]["Tables"]["bookings"]["Insert"];
 
 
 export type Category = {id: string, name: string, color: string}
+export type Activity = {
+        id: string,
+        activity: string,
+        type: string,
+        vehicle: string,
+        time: Date
+    };
 
+
+export type RenewalChartEntry = {
+    date: string;
+    WOF: number;
+    REGO: number;
+    RUC: number;
+    SERVICE: number;
+}
 
 
 export type BookingTableData = {

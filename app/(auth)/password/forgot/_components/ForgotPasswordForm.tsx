@@ -20,6 +20,7 @@ import { ButtonSpinner } from "@/components/ui/buttonSpinner"
 import { sendResetPasswordEmail } from "@/lib/auth/actions"
 import { toast } from "sonner"
 import { CircleCheck } from "lucide-react"
+import Link from "next/link"
 
 
 export function ForgotPasswordForm({
@@ -89,6 +90,12 @@ export function ForgotPasswordForm({
                         {isPending ? <ButtonSpinner text="Validating" /> : <Button type="submit">Submit</Button>}
 
                     </Field>
+                  <FieldDescription className="px-6 text-center">
+           
+                
+                    <>Click <Link href={'/login'}>HERE</Link> to return to Login</>
+
+            </FieldDescription>
 
 
                 </FieldGroup>

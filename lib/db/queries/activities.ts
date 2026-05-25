@@ -3,6 +3,7 @@
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
 import { Activity } from "@/lib/types";
 
+
 export async function getRecentActivities() {
     const user_id = await getUserId();
     const supabase = await createClientForServer();
@@ -40,6 +41,9 @@ export async function getRecentActivities() {
             message: renewalError.message
         }
     };
+
+
+
 
     const bookingActivities: Activity[] =
         bookings.map((booking) => ({

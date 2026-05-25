@@ -26,8 +26,14 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { RenewalChartEntry } from "@/lib/types"
+import { Badge } from "@/components/ui/badge"
 
-export const description = "An interactive area chart"
+type RenewalTotals = {
+    WOF: number;
+    REGO: number;
+    RUC: number;
+    SERVICE: number;
+}
 
 const chartConfig = {
 
@@ -47,10 +53,10 @@ const chartConfig = {
     label: "SERVICE",
     color: "var(--chart-4)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
-export function OverviewChart({renewalData}:{
-  renewalData: RenewalChartEntry[]
+export function OverviewChart({renewalData, renewalTotals}:{
+  renewalData: RenewalChartEntry[], renewalTotals: RenewalTotals
 }) {
   const [timeRange, setTimeRange] = React.useState("30d")
 
@@ -82,6 +88,17 @@ export function OverviewChart({renewalData}:{
           <CardDescription className="text-center sm:text-left">
             Showing upcoming renewals for the next 30 days
           </CardDescription>
+          <div>
+        
+            <div className="flex gap-2 mt-2">
+                  <p>Totals:</p>
+              <Badge className="bg-chart-1/80">WOF: {renewalTotals.WOF}</Badge>
+              <Badge className="bg-chart-2/80">REGO: {renewalTotals.REGO}</Badge>
+              <Badge className="bg-chart-3/80">RUC: {renewalTotals.RUC}</Badge>
+              <Badge className="bg-chart-4/80">SERVICE: {renewalTotals.SERVICE}</Badge>
+
+            </div>
+          </div>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
           <SelectTrigger
