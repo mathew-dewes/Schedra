@@ -122,7 +122,7 @@ export type Database = {
             foreignKeyName: "bookings_provider_id_fkey"
             columns: ["center_id"]
             isOneToOne: false
-            referencedRelation: "service_centers"
+            referencedRelation: "centers"
             referencedColumns: ["id"]
           },
           {
@@ -133,6 +133,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      centers: {
+        Row: {
+          address: string
+          contact_name: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          phone: string
+          user_id: string | null
+        }
+        Insert: {
+          address: string
+          contact_name: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          phone: string
+          user_id?: string | null
+        }
+        Update: {
+          address?: string
+          contact_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string
+          user_id?: string | null
+        }
+        Relationships: []
       }
       renewals: {
         Row: {
@@ -180,42 +213,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
-      }
-      service_centers: {
-        Row: {
-          address: string
-          contact_name: string
-          created_at: string
-          email: string
-          id: string
-          name: string
-          notes: string | null
-          phone: string
-          user_id: string | null
-        }
-        Insert: {
-          address: string
-          contact_name: string
-          created_at?: string
-          email: string
-          id?: string
-          name: string
-          notes?: string | null
-          phone: string
-          user_id?: string | null
-        }
-        Update: {
-          address?: string
-          contact_name?: string
-          created_at?: string
-          email?: string
-          id?: string
-          name?: string
-          notes?: string | null
-          phone?: string
-          user_id?: string | null
-        }
-        Relationships: []
       }
       vehicles: {
         Row: {

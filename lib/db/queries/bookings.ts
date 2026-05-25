@@ -25,7 +25,7 @@ export async function getBookings({
     let query = supabase.from("bookings")
         .select(`id, title, description, type, start_date, status, 
             vehicles(make, model, plant_number, plate_number), 
-            service_centers(name, email)
+            centers(name, email)
             `)
         .eq("user_id", user_id).order("start_date", { ascending: true });
 
@@ -55,8 +55,8 @@ export async function getBookings({
         title: booking.title,
         status: booking.status,
         bookingDate: new Date(booking.start_date),
-        center: booking.service_centers?.name,
-        center_email: booking.service_centers?.email,
+        center: booking.centers?.name,
+        center_email: booking.centers?.email,
         plant: booking.vehicles.plant_number,
         vehicle: booking.vehicles.make + " " + booking.vehicles.model,
         plate_number: booking.vehicles.plate_number,
@@ -81,7 +81,7 @@ export async function getUpcomingBookings() {
     const query = supabase.from("bookings")
         .select(`id, title, type, description, start_date, status, 
             vehicles(make, model, plant_number, plate_number), 
-            service_centers(name, email)
+            centers(name, email)
             `)
         .eq("user_id", user_id).order("start_date", { ascending: true }).limit(10);
 
@@ -106,8 +106,8 @@ export async function getUpcomingBookings() {
         type: booking.type,
         status: booking.status,
         bookingDate: new Date(booking.start_date),
-        center: booking.service_centers?.name,
-        center_email: booking.service_centers?.email,
+        center: booking.centers?.name,
+        center_email: booking.centers?.email,
         plant: booking.vehicles.plant_number,
         vehicle: booking.vehicles.make + " " + booking.vehicles.model,
         plate_number: booking.vehicles.plate_number

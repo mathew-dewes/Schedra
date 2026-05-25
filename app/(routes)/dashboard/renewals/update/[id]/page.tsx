@@ -1,9 +1,10 @@
 import { getRenewal } from "@/lib/db/queries/renewals";
 import ReturnToDash from "../../../_components/buttons/ReturnToDash";
 import UpdateRenewalForm from "./_components/UpdateRenewalForm";
-import { RenewalEntry } from "@/lib/types";
+
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { RenewalEntry } from "@/lib/types/entries";
 
 
 type Props = {

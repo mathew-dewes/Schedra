@@ -1,14 +1,14 @@
 "use server";
 
+import { RenewalStatus, RenewalType } from "@/lib/enums";
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
-import { RenewalStatusEnum, RenewalTypeEmum } from "@/lib/types/enums";
 import { generateRenewalStatus } from "@/lib/utils";
 import { addDays, subDays } from "date-fns";
 
 
 type GetRenewalsProps = {
-    status?: RenewalStatusEnum;
-    type?: RenewalTypeEmum;
+    status?: RenewalStatus;
+    type?: RenewalType;
 };
 
 export async function getRenewals({

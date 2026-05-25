@@ -16,7 +16,7 @@ async function seedData() {
 
     try {
         const { data: vehicles, error: vehicleError } = await supabase.from("vehicles").select().eq("user_id", demo_user_id);
-        const { data: centers, error: centerError } = await supabase.from("service_centers").select().eq("user_id", demo_user_id);
+        const { data: centers, error: centerError } = await supabase.from("centers").select().eq("user_id", demo_user_id);
 
         if (vehicleError) {
             console.log(vehicleError);

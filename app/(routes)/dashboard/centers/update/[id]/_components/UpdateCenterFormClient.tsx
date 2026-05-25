@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { createCenter } from "@/lib/db/mutations/centers";
+import { updateCenter } from "@/lib/db/mutations/centers";
 import { centerFormSchema } from "@/lib/schemas";
+import { CenterEntry } from "@/lib/types/entries";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
@@ -13,7 +14,8 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
 
-export default function CenterForm() {
+export default function UpdateCenterFormClient({center, center_id}:
+    {center: CenterEntry, center_id: string}) {
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
 
@@ -21,30 +23,21 @@ export default function CenterForm() {
     const form = useForm<z.infer<typeof centerFormSchema>>({
         resolver: zodResolver(centerFormSchema),
         defaultValues: {
-            name: "",
-            contact_name: "",
-            email: "",
-            address: "",
-            phone: ""
+            name: center.name,
+            contact_name: center.contact_name,
+            email: center.email,
+            address: center.address,
+            phone: center.phone
 
         }
     });
 
 function onSubmit(values: z.infer<typeof centerFormSchema>) {
   startTransition(async () => {
-    const res = await createCenter(values);
+    const res = await updateCenter(values, center_id);
 
     if (!res.success) {
-      if (res.fieldErrors?.email) {
-        form.setError("email", {
-          type: "server",
-          message: res.fieldErrors.email
-        });
-        
-      } else {
-        toast.error(res.message);
-      }
-      return;
+     toast.error(res.message);
     }
 
     toast.success(res.message);
@@ -54,7 +47,7 @@ function onSubmit(values: z.infer<typeof centerFormSchema>) {
     return (
         <Card className="w-full max-w-lg my-4">
             <CardHeader>
-                <CardTitle>Service Center Form</CardTitle>
+                <CardTitle>Update Service Center</CardTitle>
                 <CardDescription>
                     Help us improve by reporting bugs you encounter.
                 </CardDescription>
@@ -163,11 +156,8 @@ function onSubmit(values: z.infer<typeof centerFormSchema>) {
 
              <CardFooter>
                 <Field orientation="horizontal">
-                    <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
-                        Reset
-                    </Button>
                     <Button disabled={isPending} type="submit" form="centerForm">
-                        Submit
+                        Update
                     </Button>
                 </Field>
                 </CardFooter>
