@@ -205,7 +205,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                     <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
                         Reset
                     </Button>
-                    <Button disabled={isPending} type="submit" form="bookingForm">
+                    <Button disabled={isPending} type="submit" form="vehicleForm">
                         Submit
                     </Button>
                 </Field>

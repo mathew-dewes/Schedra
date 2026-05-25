@@ -140,11 +140,8 @@ export default function RenewalFormClient(
 
             <CardFooter>
                 <Field orientation="horizontal">
-                    <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
-                        Reset
-                    </Button>
-                    <Button disabled={isPending} type="submit" form="bookingForm">
-                        Submit
+                    <Button disabled={isPending} type="submit" form="renewalForm">
+                        Add Renewal
                     </Button>
                 </Field>
                 </CardFooter>

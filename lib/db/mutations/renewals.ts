@@ -1,8 +1,9 @@
 "use server";
 
+import { RenewalType } from "@/lib/enums";
 import { renewalFormSchema, updateRenewalFormSchema } from "@/lib/schemas";
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
-import { RenewalTypeEmum } from "@/lib/types/enums";
+
 import { revalidatePath } from "next/cache";
 import z from "zod";
 
@@ -64,7 +65,7 @@ export async function createRenewal(values: z.infer<typeof renewalFormSchema>, v
 
 
         const {error} = await supabase.from("renewals").insert({
-            type: parsed.data.type as RenewalTypeEmum,
+            type: parsed.data.type as RenewalType,
             vehicle_id: parsed.data.vehicle_id,
             due_date: parsed.data.due_date.toISOString(),
             user_id
