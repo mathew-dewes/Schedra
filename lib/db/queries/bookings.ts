@@ -79,7 +79,7 @@ export async function getUpcomingBookings() {
     };
 
     const query = supabase.from("bookings")
-        .select(`id, title, description, start_date, status, 
+        .select(`id, title, type, description, start_date, status, 
             vehicles(make, model, plant_number, plate_number), 
             service_centers(name, email)
             `)
@@ -103,6 +103,7 @@ export async function getUpcomingBookings() {
 
         id: booking.id,
         title: booking.title,
+        type: booking.type,
         status: booking.status,
         bookingDate: new Date(booking.start_date),
         center: booking.service_centers?.name,

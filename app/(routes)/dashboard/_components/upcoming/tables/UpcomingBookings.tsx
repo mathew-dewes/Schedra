@@ -9,12 +9,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { BookingEntry } from "@/lib/types/entries"
+
 import { format } from "date-fns"
 import Link from "next/link"
+import { UpcomingBooking } from "../../CriticalUpcoming"
 
 export function UpcomingBookings({bookings}:
-  {bookings: BookingEntry[]}
+  {bookings: UpcomingBooking[]}
 ) {
   return (
     <Card>
@@ -31,6 +32,7 @@ export function UpcomingBookings({bookings}:
       <TableHeader>
         <TableRow>
           <TableHead className="w-25">Date</TableHead>
+          <TableHead>Type</TableHead>
           <TableHead>Center</TableHead>
           <TableHead>Vehicle</TableHead>
           <TableHead className="text-right">REGO</TableHead>
@@ -40,6 +42,7 @@ export function UpcomingBookings({bookings}:
         {bookings.map((booking) => (
           <TableRow key={booking.id}>
             <TableCell className="font-medium">{format(booking.bookingDate, "dd/MM/yy")}</TableCell>
+            <TableCell className="font-medium">{booking.type}</TableCell>
             <TableCell className="font-medium">{booking.center}</TableCell>
             <TableCell className="font-medium">{booking.vehicle}</TableCell>
             <TableCell className="text-right">{booking.plate_number}</TableCell>

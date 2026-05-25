@@ -70,7 +70,7 @@ export const CenterColumns: ColumnDef<CenterTableData>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem>
-              <Link href={'/dashboard/centers/' + center.id}>Update details</Link>
+              <Link href={'/dashboard/centers/update/' + center.id}>Update details</Link>
               
             </DropdownMenuItem>
             <DropdownMenuSeparator />
