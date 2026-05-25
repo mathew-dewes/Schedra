@@ -18,7 +18,7 @@ export default function SignOutButton({session}:
         startTransition(async()=>{
     const res = await SignOut();
     if (res?.success){
-        router.push('/login');
+        router.push('/');
         toast.success(res.message)
     }
         })

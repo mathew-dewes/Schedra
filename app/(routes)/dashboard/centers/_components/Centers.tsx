@@ -4,10 +4,10 @@ import { buttonVariants } from "@/components/ui/button";
 import { CenterTable } from "./tables/CenterTable";
 import { CenterColumns } from "./tables/CenterColumns";
 import { getServiceCenters } from "@/lib/db/queries/centers";
-import { CenterType } from "@/lib/db/types";
+import { CenterTableData } from "@/lib/types";
 
 export default async function Centers(){
-      const centers = await getServiceCenters() as CenterType[];
+      const centers = await getServiceCenters() as CenterTableData[];
     return(
           <div>
                             <div className="flex gap-2">

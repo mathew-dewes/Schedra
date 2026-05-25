@@ -31,5 +31,15 @@ export type BookingTableData = {
     vehicle: string;
     plate_number: string;
     type: BookingType;
+};
+
+
+export type CenterTableData = {
+    id: string;
+    name: string;
+    contact_name: string;
+    phone: string;
+    email: string;
+    address: string;
 }
 

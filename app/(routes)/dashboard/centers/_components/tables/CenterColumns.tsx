@@ -13,10 +13,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { CenterType } from "@/lib/db/types"
-import DeleteCenterButton from "../DeleteCenterButton"
 
-export const CenterColumns: ColumnDef<CenterType>[] = [
+import DeleteCenterButton from "../DeleteCenterButton"
+import { CenterTableData } from "@/lib/types"
+import Link from "next/link"
+
+export const CenterColumns: ColumnDef<CenterTableData>[] = [
   {
     accessorKey: "name",
     header: "Center",
@@ -67,10 +69,9 @@ export const CenterColumns: ColumnDef<CenterType>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText("Hello")}
-            >
-              Copy payment ID
+            <DropdownMenuItem>
+              <Link href={'/dashboard/centers/' + center.id}>Update details</Link>
+              
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 <DeleteCenterButton center_id={center.id}/>

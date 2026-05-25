@@ -23,7 +23,7 @@ export default function DeleteCenterButton({center_id}:
     }
 return (
     <DropdownMenuItem disabled={isPending} onClick={handleDelete}>
-        Delete vehicle
+        Delete center
     </DropdownMenuItem>
 )
 }
