@@ -1,8 +1,9 @@
 "use server";
 
+import { BookingStatus } from "@/lib/enums";
 import { bookingFormSchema } from "@/lib/schemas";
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
-import { BookingStatusEnum } from "@/lib/types/enums";
+
 import { revalidatePath } from "next/cache";
 import z from "zod";
 
@@ -61,7 +62,7 @@ export async function createBooking(values: z.infer<typeof bookingFormSchema>) {
 };
 
 
-export async function changeBookingStatus(id: string, status: BookingStatusEnum) {
+export async function changeBookingStatus(id: string, status: BookingStatus) {
     const supabase = await createClientForServer();
     const user_id = await getUserId();
 

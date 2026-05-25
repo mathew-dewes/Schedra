@@ -1,5 +1,5 @@
 import {SidebarLinkType } from "@/components/component-types";
-import { BookingStatusEnum, BookingTypeEnum, RenewalStatusEnum, RenewalTypeEmum, VehicleStatusEnum } from "./types/enums";
+import { BookingStatus, BookingType, RenewalStatus, RenewalType, VehicleStatus } from "./enums";
 
 export const publicNavLinks = [
     {href: '/', label: "Home"},
@@ -76,19 +76,19 @@ export const sidebarLinkData: SidebarLinkType = {
   ],
 };
 
-export const bookingStatusStyles: Record<BookingStatusEnum, string> = {
+export const bookingStatusStyles: Record<BookingStatus, string> = {
   Scheduled: "bg-blue-400",
   "In progress": "bg-orange-400 text-black",
   Completed: "bg-green-400"
 }
-export const renewalStatusStyles: Record<RenewalStatusEnum, string> = {
+export const renewalStatusStyles: Record<RenewalStatus, string> = {
   Upcoming: "bg-blue-400",
   "Due Soon": "bg-orange-400 text-black",
   Completed: "bg-green-400",
   Overdue: "bg-red-400",
 };
 
-export const vehicleStatusStyles: Record<VehicleStatusEnum, string> = {
+export const vehicleStatusStyles: Record<VehicleStatus, string> = {
   Available: "bg-blue-400",
   "Under maintenance": "bg-orange-400 text-black",
   "In service": "bg-green-400",
@@ -118,12 +118,12 @@ export const ACTIVITY_LABELS = {
     "Service reminder added",
 };
 
-export const BOOKING_STATUSES = ["Scheduled", "In progress", "Completed"] as BookingStatusEnum[]
+export const BOOKING_STATUSES = ["Scheduled", "In progress", "Completed"] as BookingStatus[]
 
-export const VEHICLE_STATUES = ["Available", "In service", "Under maintenance", "Out of service"] as VehicleStatusEnum[];
+export const VEHICLE_STATUES = ["Available", "In service", "Under maintenance", "Out of service"] as VehicleStatus[];
 
-export const RENEWAL_STATUES = ["Completed", "Upcoming", "Due Soon", "Overdue"] as RenewalStatusEnum[]
+export const RENEWAL_STATUES = ["Completed", "Upcoming", "Due Soon", "Overdue"] as RenewalStatus[]
 
-export const RENEWAL_TYPES = ["Service", "Registration", "Road user charge", "Warrant of fitness"] as RenewalTypeEmum[];
+export const RENEWAL_TYPES = ["Service", "Registration", "Road user charge", "Warrant of fitness"] as RenewalType[];
 
-export const BOOKING_TYPES = ["Service", "Repairs"] as BookingTypeEnum[];
+export const BOOKING_TYPES = ["Service", "Repair"] as BookingType[];

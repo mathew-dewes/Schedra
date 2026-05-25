@@ -1,15 +1,16 @@
 "use server";
 
-import { BookingStatus } from "@/lib/enums";
+import { BookingStatus, BookingType } from "@/lib/enums";
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
 
 
 type GetBookingsProps = {
     status?: BookingStatus;
+    type?: BookingType;
 };
 
 export async function getBookings({
-    status,
+    status, type
 }: GetBookingsProps = {}) {
     const user_id = await getUserId();
     const supabase = await createClientForServer();
@@ -30,6 +31,10 @@ export async function getBookings({
 
     if (status) {
         query = query.eq("status", status)
+    };
+
+    if (type) {
+        query = query.eq("type", type)
     };
 
     const { data, error } = await query;

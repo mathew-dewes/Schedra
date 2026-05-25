@@ -43,7 +43,7 @@ export default function BookingFormClient({ centers, vehicles }:
                         vehicle_id: "",
                         description: "",
                         start_date: new Date(),
-                        type: "",
+                     
                 }
     });
 
@@ -51,8 +51,6 @@ export default function BookingFormClient({ centers, vehicles }:
     function onSubmit(values: z.infer<typeof bookingFormSchema>) {
         startTransition((async () => {
             const res = await createBooking(values);
-
-
 
             if (!res.success){
                 toast.error(res.message)
@@ -222,7 +220,8 @@ export default function BookingFormClient({ centers, vehicles }:
                     <Button disabled={isPending} type="submit" form="bookingForm">
                         Submit
                     </Button>
-                </Field>    </CardFooter>
+                </Field>
+                </CardFooter>
         </Card>
     )
 }

@@ -200,9 +200,16 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                 </FieldGroup>
                 </form>
             </CardContent>
-            <CardFooter>
-                <Button disabled={isPending} type="submit" form="vehicleForm">Add vehicle</Button>
-            </CardFooter>
+             <CardFooter>
+                <Field orientation="horizontal">
+                    <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
+                        Reset
+                    </Button>
+                    <Button disabled={isPending} type="submit" form="bookingForm">
+                        Submit
+                    </Button>
+                </Field>
+                </CardFooter>
 
         </Card>
     )

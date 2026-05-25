@@ -143,10 +143,11 @@ export default function RenewalFormClient(
                     <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
                         Reset
                     </Button>
-                    <Button disabled={isPending} type="submit" form="renewalForm">
+                    <Button disabled={isPending} type="submit" form="bookingForm">
                         Submit
                     </Button>
-                </Field>    </CardFooter>
+                </Field>
+                </CardFooter>
 
         </Card>
     )

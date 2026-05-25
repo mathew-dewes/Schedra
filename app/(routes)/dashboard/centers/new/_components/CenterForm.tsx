@@ -197,9 +197,16 @@ function onSubmit(values: z.infer<typeof serviceProviderFormSchema>) {
                 </form>
             </CardContent>
 
-            <CardFooter>
-                <Button disabled={isPending} form="providerForm">Add Provider</Button>
-            </CardFooter>
+             <CardFooter>
+                <Field orientation="horizontal">
+                    <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
+                        Reset
+                    </Button>
+                    <Button disabled={isPending} type="submit" form="bookingForm">
+                        Submit
+                    </Button>
+                </Field>
+                </CardFooter>
         </Card>
     )
 }

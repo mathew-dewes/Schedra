@@ -272,7 +272,7 @@ export type Database = {
     }
     Enums: {
       booking_status: "Scheduled" | "In progress" | "Completed"
-      booking_type: "Service" | "Repairs"
+      booking_type: "Service" | "Repair"
       category_color: "red" | "green" | "yellow" | "orange" | "blue"
       renewal_status: "Upcoming" | "Due Soon" | "Overdue" | "Completed"
       renewal_type:
@@ -416,7 +416,7 @@ export const Constants = {
   public: {
     Enums: {
       booking_status: ["Scheduled", "In progress", "Completed"],
-      booking_type: ["Service", "Repairs"],
+      booking_type: ["Service", "Repair"],
       category_color: ["red", "green", "yellow", "orange", "blue"],
       renewal_status: ["Upcoming", "Due Soon", "Overdue", "Completed"],
       renewal_type: [

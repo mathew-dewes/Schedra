@@ -4,3 +4,4 @@ export type VehicleStatus = Database["public"]["Enums"]["vehicle_status"];
 export type RenewalType = Database["public"]["Enums"]["renewal_type"];
 export type BookingType = Database["public"]["Enums"]["booking_type"];
 export type BookingStatus = Database["public"]["Enums"]["booking_status"];
+export type RenewalStatus = Database["public"]["Enums"]["renewal_status"];

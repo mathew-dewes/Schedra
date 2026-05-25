@@ -1,9 +1,10 @@
 import "dotenv/config";
-import { BOOKING_STATUSES, RENEWAL_TYPES } from "../constants";
-import { BookingInsert, RenewalInsert, Vehicle } from "../db/types";
-import { generateDueDate, generateRandomDate, getRandom } from "../helpers/generate";
+import { BOOKING_STATUSES, BOOKING_TYPES, RENEWAL_TYPES } from "../constants";
+
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "../supabase/types";
+import { BookingInsert, RenewalInsert, Vehicle } from "../types";
+import { generateBookingTitle, generateDueDate, generateRandomDate, getRandom } from "../utils";
 
 
 async function seedData() {
@@ -55,15 +56,17 @@ async function seedData() {
         };
 
         for (let i = 0; i < 40; i++) {
-            const randomStatus = getRandom(BOOKING_STATUSES)
+            const randomStatus = getRandom(BOOKING_STATUSES);
+            const randomType = getRandom(BOOKING_TYPES);
             
             bookings.push({
                 vehicle_id: getRandom(vehicles).id,
                 start_date: generateRandomDate().toISOString(),
                 status: randomStatus,
-                title: getRandom(["Service", "Repairs"]),
+                title: generateBookingTitle(randomType),
                 center_id: getRandom(centers).id,
-                user_id: demo_user_id
+                user_id: demo_user_id,
+                type: randomType
             })
         }
 
