@@ -7,7 +7,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { RenewalType } from "@/lib/enums";
+import { BookingType } from "@/lib/enums";
 
 
 
@@ -16,9 +16,9 @@ type StatusSelectProps = {
     onChange: (value: string) => void;
 };
 
-const RENEWAL_TYPES = ["Registration", "Road user charge", "Warrant of fitness", "Service"] as RenewalType[]
+const BOOKING_TYPES = ["Service", "Repairs"] as BookingType[]
 
-export default function RenewalTypeSelect({ value, onChange }: StatusSelectProps){
+export default function BookingTypeSelect({ value, onChange }: StatusSelectProps){
     return (
                     <Select
                                         value={value}
@@ -30,7 +30,7 @@ export default function RenewalTypeSelect({ value, onChange }: StatusSelectProps
                                         <SelectContent>
                                             <SelectGroup>
                                                 <SelectLabel>Types</SelectLabel>
-                                                {RENEWAL_TYPES.map((type) => {
+                                                {BOOKING_TYPES.map((type) => {
                                                     return <SelectItem key={type} value={type}>{type}</SelectItem>
                                                 })}
 

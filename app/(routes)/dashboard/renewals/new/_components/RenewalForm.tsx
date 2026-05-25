@@ -1,7 +1,8 @@
 
 import { getVehicles } from "@/lib/db/queries/vehicles";
-import { Vehicle } from "@/lib/db/types";
+
 import RenewalFormClient from "./RenewalFormClient";
+import { Vehicle } from "@/lib/types";
 
 
 

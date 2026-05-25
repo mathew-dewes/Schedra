@@ -1,5 +1,5 @@
 import z from "zod";
-import { RENEWAL_TYPES } from "./constants";
+import { BOOKING_TYPES, RENEWAL_TYPES } from "./constants";
 
 export const loginSchema = z.object({
   email: z.email(),
@@ -32,6 +32,7 @@ export const registerSchema = z.object({
 export const bookingFormSchema = z.object({
   title: z.string().min(1, 'Booking title is required'),
   description: z.string().optional(),
+  type: z.enum(BOOKING_TYPES, "Please select a booking type"),
   start_date: z.date(),
   center_id: z.string().min(1, 'Service center is required'),
   vehicle_id: z.string().min(1, 'Vehicle is required')

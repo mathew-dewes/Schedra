@@ -1,5 +1,5 @@
 import {SidebarLinkType } from "@/components/component-types";
-import { BookingStatusEnum, RenewalStatusEnum, RenewalTypeEmum, VehicleStatusEnum } from "./types/enums";
+import { BookingStatusEnum, BookingTypeEnum, RenewalStatusEnum, RenewalTypeEmum, VehicleStatusEnum } from "./types/enums";
 
 export const publicNavLinks = [
     {href: '/', label: "Home"},
@@ -125,3 +125,5 @@ export const VEHICLE_STATUES = ["Available", "In service", "Under maintenance", 
 export const RENEWAL_STATUES = ["Completed", "Upcoming", "Due Soon", "Overdue"] as RenewalStatusEnum[]
 
 export const RENEWAL_TYPES = ["Service", "Registration", "Road user charge", "Warrant of fitness"] as RenewalTypeEmum[];
+
+export const BOOKING_TYPES = ["Service", "Repairs"] as BookingTypeEnum[];

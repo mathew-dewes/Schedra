@@ -86,6 +86,7 @@ export type Database = {
           start_date: string
           status: Database["public"]["Enums"]["booking_status"]
           title: string
+          type: Database["public"]["Enums"]["booking_type"]
           updated_at: string | null
           user_id: string
           vehicle_id: string
@@ -98,6 +99,7 @@ export type Database = {
           start_date: string
           status: Database["public"]["Enums"]["booking_status"]
           title: string
+          type: Database["public"]["Enums"]["booking_type"]
           updated_at?: string | null
           user_id: string
           vehicle_id: string
@@ -110,6 +112,7 @@ export type Database = {
           start_date?: string
           status?: Database["public"]["Enums"]["booking_status"]
           title?: string
+          type?: Database["public"]["Enums"]["booking_type"]
           updated_at?: string | null
           user_id?: string
           vehicle_id?: string
@@ -269,6 +272,7 @@ export type Database = {
     }
     Enums: {
       booking_status: "Scheduled" | "In progress" | "Completed"
+      booking_type: "Service" | "Repairs"
       category_color: "red" | "green" | "yellow" | "orange" | "blue"
       renewal_status: "Upcoming" | "Due Soon" | "Overdue" | "Completed"
       renewal_type:
@@ -412,6 +416,7 @@ export const Constants = {
   public: {
     Enums: {
       booking_status: ["Scheduled", "In progress", "Completed"],
+      booking_type: ["Service", "Repairs"],
       category_color: ["red", "green", "yellow", "orange", "blue"],
       renewal_status: ["Upcoming", "Due Soon", "Overdue", "Completed"],
       renewal_type: [

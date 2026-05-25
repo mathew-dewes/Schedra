@@ -11,13 +11,23 @@ import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
 import { VehiclePopover } from "./VehiclePopover";
-import { Center, Vehicle } from "@/lib/db/types";
 import { StartDatePicker } from "./StartDatePicker";
 import { createBooking } from "@/lib/db/mutations/bookings";
 import { ServiceCenterPopover } from "./ServiceCenterPopover";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { bookingFormDefaultValues } from "@/lib/helpers/defaults";
+import BookingTypeSelect from "./BookingTypeSelect";
+
+
+type Vehicle = {
+    id: string,
+    name: string
+};
+
+type Center = {
+      id: string,
+    name: string
+}
 
 
 export default function BookingFormClient({ centers, vehicles }:
@@ -27,7 +37,14 @@ export default function BookingFormClient({ centers, vehicles }:
     const router = useRouter()
     const form = useForm<z.infer<typeof bookingFormSchema>>({
         resolver: zodResolver(bookingFormSchema),
-        defaultValues: bookingFormDefaultValues
+        defaultValues: {
+                        title: "",
+                        center_id: "",
+                        vehicle_id: "",
+                        description: "",
+                        start_date: new Date(),
+                        type: "",
+                }
     });
 
 
@@ -98,6 +115,26 @@ export default function BookingFormClient({ centers, vehicles }:
                             )}
 
                         />
+                           <Controller
+                                              control={form.control}
+                                              name="type"
+                                              render={({ field, fieldState }) => (
+                                                  <Field data-invalid={fieldState.invalid}>
+                                                      <FieldContent>
+                                                          <FieldLabel>
+                                                              Booking Type
+                                                          </FieldLabel>
+                                                          <FieldDescription>
+                                                              Select a booking type from the list below
+                                                          </FieldDescription>
+                  
+                                                      </FieldContent>
+                                                      <BookingTypeSelect value={field.value} onChange={field.onChange} />
+                                                      {fieldState.invalid &&
+                                                          <FieldError errors={[fieldState.error]} />}
+                                                  </Field>
+                                              )}
+                                          />
                         <Controller
                             control={form.control}
                             name="vehicle_id"

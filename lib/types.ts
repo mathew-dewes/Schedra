@@ -1,47 +1,35 @@
-import { BookingStatusEnum, RenewalStatusEnum, RenewalTypeEmum } from "./types/enums";
+import { BookingStatus, BookingType } from "./enums";
+import { Database } from "./supabase/types";
 
 
-// Entries
+export type CategoryColor = Database["public"]["Enums"]["category_color"];
 
-export type BookingEntry = {
-  id: string,
-  title: string,
-  bookingDate: Date,
-  categoryColor: string,
-  vehicle: string,
-  plant: string,
-  center: string,
-  status: BookingStatusEnum,
-  plate_number: string
-
-};
+export type Renewal = Database["public"]["Tables"]["renewals"]["Row"];
+export type Vehicle = Database["public"]["Tables"]["vehicles"]["Row"];
+export type Center = Database["public"]["Tables"]["service_centers"]["Row"];
+export type Booking = Database["public"]["Tables"]["bookings"]["Row"];
 
 
-export type RenewalEntry = {
-  id: string,
-  dueDate: Date,
-  type: RenewalTypeEmum,
-  vehicle: string,
-  plant: string,
-  status: RenewalStatusEnum,
-  vehicle_plate: string,
-  notes: string
-};
-
-export type Activity = {
-  id: string,
-  activity: string,
-  type: "Renewal" | "Booking"
-  vehicle: string,
-  time: Date,
-};
+export type RenewalInsert = Database["public"]["Tables"]["renewals"]["Insert"];
+export type VehicleInsert = Database["public"]["Tables"]["vehicles"]["Insert"];
+export type CenterInsert = Database["public"]["Tables"]["service_centers"]["Insert"];
+export type BookingInsert = Database["public"]["Tables"]["bookings"]["Insert"];
 
 
-export type RenewalChartEntry = {
-  date: string,
-  WOF: number,
-  REGO: number,
-  RUC: number,
-  SERVICE: number
+export type Category = {id: string, name: string, color: string}
+
+
+
+export type BookingTableData = {
+    id: string;
+    title: string;
+    status: BookingStatus;
+    bookingDate: Date;
+    center: string;
+    center_email: string;
+    plant: string;
+    vehicle: string;
+    plate_number: string;
+    type: BookingType;
 }
 

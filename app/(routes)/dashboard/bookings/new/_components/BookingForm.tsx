@@ -1,14 +1,19 @@
 import { getServiceCenters } from "@/lib/db/queries/centers";
 import BookingFormClient from "./BookingFormClient";
 import { getVehicles } from "@/lib/db/queries/vehicles";
-import { CenterType, VehicleType } from "@/lib/db/types";
+import { Center, Vehicle } from "@/lib/types";
+
+
+
+
+
 
 export default async function BookingForm(){
 
     const [fetchServiceCenters, fetchUserVehicles] = await Promise.all([getServiceCenters(), getVehicles()])
 
-    const serviceCenters = fetchServiceCenters as CenterType[];
-    const userVehicles = fetchUserVehicles as VehicleType[];
+    const serviceCenters = fetchServiceCenters as Center[];
+    const userVehicles = fetchUserVehicles as Vehicle[];
     
         const centers = serviceCenters.map((item) => {
             return {

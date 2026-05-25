@@ -5,19 +5,22 @@ import BookingFilters from "./BookingFilters";
 import { BookingTable } from "./tables/BookingTable";
 import { BookingColumns } from "./tables/Bookingcolumn";
 import { getBookings } from "@/lib/db/queries/bookings";
-import { BookingEntry } from "@/lib/types/entries";
+import { BookingStatus, BookingType } from "@/lib/enums";
+import { BookingTableData } from "@/lib/types";
 
 
 type Props = {
     params: {
-    status?: "Scheduled" | "In progress" | "Completed" | undefined;
-    type?: "Repairs" | "Servicing" | "Breakdown" | undefined;
+    status?: BookingStatus | undefined;
+    type?: BookingType | undefined;
 }
 };
 
+
+
 export default async function Bookings({params}: Props){
 
-      const bookings = await getBookings(params) as BookingEntry[];
+      const bookings = await getBookings(params) as BookingTableData[];
     return (
          <div>
       <div className="flex gap-2">

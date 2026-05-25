@@ -1,11 +1,11 @@
 "use server";
 
+import { BookingStatus } from "@/lib/enums";
 import { createClientForServer, getUserId } from "@/lib/supabase/server";
-import { BookingStatusEnum } from "@/lib/types/enums";
 
 
 type GetBookingsProps = {
-    status?: BookingStatusEnum;
+    status?: BookingStatus;
 };
 
 export async function getBookings({
@@ -22,7 +22,7 @@ export async function getBookings({
     };
 
     let query = supabase.from("bookings")
-        .select(`id, title, description, start_date, status, 
+        .select(`id, title, description, type, start_date, status, 
             vehicles(make, model, plant_number, plate_number), 
             service_centers(name, email)
             `)
@@ -54,7 +54,8 @@ export async function getBookings({
         center_email: booking.service_centers?.email,
         plant: booking.vehicles.plant_number,
         vehicle: booking.vehicles.make + " " + booking.vehicles.model,
-        plate_number: booking.vehicles.plate_number
+        plate_number: booking.vehicles.plate_number,
+        type: booking.type
 
     }));
 

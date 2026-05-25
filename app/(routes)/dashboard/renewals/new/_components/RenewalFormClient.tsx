@@ -110,7 +110,6 @@ export default function RenewalFormClient(
 
                                     </FieldContent>
                                     <RenewalTypeSelect value={field.value} onChange={field.onChange} />
-                                    <FieldLabel>Renewal Type</FieldLabel>
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
                                 </Field>
