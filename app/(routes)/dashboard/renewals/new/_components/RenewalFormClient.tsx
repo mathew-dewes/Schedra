@@ -66,8 +66,8 @@ export default function RenewalFormClient(
         <Card className="w-full max-w-lg my-4">
             <CardHeader>
                 <CardTitle>Renewal Form</CardTitle>
-                <CardDescription>
-                    Help us improve by reporting bugs you encounter.
+                  <CardDescription>
+                    Please fill out the required fields to add a renewal to the system
                 </CardDescription>
             </CardHeader>
 
@@ -81,10 +81,10 @@ export default function RenewalFormClient(
                                 <Field className="sm:w-1/2" data-invalid={fieldState.invalid}>
                                     <FieldContent>
                                         <FieldLabel>
-                                            Vehicle
+                                            Vehicle *
                                         </FieldLabel>
                                         <FieldDescription>
-                                            Select a service center from the list below
+                                            Select a vehicle from the list below
                                         </FieldDescription>
 
                                     </FieldContent>
@@ -102,7 +102,7 @@ export default function RenewalFormClient(
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldContent>
                                         <FieldLabel>
-                                            Renewal Type
+                                            Renewal Type *
                                         </FieldLabel>
                                         <FieldDescription>
                                             Select a renewal type from the list below

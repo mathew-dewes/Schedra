@@ -31,7 +31,7 @@ export const registerSchema = z.object({
 
 export const bookingFormSchema = z.object({
   title: z.string().min(1, 'Booking title is required'),
-  description: z.string().optional(),
+  description: z.string().max(100, 'Description must be 100 characters or less').optional(),
   type: z.enum(BOOKING_TYPES, "Please select a booking type"),
   start_date: z.date(),
   center_id: z.string().min(1, 'Service center is required'),

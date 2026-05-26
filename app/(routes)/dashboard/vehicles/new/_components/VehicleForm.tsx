@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
 import { createVehicle } from "@/lib/db/mutations/vehicles";
@@ -68,8 +68,8 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
         <Card className="w-full max-w-lg my-4">
             <CardHeader>
                 <CardTitle>Vehicle Form</CardTitle>
-                <CardDescription>
-                    Help us improve by reporting bugs you encounter.
+                    <CardDescription>
+                    Please fill out the required fields to add a vehicle to the system
                 </CardDescription>
             </CardHeader>
 
@@ -81,7 +81,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                     name="make"
                     render={({field, fieldState})=>(
                         <Field>
-                             <FieldLabel>Make</FieldLabel>
+                             <FieldLabel>Make *</FieldLabel>
                              <Input
                              {...field}
                              aria-invalid={fieldState.invalid}
@@ -98,7 +98,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                     name="model"
                     render={({field, fieldState})=>(
                         <Field>
-                             <FieldLabel>Model</FieldLabel>
+                             <FieldLabel>Model *</FieldLabel>
                              <Input
                              {...field}
                              aria-invalid={fieldState.invalid}
@@ -115,7 +115,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                     name="year"
                     render={({field, fieldState})=>(
                         <Field>
-                             <FieldLabel>Year</FieldLabel>
+                             <FieldLabel>Year *</FieldLabel>
                              <Input
                               className="uppercase placeholder:normal-case"
                              {...field}
@@ -133,7 +133,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                     name="plant_number"
                     render={({field, fieldState})=>(
                         <Field>
-                             <FieldLabel>Plant number</FieldLabel>
+                             <FieldLabel>Plant number *</FieldLabel>
                              <Input
                                 className="uppercase placeholder:normal-case"
                              {...field}
@@ -151,7 +151,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                     name="plate_number"
                     render={({field, fieldState})=>(
                         <Field>
-                             <FieldLabel>Licence plate number</FieldLabel>
+                             <FieldLabel>Plate number *</FieldLabel>
                              <Input
                                 className="uppercase placeholder:normal-case"
                              {...field}
@@ -176,7 +176,7 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                     <InputGroupTextarea
                       {...field}
                       id="form-rhf-demo-description"
-                      placeholder="I'm having an issue with the login button on mobile."
+                      placeholder="Enter description"
                       rows={6}
                       className="min-h-24 resize-none"
                       aria-invalid={fieldState.invalid}
@@ -187,10 +187,6 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
                       </InputGroupText>
                     </InputGroupAddon>
                   </InputGroup>
-                  <FieldDescription>
-                    Include steps to reproduce, expected behavior, and what
-                    actually happened.
-                  </FieldDescription>
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
@@ -203,10 +199,10 @@ function onSubmit(values: z.infer<typeof vehicleFormSchema>){
              <CardFooter>
                 <Field orientation="horizontal">
                     <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
-                        Reset
+                        Clear
                     </Button>
                     <Button disabled={isPending} type="submit" form="vehicleForm">
-                        Submit
+                        Add Vehicle
                     </Button>
                 </Field>
                 </CardFooter>

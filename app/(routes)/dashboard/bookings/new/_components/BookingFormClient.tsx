@@ -65,8 +65,8 @@ export default function BookingFormClient({ centers, vehicles }:
         <Card className="w-full max-w-lg my-4">
             <CardHeader>
                 <CardTitle>Booking Form</CardTitle>
-                <CardDescription>
-                    Help us improve by reporting bugs you encounter.
+                    <CardDescription>
+                    Please fill out the required fields to add a booking to the system
                 </CardDescription>
             </CardHeader>
 
@@ -99,10 +99,10 @@ export default function BookingFormClient({ centers, vehicles }:
                                 <Field className="sm:w-1/2" data-invalid={fieldState.invalid}>
                                     <FieldContent>
                                         <FieldLabel>
-                                            Service Center
+                                           Center
                                         </FieldLabel>
                                         <FieldDescription>
-                                            Select a service center from the list below
+                                            Select a center from the list below
                                         </FieldDescription>
 
                                     </FieldContent>
@@ -186,8 +186,7 @@ export default function BookingFormClient({ centers, vehicles }:
                                     <InputGroup>
                                         <InputGroupTextarea
                                             {...field}
-
-                                            placeholder="I'm having an issue with the login button on mobile."
+                                            placeholder="Enter description"
                                             rows={6}
                                             className="min-h-24 resize-none"
                                             aria-invalid={fieldState.invalid}
@@ -198,10 +197,7 @@ export default function BookingFormClient({ centers, vehicles }:
                                             </InputGroupText>
                                         </InputGroupAddon>
                                     </InputGroup>
-                                    <FieldDescription>
-                                        Include steps to reproduce, expected behavior, and what
-                                        actually happened.
-                                    </FieldDescription>
+    
                                     {fieldState.invalid && (
                                         <FieldError errors={[fieldState.error]} />
                                     )}
@@ -215,10 +211,10 @@ export default function BookingFormClient({ centers, vehicles }:
             <CardFooter>
                 <Field orientation="horizontal">
                     <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
-                        Reset
+                        Clear
                     </Button>
                     <Button disabled={isPending} type="submit" form="bookingForm">
-                        Submit
+                        Add booking
                     </Button>
                 </Field>
                 </CardFooter>

@@ -54,9 +54,9 @@ function onSubmit(values: z.infer<typeof centerFormSchema>) {
     return (
         <Card className="w-full max-w-lg my-4">
             <CardHeader>
-                <CardTitle>Service Center Form</CardTitle>
+                <CardTitle>Center Form</CardTitle>
                 <CardDescription>
-                    Help us improve by reporting bugs you encounter.
+                    Please fill out the required fields to add a center to the system.
                 </CardDescription>
             </CardHeader>
 
@@ -68,12 +68,12 @@ function onSubmit(values: z.infer<typeof centerFormSchema>) {
                             name="name"
                             render={({ field, fieldState }) => (
                                 <Field>
-                                    <FieldLabel>Service center name</FieldLabel>
+                                    <FieldLabel>Center name *</FieldLabel>
                                     <Input
                                         {...field}
                                         aria-invalid={fieldState.invalid}
                                         type="text"
-                                        placeholder="Provider name"
+                                        placeholder="Center name"
                                     />
                                     {fieldState.invalid &&
                                         <FieldError errors={[fieldState.error]} />}
@@ -86,7 +86,7 @@ function onSubmit(values: z.infer<typeof centerFormSchema>) {
                             name="contact_name"
                             render={({ field, fieldState }) => (
                                 <Field>
-                                    <FieldLabel>Contact name</FieldLabel>
+                                    <FieldLabel>Contact name *</FieldLabel>
                                     <Input
                                         {...field}
                                         aria-invalid={fieldState.invalid}
@@ -106,7 +106,7 @@ function onSubmit(values: z.infer<typeof centerFormSchema>) {
                             name="email"
                             render={({ field, fieldState }) => (
                                 <Field>
-                                    <FieldLabel>Email Address</FieldLabel>
+                                    <FieldLabel>Email Address *</FieldLabel>
                                     <Input
                                         {...field}
                                         aria-invalid={fieldState.invalid}
@@ -124,7 +124,7 @@ function onSubmit(values: z.infer<typeof centerFormSchema>) {
                             name="phone"
                             render={({ field, fieldState }) => (
                                 <Field>
-                                    <FieldLabel>Phone number</FieldLabel>
+                                    <FieldLabel>Phone number *</FieldLabel>
                                     <Input
                                         {...field}
                                         aria-invalid={fieldState.invalid}
@@ -143,7 +143,7 @@ function onSubmit(values: z.infer<typeof centerFormSchema>) {
                             name="address"
                             render={({ field, fieldState }) => (
                                 <Field>
-                                    <FieldLabel>Address</FieldLabel>
+                                    <FieldLabel>Address *</FieldLabel>
                                     <Input
                                         {...field}
                                         aria-invalid={fieldState.invalid}
@@ -164,10 +164,10 @@ function onSubmit(values: z.infer<typeof centerFormSchema>) {
              <CardFooter>
                 <Field orientation="horizontal">
                     <Button disabled={isPending} type="button" variant="outline" onClick={() => form.reset()}>
-                        Reset
+                        Clear
                     </Button>
                     <Button disabled={isPending} type="submit" form="centerForm">
-                        Submit
+                        Add center
                     </Button>
                 </Field>
                 </CardFooter>
